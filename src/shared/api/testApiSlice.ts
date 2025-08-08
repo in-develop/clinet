@@ -5,7 +5,7 @@ export const testApi = createApi({
   reducerPath: "testApi",
   baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
   tagTypes: [],
-  endpoints: build => ({
+  endpoints: (build) => ({
     getProducts: build.query({
       query: () => "products",
     }),

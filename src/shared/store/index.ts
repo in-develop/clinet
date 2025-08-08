@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import { testApi } from "@/shared/api/testApiSlice";
 
 export const makeStore = () => {
@@ -6,7 +7,7 @@ export const makeStore = () => {
     reducer: {
       [testApi.reducerPath]: testApi.reducer,
     },
-    middleware: getDefaultMiddleware =>
+    middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(testApi.middleware),
   });
 };
