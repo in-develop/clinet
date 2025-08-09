@@ -2,14 +2,14 @@
 import { useRef } from "react";
 import { Provider } from "react-redux";
 
-import { makeStore, AppStore } from "@/shared/store";
+import { makeStore } from "@/shared/store";
 
 interface IStoreProvider {
   children: React.ReactNode;
 }
 
 export default function StoreProvider({ children }: IStoreProvider) {
-  const storeRef = useRef<AppStore | null>(null);
+  const storeRef = useRef<TAppStore | null>(null);
 
   if (!storeRef.current) {
     // Create the store instance the first time this renders
