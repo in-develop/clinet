@@ -1,5 +1,5 @@
 import StoreProvider from "@/app/providers/StoreProvider";
-
+import { syne, urbanist } from "@/shared/lib/fonts";
 import "@/app/globals.css";
 
 export default function RootLayout({
@@ -8,8 +8,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html className={syne.variable} lang="en">
+      <body className={urbanist.className}>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
