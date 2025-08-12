@@ -3,7 +3,6 @@ import { Syne, Urbanist } from "next/font/google";
 const syne = Syne({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-syne",
   weight: ["400", "700", "800"],
 });
 
