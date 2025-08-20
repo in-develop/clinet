@@ -1,25 +1,35 @@
+import { UrlObject } from "url";
+
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
+import Link from "next/link";
+import { FC } from "react";
 
 import { cn } from "@/shared/lib/utils";
 
+interface IAppLink {
+  children: React.ReactNode;
+  href: string | UrlObject;
+}
+
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  "inline-flex cursor-pointer duration-300 items-center justify-center gap-2 transition-colors whitespace-nowrap font-medium [&_svg>path]:duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
       variant: {
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
-        destructive:
-          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline:
-          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
-        secondary:
-          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost:
-          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
-        link: "text-primary underline-offset-4 hover:underline",
+        itemList: "p-3 hover:bg-blue hover:text-white flex justify-start",
+        borderIcon:
+          "rounded-full w-9 border border-light-black hover:bg-blue hover:border-white  hover:[&_svg>path]:fill-white",
+        card: "uppercase border border-light-black text-light-black hover:bg-violet hover:text-white font-extrabold",
+        tabIcon:
+          "p-3 rounded-xxl hover:bg-blue hover:text-white font-bold flex justify-center items-center border border-light-black hover:border-white gap-3 uppercase hover:[&_svg>path]:fill-white ",
+        tab: "p-3 rounded-xxl hover:bg-blue hover:text-white font-bold",
+        link: "text-light-black font-bold",
+        iconLink:
+          "flex gap-3 font-bold text-light-black items-center justify-center",
       },
 
       size: {
@@ -57,4 +67,16 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+const AppLink: FC<IAppLink & VariantProps<typeof buttonVariants>> = ({
+  variant,
+  children,
+  href,
+}) => {
+  return (
+    <Button variant={variant} asChild>
+      <Link href={href}>{children}</Link>
+    </Button>
+  );
+};
+
+export { Button, AppLink, buttonVariants };
