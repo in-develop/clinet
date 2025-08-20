@@ -3,20 +3,20 @@
 /* use @theme here */
 
 @theme {
-  --color-primary: rgba(142, 76, 204, 1);
-  --color-secondary-1: rgba(66, 101, 184, 1);
-  --color-secondary-2: rgba(255, 251, 243, 1);
-  --color-error: rgba(125, 3, 3, 1);
-  --color-black: rgba(0, 0, 0, 1);
-  --color-eerie-black: rgba(32, 32, 32, 1);
-  --color-jet: rgba(57, 57, 57, 1);
-  --color-dim-gray: rgba(102, 102, 102, 1);
-  --color-gray: rgba(128, 128, 128, 1);
-  --color-silver: rgba(204, 204, 204, 1);
-  --color-white: rgba(255, 255, 255, 1);
-  --color-text: rgba(0, 0, 0, 1);
-  --color-text-secondary: rgba(133, 133, 133, 1);
-  --color-primary-hover: rgba(112, 42, 180, 1);
-  --color-secondary-card-hover-bg: rgba(232, 208, 255, 1);
-  --color-bg-block: rgba(255, 251, 243, 1);
+  --color-primary: #8E4CCC;
+  --color-secondary-1: #4265B8;
+  --color-secondary-2: #FFFBF3;
+  --color-error: #7D0303;
+  --color-black: #000000;
+  --color-eerie-black: #202020;
+  --color-jet: #393939;
+  --color-dim-gray: #666666;
+  --color-gray: #808080;
+  --color-silver: #CCCCCC;
+  --color-white: #FFFFFF;
+  --color-text: #000000;
+  --color-text-secondary: #858585;
+  --color-primary-hover: #702AB4;
+  --color-secondary-card-hover-bg: #E8D0FF;
+  --color-bg-block: #FFFBF3;
 }
