@@ -208,34 +208,43 @@
 }
 
 @theme {
-  --color-primary: #8E4CCC;
-  --color-secondary-1: #4265B8;
-  --color-secondary-2: #FFFBF3;
-  --color-error: #7D0303;
+  --color-primary: #8e4ccc;
+  --color-secondary-1: #4265b8;
+  --color-secondary-2: #fffbf3;
+  --color-error: #7d0303;
   --color-black: #000000;
   --color-eerie-black: #202020;
   --color-jet: #393939;
   --color-dim-gray: #666666;
   --color-gray: #808080;
-  --color-silver: #CCCCCC;
-  --color-white: #FFFFFF;
+  --color-silver: #cccccc;
+  --color-white: #ffffff;
   --color-text: #000000;
   --color-text-secondary: #858585;
-  --color-primary-hover: #702AB4;
-  --color-secondary-card-hover-bg: #E8D0FF;
-  --color-bg-block: #FFFBF3;
-
+  --color-primary-hover: #702ab4;
+  --color-secondary-card-hover-bg: #e8d0ff;
+  --color-bg-block: #fffbf3;
   --color-light-black: #202020;
   --color-blue: #4265b8;
   --color-violet: #8e4ccc;
+
   --radius-xxl: 40px;
+
+  --breakpoint-lg: 90rem;
+  --breakpoint-2md: 1100px;
+
+  --max-width-7xl: 1440px;
+  --text-sm: 0.875rem; /* 14px */
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+html {
+  font-size: 16px;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-10;
+}
+
+.linkDecoration {
+  @apply before:bg-black before:absolute before:bottom-0 before:h-0.5 before:w-full before:opacity-0 hover:before:opacity-100 relative  transition-all duration-300;
 }
