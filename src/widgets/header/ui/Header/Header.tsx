@@ -27,7 +27,7 @@ const Header: FC<THeaderProps> = () => {
           Shipping & Payment
         </AppLink>
       </div>
-      <div className="container flex items-center justify-between py-2.5">
+      <div className="container flex items-center justify-between py-4">
         <nav className="2md:block hidden max-w-[478px] flex-none">
           <ul className="2md:gap-10 flex items-center gap-2">
             <li>
