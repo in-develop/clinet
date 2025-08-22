@@ -8,15 +8,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = {};
+  const user = null; // Replace with actual user authentication logic
 
   return (
     <html lang="en">
       <body className={syne.className}>
         <StoreProvider>
-          <Header isAuthenticated={!!user} />
+          <Header isAuthenticated={Boolean(user)} />
           {children}
-          </StoreProvider>
+          <section className="min-h-screen bg-amber-400"></section>
+        </StoreProvider>
       </body>
     </html>
   );
