@@ -1,1 +1,1 @@
-export * from './InstaCard'
+export * from "./InstaCard";
