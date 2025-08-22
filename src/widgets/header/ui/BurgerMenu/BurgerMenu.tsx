@@ -4,24 +4,25 @@ import clsx from "clsx";
 import { FC, useEffect } from "react";
 
 import { AppLink, Button } from "@/shared/ui/Button";
+import { ROUTING } from "@/shared/lib/rounting";
 
 type TBurgerMenuProps = {
-  isOpen: boolean;
+  isOpened: boolean;
 };
 
 const navLinks = [
-  { href: "/promotions", label: "Promotions" },
-  { href: "/bestsellers", label: "Bestsellers" },
+  { href: ROUTING.promotions, label: "Promotions" },
+  { href: ROUTING.bestsellers, label: "Bestsellers" },
   { href: "/shop", label: "Shop" },
-  { href: "/cosmetologist", label: "Cosmetologist" },
-  { href: "/about-us", label: "About us" },
-  { href: "/skincare-guide", label: "Skincare guide" },
-  { href: "/faq", label: "FAQ" },
+  { href: ROUTING.cosmetologist, label: "Cosmetologist" },
+  { href: ROUTING.aboutUs, label: "About us" },
+  { href: ROUTING.skincareGuide, label: "Skincare guide" },
+  { href: ROUTING.faq, label: "FAQ" },
 ];
 
-const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpen }) => {
+const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
   useEffect(() => {
-    if (isOpen) {
+    if (isOpened) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -30,15 +31,15 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpen }) => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpen]);
+  }, [isOpened]);
 
   return (
     <section
       className={clsx(
         "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-10 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
         {
-          "translate-y-0": isOpen,
-          "-translate-x-full": !isOpen,
+          "translate-y-0": isOpened,
+          "-translate-x-full": !isOpened,
         },
       )}
     >

@@ -1,0 +1,3 @@
+const MENU_OPEN_DELAY_MS = 100;
+
+export { MENU_OPEN_DELAY_MS };
