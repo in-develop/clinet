@@ -1,4 +1,6 @@
-const ArrowIcon = (props: React.SVGProps<SVGSVGElement>) => (
+import { SVGProps } from "react";
+
+const ArrowIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="16"
     height="16"
