@@ -38,7 +38,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpen }) => {
         "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-10 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
         {
           "translate-y-0": isOpen,
-          "-translate-y-full": !isOpen,
+          "-translate-x-full": !isOpen,
         },
       )}
     >
