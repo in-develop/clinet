@@ -1,22 +1,22 @@
+"use client";
+
+import { ChangeEvent, ComponentProps, FC, useState } from "react";
 import { cn } from "@/shared/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
+import ArrowIcon from "@/shared/ui/Icons/ArrowIcon";
+import { Button } from "../Button";
 
 const textInputVariants = cva(
-  "border-b border-light-black bg-transparent placeholder-gray-400 hover:border-b-violet hover:outline-none hover:cursor-pointer",
+  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary",
   {
     variants: {
       variant: {
-        default:
-          "border-light-black text-light-black ",
-        hover: "p-3 hover:text-white flex justify-start",
-        typing:
-          "rounded-full w-9 border border-light-black hover:bg-blue hover:border-white  hover:[&_svg>path]:fill-white",
-        entered: "uppercase border border-light-black text-light-black hover:bg-violet hover:text-white font-extrabold",
+        default: "border-eerie-black",
+        typing: "border-primary",
+        error: "border-error text-error text-xs font-normal placeholder-error",
         disabled:
-          "p-3 rounded-xxl hover:bg-blue hover:text-white font-bold flex justify-center items-center border border-light-black hover:border-white gap-3 uppercase hover:[&_svg>path]:fill-white ",
-        error: "p-3 rounded-xxl hover:bg-blue hover:text-white font-bold",
+          "border-gray cursor-not-allowed text-gray group-hover:border-gray group-hover:placeholder-gray",
       },
-
     },
     defaultVariants: {
       variant: "default",
@@ -24,52 +24,118 @@ const textInputVariants = cva(
   },
 );
 
-function TextInput(props: React.ComponentProps<"input"> &
+const buttonVariants = cva(
+  "hover:border-primary hover:[&_svg>path]:fill-primary hover:bg-transparent transition-colors",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-eerie-black text-eerie-black group-hover:border-primary group-hover:[&_svg>path]:fill-primary",
+        typing:
+          "border-gray text-gray hover:border-gray hover:[&_svg>path]:fill-gray",
+        entered: "border-primary text-primary",
+        disabled:
+          "border-gray text-gray hover:border-gray hover:[&_svg>path]:fill-gray cursor-not-allowed",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+type Props = ComponentProps<"input"> &
   VariantProps<typeof textInputVariants> & {
-    // asChild?: boolean;
     value: string;
-    onChange: () => void;
-    isDisabled? : boolean;
+    label?: string;
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+    onClick: () => void;
+    isDisabled?: boolean;
     error?: string;
     className?: string;
-  }) {
-    const {
-      value,
-      onChange,
-      isDisabled,
-      error,
-      className,
-    // variant,
+  };
+
+const TextInput: FC<Props> = (props) => {
+  const {
+    value,
+    label,
+    onChange,
+    onClick,
+    isDisabled,
+    error,
+    className,
     ...rest
-    } = props;
+  } = props;
 
-    const getVariant = () => {
-      if (isDisabled) {
-        return 'disabled'
-      }
+  const [isFocused, setIsFocused] = useState(false);
 
-      if (error) {
-        return 'error'
-      }
-
-      return 'default'
+  const getTextInputVariant = () => {
+    if (isDisabled) {
+      return "disabled";
     }
 
-    return (
-      <div>
-        <div className="">
-          <input
-          // data-slot="button"
-          className={cn(textInputVariants({ variant: getVariant(), className }))}
+    if (isFocused || value) {
+      return "typing";
+    }
+
+    if (error) {
+      return "error";
+    }
+
+    return "default";
+  };
+
+  const getButtonVariant = () => {
+    if (isDisabled || error) {
+      return "disabled";
+    }
+
+    if (isFocused) {
+      return "typing";
+    }
+
+    if (value) {
+      return "entered";
+    }
+
+    return "default";
+  };
+
+  return (
+    <div className="flex flex-col gap-1">
+      {label && (
+        <label className="text-gray text-xs font-normal">{label}</label>
+      )}
+
+      <div className="group flex gap-2">
+        <input
+          value={value}
+          disabled={isDisabled}
+          onChange={onChange}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          className={cn(
+            textInputVariants({ variant: getTextInputVariant(), className }),
+          )}
           {...rest}
         />
 
-        
-        </div>
+        <Button
+          disabled={isDisabled || Boolean(error)}
+          variant="borderIcon"
+          size="icon"
+          className={cn(
+            buttonVariants({ variant: getButtonVariant(), className }),
+          )}
+          onClick={onClick}
+        >
+          <ArrowIcon />
+        </Button>
+      </div>
 
-          {error && <p className="">{error}</p>}
-        </div>
-      );
-    }
+      {error && <p className="text-error text-xs font-normal">{error}</p>}
+    </div>
+  );
+};
 
-    export {TextInput, textInputVariants}
+export default TextInput;
