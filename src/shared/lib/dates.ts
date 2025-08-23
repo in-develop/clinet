@@ -1,9 +1,9 @@
-// Formats date in next format: DD.MM.YYYY
+// Formats date in next format: DD.MM.YYYY or returns empty string
 export function formatDate(value: string | Date): string {
   const date = value instanceof Date ? value : new Date(value);
 
   if (Number.isNaN(date.getTime())) {
-    throw new Error("Invalid date");
+    return "";
   }
 
   const day = String(date.getDate()).padStart(2, "0");
