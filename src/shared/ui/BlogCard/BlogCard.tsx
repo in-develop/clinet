@@ -56,7 +56,7 @@ export const BlogCard = ({
             urbanist.className,
           )}
         >
-          {formatDate(date)}
+          {formatDate(date) || "Date unavailable"}
         </time>
         <div className="flex flex-col gap-5">
           <h3 className="text-light-black relative leading-none font-bold underline-offset-4 group-hover:underline">
