@@ -1,6 +1,6 @@
 "use client";
 
-import { ChangeEvent, ComponentProps, FC, useState } from "react";
+import { ComponentProps, FC, useState } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
 import { Button } from "../Button";
@@ -46,13 +46,12 @@ const buttonVariants = cva(
   },
 );
 
-type Props = ComponentProps<"input"> &
+type Props = Omit<ComponentProps<"input">, "disabled"> &
   VariantProps<typeof textInputVariants> & {
     value: string;
     label?: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    onClick: () => void;
-    isDisabled?: boolean;
+    onSubmit?: () => void;
+    disabled?: boolean;
     error?: string;
     className?: string;
   };
@@ -62,8 +61,8 @@ const TextInput: FC<Props> = (props) => {
     value,
     label,
     onChange,
-    onClick,
-    isDisabled,
+    onSubmit,
+    disabled,
     error,
     className,
     ...rest
@@ -72,7 +71,7 @@ const TextInput: FC<Props> = (props) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const getTextInputVariant = () => {
-    if (isDisabled) {
+    if (disabled) {
       return "disabled";
     }
 
@@ -88,7 +87,7 @@ const TextInput: FC<Props> = (props) => {
   };
 
   const getButtonVariant = () => {
-    if (isDisabled || error) {
+    if (disabled || error) {
       return "disabled";
     }
 
@@ -112,7 +111,7 @@ const TextInput: FC<Props> = (props) => {
       <div className="group flex gap-2">
         <input
           value={value}
-          disabled={isDisabled}
+          disabled={disabled}
           onChange={onChange}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
@@ -122,17 +121,19 @@ const TextInput: FC<Props> = (props) => {
           {...rest}
         />
 
-        <Button
-          disabled={isDisabled || Boolean(error)}
-          variant="borderIcon"
-          size="icon"
-          className={cn(
-            buttonVariants({ variant: getButtonVariant(), className }),
-          )}
-          onClick={onClick}
-        >
-          <ArrowIcon />
-        </Button>
+        {onSubmit && (
+          <Button
+            disabled={disabled || Boolean(error)}
+            variant="borderIcon"
+            size="icon"
+            className={cn(
+              buttonVariants({ variant: getButtonVariant(), className }),
+            )}
+            onClick={onSubmit}
+          >
+            <ArrowIcon />
+          </Button>
+        )}
       </div>
 
       {error && <p className="text-error text-xs font-normal">{error}</p>}
@@ -140,4 +141,4 @@ const TextInput: FC<Props> = (props) => {
   );
 };
 
-export default TextInput;
+export { TextInput };
