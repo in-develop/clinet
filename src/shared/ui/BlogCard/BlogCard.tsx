@@ -1,4 +1,7 @@
+"use client";
+import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { formatDate } from "@/shared/lib/dates";
 import { urbanist } from "@/shared/lib/fonts";
@@ -10,36 +13,55 @@ interface IBlogCardProps {
   excerpt: string;
   date: string; // ISO date string
   id: string;
+  imageUrl: string;
 }
 
-export const BlogCard = ({ title, excerpt, date, id }: IBlogCardProps) => {
+export const BlogCard = ({
+  title,
+  excerpt,
+  date,
+  id,
+  imageUrl,
+}: IBlogCardProps) => {
+  const router = useRouter();
+
+  const handleNavigate = () => {
+    router.push(ROUTING.blogPost(id));
+  };
+
   return (
     <article
+      onClick={handleNavigate}
       className={
-        "border-light-black group flex w-full justify-between gap-12 border-x border-t px-5 py-[1.875rem] last:border-b"
+        "border-light-black group flex min-w-[21.875rem] cursor-pointer border-y border-r sm:border-b-0 sm:border-l sm:last:border-b"
       }
     >
-      <div
-        className={cn(
-          "text-dim-gray text-sm font-semibold",
-          urbanist.className,
-        )}
-      >
-        {formatDate(date)}
+      <div className="flex flex-[258] flex-col gap-8 p-5 sm:flex-row sm:gap-12 sm:py-[1.875rem]">
+        <div
+          className={cn(
+            "text-dim-gray text-sm leading-4 font-semibold",
+            urbanist.className,
+          )}
+        >
+          {formatDate(date)}
+        </div>
+        <div className="flex flex-col gap-5">
+          <h5 className="text-light-black relative leading-none font-bold underline-offset-4 group-hover:underline">
+            {title}
+          </h5>
+          <p className={cn("line-clamp-3 leading-5", urbanist.className)}>
+            {excerpt}{" "}
+            <Link
+              className="hidden font-bold group-hover:underline sm:inline"
+              href={ROUTING.blogPost(id)}
+            >
+              Read full article
+            </Link>
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col gap-5">
-        <h5 className="text-light-black relative font-bold underline-offset-4 group-hover:underline">
-          {title}
-        </h5>
-        <p className={urbanist.className}>
-          {excerpt}{" "}
-          <Link
-            className="font-bold group-hover:underline"
-            href={ROUTING.blogPost(id)}
-          >
-            Read full article
-          </Link>
-        </p>
+      <div className="border-light-black relative aspect-[92/219] h-full w-full flex-[92] border-l sm:hidden">
+        <Image src={imageUrl} alt={title} className="object-cover" fill />
       </div>
     </article>
   );
