@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/shared/ui/Button";
-import TextInput from "@/shared/ui/TextInput/TextInput";
 import { useState } from "react";
+
+import TextInput from "@/shared/ui/TextInput/TextInput";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -16,7 +16,7 @@ export default function Home() {
           value={inputValue}
           label="Enter your email"
           onChange={(e) => setInputValue(e.target.value)}
-          onClick={() => console.log("45655")}
+          onClick={() => null}
         />
       </main>
     </div>

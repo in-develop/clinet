@@ -1,10 +1,12 @@
 "use client";
 
 import { ChangeEvent, ComponentProps, FC, useState } from "react";
-import { cn } from "@/shared/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
-import ArrowIcon from "@/shared/ui/Icons/ArrowIcon";
+
 import { Button } from "../Button";
+
+import { cn } from "@/shared/lib/utils";
+import ArrowIcon from "@/shared/ui/Icons/ArrowIcon";
 
 const textInputVariants = cva(
   "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary",
