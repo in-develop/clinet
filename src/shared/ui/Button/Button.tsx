@@ -11,6 +11,7 @@ import { cn } from "@/shared/lib/utils";
 interface IAppLink {
   children: React.ReactNode;
   href: string | UrlObject;
+  className?: string;
 }
 
 const buttonVariants = cva(
@@ -33,10 +34,7 @@ const buttonVariants = cva(
       },
 
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
+        default: "",
       },
     },
     defaultVariants: {
@@ -71,9 +69,10 @@ const AppLink: FC<IAppLink & VariantProps<typeof buttonVariants>> = ({
   variant,
   children,
   href,
+  className,
 }) => {
   return (
-    <Button variant={variant} asChild>
+    <Button className={className} variant={variant} asChild>
       <Link href={href}>{children}</Link>
     </Button>
   );
