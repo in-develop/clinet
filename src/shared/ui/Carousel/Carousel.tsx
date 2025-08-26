@@ -216,7 +216,7 @@ function CarouselItem({ className, ...props }: ComponentProps<"div">) {
 function CarouselPrevious({
   className,
   variant = "borderIcon",
-  size = "icon",
+  size = "default",
   ...props
 }: ComponentProps<typeof Button>) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
@@ -245,7 +245,7 @@ function CarouselPrevious({
 function CarouselNext({
   className,
   variant = "borderIcon",
-  size = "icon",
+  size = "default",
   ...props
 }: ComponentProps<typeof Button>) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
