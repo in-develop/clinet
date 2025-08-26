@@ -228,14 +228,24 @@
   --color-light-black: #202020;
   --color-blue: #4265b8;
   --color-violet: #8e4ccc;
+
   --radius-xxl: 40px;
+
+  --breakpoint-lg: 90rem;
+  --breakpoint-2md: 1100px;
+
+  --max-width-7xl: 1440px;
+  --text-sm: 0.875rem; /* 14px */
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+html {
+  font-size: 16px;
+}
+
+.container {
+  @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-10;
+}
+
+.linkDecoration {
+  @apply relative transition-all duration-300 before:absolute before:bottom-0 before:h-0.5 before:w-full before:bg-black before:opacity-0 hover:before:opacity-100;
 }
