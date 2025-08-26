@@ -126,7 +126,7 @@ const TextInput: FC<Props> = (props) => {
           <Button
             disabled={disabled || Boolean(error)}
             variant="borderIcon"
-            size="icon"
+            size="default"
             className={cn(
               buttonVariants({ variant: getButtonVariant() }),
               className,

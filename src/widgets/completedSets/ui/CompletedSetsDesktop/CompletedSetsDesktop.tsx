@@ -1,9 +1,10 @@
+import { FC } from "react";
+
 import { cosmeticData } from "../../model";
 
-import CompletedSetsCarouselDesktop from "./CompletedSetsCarouselDesktop";
-import { CompletedSetsHeaderDesktop } from "./CompletedSetsHeaderDesktop";
+import { CompletedSetsCarouselDesktop, CompletedSetsHeaderDesktop } from ".";
 
-export default function CompletedSetsDesktop() {
+const CompletedSetsDesktop: FC = () => {
   return (
     <div className="mx-auto w-full">
       <CompletedSetsHeaderDesktop />
@@ -11,4 +12,6 @@ export default function CompletedSetsDesktop() {
       <CompletedSetsCarouselDesktop items={cosmeticData} />
     </div>
   );
-}
+};
+
+export { CompletedSetsDesktop };

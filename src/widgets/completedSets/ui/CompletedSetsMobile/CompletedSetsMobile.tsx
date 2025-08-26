@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FC, useState } from "react";
 
 import {
   CosmeticsType,
@@ -8,10 +8,9 @@ import {
   specialisteData,
 } from "../../model";
 
-import { CompletedSetsHeader } from "./CompletedSetsHeaderMobile";
-import CompletedSetsCarousel from "./CompletedSetsCarouselMobile";
+import { CompletedSetsHeaderMobile, CompletedSetsCarouselMobile } from ".";
 
-export default function CompletedSetsMobile() {
+const CompletedSetsMobile: FC = () => {
   const [cosmeticType, setCosmeticType] =
     useState<CosmeticsType>("Pure salvation");
 
@@ -25,12 +24,14 @@ export default function CompletedSetsMobile() {
 
   return (
     <div className="mx-auto w-full">
-      <CompletedSetsHeader
+      <CompletedSetsHeaderMobile
         cosmeticType={cosmeticType}
         setCosmeticType={setCosmeticType}
       />
 
-      <CompletedSetsCarousel items={getItems()} />
+      <CompletedSetsCarouselMobile items={getItems()} />
     </div>
   );
-}
+};
+
+export { CompletedSetsMobile };

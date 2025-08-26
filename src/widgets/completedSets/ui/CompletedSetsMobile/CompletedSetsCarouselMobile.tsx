@@ -1,20 +1,17 @@
 import Image from "next/image";
+import { FC } from "react";
 
 import { CosmeticType } from "../../model";
 
 import { Button } from "@/shared/ui/Button/index";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/shared/ui/Carousel/Carousel";
 import { urbanist } from "@/shared/lib/fonts";
+import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/Carousel";
 
 type Props = {
   items: CosmeticType[];
 };
 
-export default function CompletedSetsCarouselMobile(props: Props) {
+const CompletedSetsCarouselMobile: FC<Props> = (props) => {
   const { items } = props;
 
   return (
@@ -66,4 +63,6 @@ export default function CompletedSetsCarouselMobile(props: Props) {
       </Carousel>
     </div>
   );
-}
+};
+
+export { CompletedSetsCarouselMobile };

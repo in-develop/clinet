@@ -1,22 +1,23 @@
 import Image from "next/image";
+import { FC } from "react";
 
 import { CompleteSets } from "../../model";
 
 import { Button } from "@/shared/ui/Button/index";
+import { urbanist } from "@/shared/lib/fonts";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/shared/ui/Carousel/Carousel";
-import { urbanist } from "@/shared/lib/fonts";
+} from "@/shared/ui/Carousel";
 
 type Props = {
   items: CompleteSets[];
 };
 
-export default function CompletedSetsCarouselDesktop(props: Props) {
+const CompletedSetsCarouselDesktop: FC<Props> = (props) => {
   const { items } = props;
 
   return (
@@ -103,4 +104,6 @@ export default function CompletedSetsCarouselDesktop(props: Props) {
       </Carousel>
     </div>
   );
-}
+};
+
+export { CompletedSetsCarouselDesktop };

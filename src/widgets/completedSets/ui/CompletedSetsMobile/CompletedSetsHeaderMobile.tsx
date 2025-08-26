@@ -9,7 +9,7 @@ type Props = {
   setCosmeticType: Dispatch<SetStateAction<CosmeticsType>>;
 };
 
-const CompletedSetsHeader: FC<Props> = (props) => {
+const CompletedSetsHeaderMobile: FC<Props> = (props) => {
   const { cosmeticType, setCosmeticType } = props;
 
   return (
@@ -44,4 +44,4 @@ const CompletedSetsHeader: FC<Props> = (props) => {
   );
 };
 
-export { CompletedSetsHeader };
+export { CompletedSetsHeaderMobile };

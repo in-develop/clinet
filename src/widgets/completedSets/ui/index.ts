@@ -1,2 +1,2 @@
-export * from "./completedSetsDesktop/";
-export * from "./completedSetsMobile";
+export * from "./CompletedSetsDesktop";
+export * from "./CompletedSetsMobile";
