@@ -4,9 +4,9 @@ import { ComponentProps, FC, useState } from "react";
 import { cva, VariantProps } from "class-variance-authority";
 
 import { Button } from "../Button";
+import { ArrowIcon } from "../Icons";
 
 import { cn } from "@/shared/lib/utils";
-import ArrowIcon from "@/shared/ui/Icons/ArrowIcon";
 
 const textInputVariants = cva(
   "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary",
@@ -116,7 +116,8 @@ const TextInput: FC<Props> = (props) => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           className={cn(
-            textInputVariants({ variant: getTextInputVariant(), className }),
+            textInputVariants({ variant: getTextInputVariant() }),
+            className,
           )}
           {...rest}
         />
@@ -127,7 +128,8 @@ const TextInput: FC<Props> = (props) => {
             variant="borderIcon"
             size="icon"
             className={cn(
-              buttonVariants({ variant: getButtonVariant(), className }),
+              buttonVariants({ variant: getButtonVariant() }),
+              className,
             )}
             onClick={onSubmit}
           >
