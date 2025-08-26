@@ -3,14 +3,14 @@ import Image from "next/image";
 import { CosmeticType } from "../model";
 
 import { Button } from "@/shared/ui/Button/index";
+import { urbanist } from "@/shared/lib/fonts";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/shared/ui/carousel";
-import { urbanist } from "@/shared/lib/fonts";
+} from "@/shared/ui/Carousel";
 
 type Props = {
   items: CosmeticType[];

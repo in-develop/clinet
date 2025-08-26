@@ -13,8 +13,8 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
 
-import { Button } from "./Button";
-import { ArrowScroll } from "./Icons";
+import { Button } from "../Button";
+import { ArrowScroll } from "../Icons";
 
 import { cn } from "@/shared/lib/utils";
 

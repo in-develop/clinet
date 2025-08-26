@@ -9,7 +9,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/shared/ui/carousel";
+} from "@/shared/ui/Carousel/Carousel";
 import { urbanist } from "@/shared/lib/fonts";
 
 type Props = {

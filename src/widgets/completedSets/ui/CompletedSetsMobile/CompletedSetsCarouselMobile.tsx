@@ -3,7 +3,11 @@ import Image from "next/image";
 import { CosmeticType } from "../../model";
 
 import { Button } from "@/shared/ui/Button/index";
-import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/shared/ui/Carousel/Carousel";
 import { urbanist } from "@/shared/lib/fonts";
 
 type Props = {
