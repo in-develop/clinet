@@ -11,6 +11,7 @@ const ROUTING = {
   cart: "/cart",
   faq: "/faq",
   test: (testName: string) => `/test/${testName}`,
+  blogPost: (id: string) => `/blog/${id}`,
 };
 
 export { ROUTING };
