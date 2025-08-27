@@ -1,6 +1,6 @@
 import { CosmeticType } from "../types";
 
-export const scincareData: CosmeticType[] = [
+const scincareData: CosmeticType[] = [
   {
     id: 5,
     title: "Surgene Sculptor Serum",
@@ -33,3 +33,5 @@ export const scincareData: CosmeticType[] = [
     image: "/makeup/8.png",
   },
 ];
+
+export { scincareData };

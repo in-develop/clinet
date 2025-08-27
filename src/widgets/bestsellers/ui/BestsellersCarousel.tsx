@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FC } from "react";
 
 import { CosmeticType } from "../model";
 
@@ -16,7 +17,7 @@ type Props = {
   items: CosmeticType[];
 };
 
-export default function BestsellersCarousel(props: Props) {
+const BestsellersCarousel: FC<Props> = (props) => {
   const { items } = props;
 
   return (
@@ -66,4 +67,6 @@ export default function BestsellersCarousel(props: Props) {
       </Carousel>
     </div>
   );
-}
+};
+
+export { BestsellersCarousel };

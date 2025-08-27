@@ -1,6 +1,6 @@
 import { CosmeticType } from "../../types";
 
-export const pureSalvationeData: CosmeticType[] = [
+const pureSalvationeData: CosmeticType[] = [
   {
     id: 1,
     title: "C-Intense Serum mini",
@@ -33,3 +33,5 @@ export const pureSalvationeData: CosmeticType[] = [
     image: "/completeSets/5.png",
   },
 ];
+
+export { pureSalvationeData };

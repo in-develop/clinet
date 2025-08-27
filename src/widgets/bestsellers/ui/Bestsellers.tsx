@@ -5,10 +5,10 @@ import { useState } from "react";
 import { CosmeticsType } from "../model/types";
 import { pielCosmeticsLineData, scincareData } from "../model";
 
-import BestsellersCarousel from "./BestsellersCarousel";
+import { BestsellersCarousel } from "./BestsellersCarousel";
 import { BestsellersHeader } from "./BestsellersHeader";
 
-export default function Bestsellers() {
+const Bestsellers = () => {
   const [cosmeticType, setCosmeticType] = useState<CosmeticsType>(
     "Piel Cosmetics Line",
   );
@@ -31,4 +31,6 @@ export default function Bestsellers() {
       <BestsellersCarousel items={getItems()} />
     </div>
   );
-}
+};
+
+export { Bestsellers };

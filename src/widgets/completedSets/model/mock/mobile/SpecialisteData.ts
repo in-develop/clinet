@@ -1,6 +1,6 @@
 import { CosmeticType } from "../../types";
 
-export const specialisteData: CosmeticType[] = [
+const specialisteData: CosmeticType[] = [
   {
     id: 1,
     title: "Cleansing Gel Patchouli",
@@ -33,3 +33,5 @@ export const specialisteData: CosmeticType[] = [
     image: "/completeSets/10.png",
   },
 ];
+
+export { specialisteData };

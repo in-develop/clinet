@@ -1,1 +1,3 @@
-export type CosmeticsType = "Pure salvation" | "Specialiste";
+type CosmeticsType = "Pure salvation" | "Specialiste";
+
+export type { CosmeticsType };

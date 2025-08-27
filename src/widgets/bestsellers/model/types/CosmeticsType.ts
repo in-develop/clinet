@@ -1,1 +1,3 @@
-export type CosmeticsType = "Piel Cosmetics Line" | "Scincare";
+type CosmeticsType = "Piel Cosmetics Line" | "Scincare";
+
+export type { CosmeticsType };

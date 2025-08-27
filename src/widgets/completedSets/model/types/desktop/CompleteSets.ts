@@ -1,7 +1,9 @@
 import { CosmeticType } from "../CosmeticType";
 
-export type CompleteSets = {
+type CompleteSets = {
   id: number;
   image: string;
   items: CosmeticType[];
 };
+
+export type { CompleteSets };

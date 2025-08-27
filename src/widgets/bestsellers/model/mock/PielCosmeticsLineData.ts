@@ -1,6 +1,6 @@
 import { CosmeticType } from "../types";
 
-export const pielCosmeticsLineData: CosmeticType[] = [
+const pielCosmeticsLineData: CosmeticType[] = [
   {
     id: 1,
     title: "Glossence Tonic mini",
@@ -33,3 +33,5 @@ export const pielCosmeticsLineData: CosmeticType[] = [
     image: "/makeup/4.png",
   },
 ];
+
+export { pielCosmeticsLineData };

@@ -1,6 +1,6 @@
 import { CompleteSets } from "../../types";
 
-export const cosmeticData: CompleteSets[] = [
+const cosmeticData: CompleteSets[] = [
   {
     id: 1,
     image: "/completeSets/1.png",
@@ -76,3 +76,5 @@ export const cosmeticData: CompleteSets[] = [
     ],
   },
 ];
+
+export { cosmeticData };

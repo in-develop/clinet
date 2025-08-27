@@ -8,6 +8,7 @@ import React, {
   useEffect,
   useState,
   KeyboardEvent as ReactKeyboardEvent,
+  FC,
 } from "react";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -41,7 +42,7 @@ type CarouselContextProps = {
 
 const CarouselContext = createContext<CarouselContextProps | null>(null);
 
-function useCarousel() {
+const useCarousel = () => {
   const context = useContext(CarouselContext);
 
   if (!context) {
@@ -49,17 +50,19 @@ function useCarousel() {
   }
 
   return context;
-}
+};
 
-function Carousel({
-  orientation = "horizontal",
-  opts,
-  setApi,
-  plugins,
-  className,
-  children,
-  ...props
-}: ComponentProps<"div"> & CarouselProps) {
+const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
+  const {
+    orientation = "horizontal",
+    opts,
+    setApi,
+    plugins,
+    className,
+    children,
+    ...props
+  } = compProps;
+
   const [carouselRef, api] = useEmblaCarousel(
     {
       ...opts,
@@ -67,11 +70,15 @@ function Carousel({
     },
     plugins,
   );
+
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
   const onSelect = useCallback((emblaApi: CarouselApi) => {
-    if (!emblaApi) return;
+    if (!emblaApi) {
+      return;
+    }
+
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
   }, []);
@@ -88,9 +95,11 @@ function Carousel({
     (event: ReactKeyboardEvent<HTMLDivElement>) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
+
         scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
+
         scrollNext();
       }
     },
@@ -98,13 +107,20 @@ function Carousel({
   );
 
   useEffect(() => {
-    if (!api || !setApi) return;
+    if (!api || !setApi) {
+      return;
+    }
+
     setApi(api);
   }, [api, setApi]);
 
   useEffect(() => {
-    if (!api) return undefined;
+    if (!api) {
+      return undefined;
+    }
+
     onSelect(api);
+
     api.on("reInit", onSelect);
     api.on("select", onSelect);
 
@@ -140,16 +156,22 @@ function Carousel({
       </div>
     </CarouselContext.Provider>
   );
-}
+};
 
-function CarouselContent({ className, ...props }: ComponentProps<"div">) {
+const CarouselContent: FC<ComponentProps<"div">> = (compProps) => {
+  const { className, ...props } = compProps;
+
   const { carouselRef, orientation, api } = useCarousel();
 
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const onScroll = useCallback((api: CarouselApi) => {
-    if (!api) return;
+    if (!api) {
+      return;
+    }
+
     const progress = Math.max(0, Math.min(1, api.scrollProgress()));
+
     setScrollProgress(progress * 100);
   }, []);
 
@@ -193,9 +215,11 @@ function CarouselContent({ className, ...props }: ComponentProps<"div">) {
       </div>
     </div>
   );
-}
+};
 
-function CarouselItem({ className, ...props }: ComponentProps<"div">) {
+const CarouselItem: FC<ComponentProps<"div">> = (compProps) => {
+  const { className, ...props } = compProps;
+
   const { orientation } = useCarousel();
 
   return (
@@ -211,14 +235,16 @@ function CarouselItem({ className, ...props }: ComponentProps<"div">) {
       {...props}
     />
   );
-}
+};
 
-function CarouselPrevious({
-  className,
-  variant = "borderIcon",
-  size = "default",
-  ...props
-}: ComponentProps<typeof Button>) {
+const CarouselPrevious: FC<ComponentProps<typeof Button>> = (compProps) => {
+  const {
+    className,
+    variant = "borderIcon",
+    size = "icon",
+    ...props
+  } = compProps;
+
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -240,14 +266,16 @@ function CarouselPrevious({
       <ArrowScroll direction="left" className="ml-1" />
     </Button>
   );
-}
+};
 
-function CarouselNext({
-  className,
-  variant = "borderIcon",
-  size = "default",
-  ...props
-}: ComponentProps<typeof Button>) {
+const CarouselNext: FC<ComponentProps<typeof Button>> = (compProps) => {
+  const {
+    className,
+    variant = "borderIcon",
+    size = "icon",
+    ...props
+  } = compProps;
+
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -269,7 +297,7 @@ function CarouselNext({
       <ArrowScroll direction="right" className="m-auto" />
     </Button>
   );
-}
+};
 
 export {
   type CarouselApi,
