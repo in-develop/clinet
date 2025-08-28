@@ -10,6 +10,7 @@ const ROUTING = {
   skincareGuide: "/skincare-guide",
   cart: "/cart",
   faq: "/faq",
+  shop: "/shop",
   test: (testName: string) => `/test/${testName}`,
 };
 
