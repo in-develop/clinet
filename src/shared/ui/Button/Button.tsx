@@ -1,7 +1,7 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-import * as React from "react";
 import Link, { LinkProps } from "next/link";
+import * as React from "react";
 import { FC } from "react";
 
 import { cn } from "@/shared/lib/utils";
@@ -27,6 +27,8 @@ const buttonVariants = cva(
         link: "text-light-black font-bold",
         iconLink:
           "flex gap-3 font-bold text-light-black items-center justify-center",
+        secondary:
+          "border border-light-black px-5 py-2 font-bold text-light-black leading-none rounded-full uppercase hover:bg-secondary-1 hover:text-white",
       },
 
       size: {
@@ -79,4 +81,4 @@ const AppLink: FC<IAppLinkProps & VariantProps<typeof buttonVariants>> = ({
   );
 };
 
-export { Button, AppLink, buttonVariants };
+export { AppLink, Button, buttonVariants };
