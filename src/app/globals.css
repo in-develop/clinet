@@ -224,6 +224,7 @@
   --color-primary-hover: #702ab4;
   --color-secondary-card-hover-bg: #e8d0ff;
   --color-bg-block: #fffbf3;
+
   --color-light-black: #202020;
   --color-blue: #4265b8;
   --color-violet: #8e4ccc;
@@ -244,9 +245,9 @@ html {
 }
 
 .container {
-  @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-10;
+  @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-10;
 }
 
 .linkDecoration {
-  @apply before:bg-black before:absolute before:bottom-0 before:h-0.5 before:w-full before:opacity-0 hover:before:opacity-100 relative  transition-all duration-300;
+  @apply relative transition-all duration-300 before:absolute before:bottom-0 before:h-0.5 before:w-full before:bg-black before:opacity-0 hover:before:opacity-100;
 }

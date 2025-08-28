@@ -12,6 +12,7 @@ const ROUTING = {
   faq: "/faq",
   shop: "/shop",
   test: (testName: string) => `/test/${testName}`,
+  blogPost: (id: string) => `/blog/${id}`,
 };
 
 export { ROUTING };
