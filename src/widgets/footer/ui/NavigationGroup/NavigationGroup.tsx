@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { TFooterLink } from "@/widgets/footer";
+import { IFooterLink } from "@/widgets/footer";
 
 interface INavigationGroupProps {
   title: string;
-  links: TFooterLink[];
+  links: IFooterLink[];
 }
 
 const NavigationGroup = ({ title, links }: INavigationGroupProps) => (

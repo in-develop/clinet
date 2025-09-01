@@ -1,8 +1,8 @@
-import { TFooterLink } from "./types";
+import { IFooterLink } from "./types";
 
 import { ROUTING } from "@/shared/lib/rounting";
 
-export const shopLinks: TFooterLink[] = [
+export const shopLinks: IFooterLink[] = [
   { label: "Le Pelerin Perfume", href: "#" },
   { label: "Piel Cosmetics Line", href: "#" },
   { label: "Surgene Line", href: "#" },
@@ -15,7 +15,7 @@ export const shopLinks: TFooterLink[] = [
   { label: "Gifts and Packaging", href: "#" },
 ];
 
-export const pagesLinks: TFooterLink[] = [
+export const pagesLinks: IFooterLink[] = [
   { label: "Cosmetologist", href: ROUTING.cosmetologist },
   { label: "About us", href: ROUTING.aboutUs },
   { label: "Cooperation", href: ROUTING.cooperation },
@@ -26,14 +26,14 @@ export const pagesLinks: TFooterLink[] = [
   { label: "Contact", href: ROUTING.contact },
 ];
 
-export const infoLinks: TFooterLink[] = [
+export const infoLinks: IFooterLink[] = [
   { label: "Privacy policy", href: ROUTING.privacy },
   { label: "Returns and refunds", href: ROUTING.refunds },
   { label: "Shipping policy", href: ROUTING.shippingPolicy },
   { label: "Terms & Conditions", href: ROUTING.terms },
 ];
 
-export const socialLinks: TFooterLink[] = [
+export const socialLinks: IFooterLink[] = [
   { label: "Instagram", href: "#" },
   { label: "Facebook", href: "#" },
 ];
