@@ -1,7 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+
+import { Shop } from "../Shop";
 
 import { AppLink, Button } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
@@ -21,6 +23,8 @@ const navLinks = [
 ];
 
 const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
+  const [isOpenCategories, setIsOpenCategories] = useState(false);
+
   useEffect(() => {
     if (isOpened) {
       document.body.style.overflow = "hidden";
@@ -49,6 +53,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
             <li key={link.href}>
               {link.href === "/shop" ? (
                 <Button
+                  onClick={() => setIsOpenCategories(true)}
                   className="flex w-full justify-between py-3"
                   variant="iconLink"
                 >
@@ -111,6 +116,10 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
           </li>
         </ul>
       </div>
+      <Shop
+        isOpenCategories={isOpenCategories}
+        setIsOpenCategories={setIsOpenCategories}
+      />
     </section>
   );
 };

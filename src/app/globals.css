@@ -223,7 +223,7 @@
   --color-text-secondary: #858585;
   --color-primary-hover: #702ab4;
   --color-secondary-card-hover-bg: #e8d0ff;
-  --color-bg-block: #fffbf3;
+  --color-bg-block: #fffbf3; /*! dublicate color */
 
   --color-light-black: #202020;
   --color-blue: #4265b8;
@@ -236,6 +236,7 @@
 
   --max-width-7xl: 1440px;
   --text-sm: 0.875rem; /* 14px */
+  --text-md: 1.25rem; /* 20px */
 }
 
 html {
