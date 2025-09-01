@@ -27,6 +27,8 @@ const buttonVariants = cva(
         link: "text-light-black font-bold",
         iconLink:
           "flex gap-3 font-bold text-light-black items-center justify-center",
+        secondary:
+          "border border-light-black px-5 py-2 font-bold text-light-black leading-none rounded-full uppercase hover:bg-secondary-1 hover:text-white",
       },
 
       size: {

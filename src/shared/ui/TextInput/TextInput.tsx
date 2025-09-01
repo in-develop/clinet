@@ -1,7 +1,7 @@
 "use client";
 
-import { ComponentProps, FC, useState } from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import { ComponentProps, FC, useState } from "react";
 
 import { Button } from "../Button";
 import { ArrowIcon } from "../Icons";
@@ -9,7 +9,7 @@ import { ArrowIcon } from "../Icons";
 import { cn } from "@/shared/lib/utils";
 
 const textInputVariants = cva(
-  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary",
+  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary h-7",
   {
     variants: {
       variant: {
@@ -46,28 +46,28 @@ const buttonVariants = cva(
   },
 );
 
-type Props = Omit<ComponentProps<"input">, "disabled"> &
-  VariantProps<typeof textInputVariants> & {
+interface ITextInputProps extends ComponentProps<"input">,
+  VariantProps<typeof textInputVariants> {
     value: string;
     label?: string;
     onSubmit?: () => void;
-    disabled?: boolean;
     error?: string;
-    className?: string;
+    inputClassName?: string;
+    buttonClassName?: string;
   };
 
-const TextInput: FC<Props> = (props) => {
-  const {
-    value,
-    label,
-    onChange,
-    onSubmit,
-    disabled,
-    error,
-    className,
-    ...rest
-  } = props;
-
+const TextInput: FC<ITextInputProps> = ({
+  value,
+  label,
+  onChange,
+  onSubmit,
+  disabled,
+  error,
+  className,
+  inputClassName,
+  buttonClassName,
+  ...rest
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const getTextInputVariant = () => {
@@ -103,12 +103,19 @@ const TextInput: FC<Props> = (props) => {
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className={cn("relative flex flex-col gap-1", className)}>
       {label && (
-        <label className="text-gray text-xs font-normal">{label}</label>
+        <label
+          className={cn(
+            "text-gray absolute top-0 text-xs font-normal transition-all",
+            !isFocused && !value && "top-2/3",
+          )}
+        >
+          {label}
+        </label>
       )}
 
-      <div className="group flex gap-2">
+      <div className="group flex items-end gap-2">
         <input
           value={value}
           disabled={disabled}
@@ -117,7 +124,7 @@ const TextInput: FC<Props> = (props) => {
           onBlur={() => setIsFocused(false)}
           className={cn(
             textInputVariants({ variant: getTextInputVariant() }),
-            className,
+            inputClassName,
           )}
           {...rest}
         />
@@ -129,7 +136,7 @@ const TextInput: FC<Props> = (props) => {
             size="icon"
             className={cn(
               buttonVariants({ variant: getButtonVariant() }),
-              className,
+              buttonClassName,
             )}
             onClick={onSubmit}
           >

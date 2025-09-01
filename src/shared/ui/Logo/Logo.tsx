@@ -1,21 +1,62 @@
 import { UrlObject } from "url";
 
+import { cva, VariantProps } from "class-variance-authority";
 import Link from "next/link";
 import { FC } from "react";
 
 import { ROUTING } from "@/shared/lib/rounting";
 
-interface ILogoProps {
+const logoWithoutBadgeVariants = cva("", {
+  variants: {
+    size: {
+      default: "h-[27px] w-[51px]",
+      huge: "",
+    },
+    hideBadgeOnMobile: {
+      true: "2md:hidden",
+      false: "hidden",
+    },
+  },
+  defaultVariants: {
+    size: "default",
+    hideBadgeOnMobile: true,
+  },
+});
+
+const logoWithBadgeVariants = cva("", {
+  variants: {
+    size: {
+      default:
+        "h-[clamp(1.6875rem,calc(1.6875rem+9*((100vw-390px)/1050)),2.25rem)] w-[clamp(3.1875rem,calc(3.1875rem+53*((100vw-390px)/1050)),6.5rem)]",
+      huge: "h-[clamp(4.0625rem,calc(4.0625rem+48*((100vw-390px)/1050)),7.0625rem)] w-[clamp(11.625rem,calc(11.625rem+140*((100vw-390px)/1050)),20.375rem)]",
+    },
+    hideBadgeOnMobile: {
+      true: "hidden 2md:block",
+      false: "",
+    },
+  },
+  defaultVariants: {
+    size: "default",
+    hideBadgeOnMobile: true,
+  },
+});
+
+interface ILogoProps extends VariantProps<typeof logoWithBadgeVariants> {
   href?: string | UrlObject;
+  className?: string;
   [key: string]: unknown;
 }
 
-const Logo: FC<ILogoProps> = ({ href = ROUTING.home, ...props }) => (
-  <Link href={href} {...props}>
+const Logo: FC<ILogoProps> = ({
+  href = ROUTING.home,
+  size = "default",
+  hideBadgeOnMobile = true,
+  ...rest
+}) => (
+  <Link href={href} {...rest}>
+    {/* Logo without badge */}
     <svg
-      className="2md:hidden"
-      width="51"
-      height="27"
+      className={logoWithoutBadgeVariants({ hideBadgeOnMobile, size })}
       viewBox="0 0 51 27"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -41,10 +82,9 @@ const Logo: FC<ILogoProps> = ({ href = ROUTING.home, ...props }) => (
         fill="#202020"
       />
     </svg>
+    {/* Logo with badge */}
     <svg
-      className="2md:block hidden"
-      width="104"
-      height="36"
+      className={logoWithBadgeVariants({ size, hideBadgeOnMobile })}
       viewBox="0 0 104 36"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
