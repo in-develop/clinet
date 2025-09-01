@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { FC } from "react";
 
 type TBurgerIconProps = {
-  isOpened: boolean;
+  isOpened?: boolean;
   setIsOpen: (_: boolean) => void;
 };
 
