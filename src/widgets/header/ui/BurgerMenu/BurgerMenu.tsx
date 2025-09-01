@@ -3,11 +3,14 @@
 import clsx from "clsx";
 import { FC, useEffect } from "react";
 
+import { BurgerIcon } from "../BurgerIcon";
+
 import { AppLink, Button } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
 
 type TBurgerMenuProps = {
   isOpened: boolean;
+  setIsOpen: (_: boolean) => void;
 };
 
 const navLinks = [
@@ -20,7 +23,7 @@ const navLinks = [
   { href: ROUTING.faq, label: "FAQ" },
 ];
 
-const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
+const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened, setIsOpen }) => {
   useEffect(() => {
     if (isOpened) {
       document.body.style.overflow = "hidden";
@@ -36,14 +39,18 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
   return (
     <section
       className={clsx(
-        "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-10 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
+        "2md:hidden absolute top-[36.8px] right-0 bottom-0 left-0 z-30 container min-h-[calc(100vh-36.8px)] bg-white transition-transform",
         {
           "translate-y-0": isOpened,
           "-translate-x-full": !isOpened,
         },
       )}
     >
-      <div className="h-[calc(100vh-192px)] overflow-y-scroll pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div className="flex justify-between py-3 font-bold">
+        <span>Menu</span>
+        <BurgerIcon isOpened setIsOpen={setIsOpen} />
+      </div>
+      <div className="h-[calc(100vh-190px)] overflow-y-scroll pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <ul className="text-xl">
           {navLinks.map((link) => (
             <li key={link.href}>
