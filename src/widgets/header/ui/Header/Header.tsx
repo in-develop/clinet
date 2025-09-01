@@ -5,7 +5,7 @@ import { useDebounce } from "use-debounce";
 
 import { BurgerMenu } from "../BurgerMenu";
 import { HeaderTop } from "../HeaderTop";
-import { DesktopNavigation } from "../DesctopNavigation";
+import { DesktopNavigation } from "../DesktopNavigation";
 import { BurgerIcon } from "../BurgerIcon";
 import { RightSideHeader } from "../RightSideHeader";
 
