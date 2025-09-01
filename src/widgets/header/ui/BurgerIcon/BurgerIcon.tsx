@@ -2,17 +2,20 @@ import clsx from "clsx";
 import { FC } from "react";
 
 type TBurgerIconProps = {
-  isOpened: boolean;
-  setIsOpen: (_: boolean) => void;
+  isOpenedCategories: boolean;
+  setIsOpenCatigories: (_: boolean) => void;
 };
 
-const BurgerIcon: FC<TBurgerIconProps> = ({ isOpened, setIsOpen }) => (
+const BurgerIcon: FC<TBurgerIconProps> = ({
+  isOpenedCategories,
+  setIsOpenCatigories,
+}) => (
   <button
     className={clsx(
       "2md:hidden relative flex h-6 w-6 cursor-pointer items-center justify-center focus:outline-none",
-      { border: isOpened },
+      { border: isOpenedCategories },
     )}
-    onClick={() => setIsOpen(!isOpened)}
+    onClick={() => setIsOpenCatigories(!isOpenedCategories)}
     type="button"
     aria-label="Close"
   >
@@ -20,7 +23,7 @@ const BurgerIcon: FC<TBurgerIconProps> = ({ isOpened, setIsOpen }) => (
       className={clsx(
         "absolute top-2 h-[2.5px] w-5 origin-[7px] rounded bg-black transition-transform duration-300 ease-in-out",
         {
-          "rotate-45": isOpened,
+          "rotate-45": isOpenedCategories,
         },
       )}
       width="18"
@@ -35,7 +38,7 @@ const BurgerIcon: FC<TBurgerIconProps> = ({ isOpened, setIsOpen }) => (
       className={clsx(
         "absolute bottom-2 h-[2.5px] w-5 origin-[7px] rounded bg-black transition-transform duration-300 ease-in-out",
         {
-          "-rotate-45": isOpened,
+          "-rotate-45": isOpenedCategories,
         },
       )}
       width="18"

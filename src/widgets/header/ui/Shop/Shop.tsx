@@ -9,82 +9,38 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shared/ui/Accordion";
-
-const mobileCategories = [
-  {
-    title: "Le Pèlerin Perfume",
-    subTitles: [],
-  },
-  {
-    title: "Piel Cosmetics Line",
-    subTitles: [
-      { subTitle: "Specialiste", slug: "/specialiste" },
-      { subTitle: "Youth defence", slug: "/youth-defence" },
-      { subTitle: "Safe care", slug: "/safe-care" },
-      { subTitle: "Sun & Cold", slug: "/sun-cold" },
-      { subTitle: "Sensitive", slug: "/sensitive" },
-      { subTitle: "Magnifique", slug: "/magnifique" },
-      { subTitle: "Rejuvenate", slug: "/rejuvenate" },
-      { subTitle: "Pure salvation", slug: "/pure-salvation" },
-      { subTitle: "Men", slug: "/men" },
-      { subTitle: "Hair & Lash", slug: "/hair-lash" },
-      { subTitle: "Body care", slug: "/body-care" },
-      { subTitle: "Professional", slug: "/professional" },
-    ],
-  },
-  {
-    title: "Surgene Line",
-    subTitles: [],
-  },
-  {
-    title: "Skincare",
-    subTitles: [],
-  },
-  {
-    title: "By Skin Type",
-    subTitles: [],
-  },
-  {
-    title: "Men's Cosmetics",
-    subTitles: [],
-  },
-  {
-    title: "Body Care",
-    subTitles: [],
-  },
-  {
-    title: "Hair Care",
-    subTitles: [],
-  },
-  {
-    title: "Professional Skincare",
-    subTitles: [],
-  },
-  {
-    title: "Gifts and Packaging",
-    subTitles: [],
-  },
-];
+import { CATEGORIES } from "@/shared/lib/constants";
+import { ROUTING } from "@/shared/lib/rounting";
 
 interface IShopProps {
-  isOpenCategories: boolean;
+  isOpenSubCategories: boolean;
+  setIsOpenSubCategories: (_: boolean) => void;
   setIsOpenCategories: (_: boolean) => void;
 }
 
-const Shop: FC<IShopProps> = ({ isOpenCategories, setIsOpenCategories }) => {
+const Shop: FC<IShopProps> = ({
+  isOpenSubCategories,
+  setIsOpenSubCategories,
+  setIsOpenCategories,
+}) => {
+  const handleCloseBurgerMenu = () => {
+    setIsOpenSubCategories(false);
+    setIsOpenCategories(false);
+  };
+
   return (
     <section
       className={clsx(
         "absolute inset-0 z-30 overflow-y-scroll bg-white pb-3 transition-transform",
         {
-          "translate-y-0": isOpenCategories,
-          "-translate-x-full": !isOpenCategories,
+          "translate-y-0": isOpenSubCategories,
+          "-translate-x-full": !isOpenSubCategories,
         },
       )}
     >
       <h3 className="text-md container mb-5">
         <Button
-          onClick={() => setIsOpenCategories(false)}
+          onClick={() => setIsOpenSubCategories(false)}
           className="relative flex w-full py-3"
           variant="iconLink"
         >
@@ -102,7 +58,7 @@ const Shop: FC<IShopProps> = ({ isOpenCategories, setIsOpenCategories }) => {
         </Button>
       </h3>
 
-      {mobileCategories.map((category) => (
+      {CATEGORIES.map((category) => (
         <Accordion
           key={category.title}
           type="single"
@@ -122,8 +78,9 @@ const Shop: FC<IShopProps> = ({ isOpenCategories, setIsOpenCategories }) => {
               <div className="flex flex-col items-start gap-3 pt-3 pb-2.5">
                 {category.subTitles.map((subTitle) => (
                   <AppLink
+                    onClick={handleCloseBurgerMenu}
                     className="p-0 font-normal"
-                    href={subTitle.slug}
+                    href={ROUTING.catalog(category.slug, subTitle.slug)}
                     variant="link"
                     key={subTitle.slug}
                   >
