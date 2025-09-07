@@ -84,6 +84,7 @@ const UpButton = () => {
       setIsScrolling(false);
     }
 
+    // eslint-disable-next-line consistent-return
     return () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
@@ -91,14 +92,13 @@ const UpButton = () => {
     };
   }, [isScrolling, reducedMotion]);
 
-
   return (
     <Button
-      variant={"link"}
+      variant={"card"}
       onClick={scrollToTop}
       disabled={isScrolling}
       className={cn(
-        "text-light-black fixed right-10 bottom-10 z-50 flex flex-col items-center gap-1 font-extrabold",
+        "text-light-black fixed right-10 bottom-10 z-50 flex size-16 flex-col items-center gap-1 rounded-full border-none font-extrabold",
         reducedMotion ? "transition-none" : "transition-all",
         isVisible
           ? "translate-y-0 opacity-100"
