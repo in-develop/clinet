@@ -16,7 +16,7 @@ const Hero = () => {
             <AppLink
               href={ROUTING.shop}
               className="w-full sm:justify-start"
-              variant={"link"}
+              variant="link"
               aria-label="Discover the collection"
             >
               <span>Discover the Collection</span>
@@ -27,7 +27,7 @@ const Hero = () => {
 
         <div className="laptop:flex-[474] laptop:aspect-[474/774] relative aspect-[390/636] sm:flex-[4]">
           <Image
-            src={"/heroSection/hero.png"}
+            src="/heroSection/hero.png"
             alt="Hero Image"
             className="object-cover"
             fill
@@ -42,7 +42,7 @@ const Hero = () => {
           </div>
           <AppLink
             href={ROUTING.shop}
-            variant={"secondary"}
+            variant="secondary"
             aria-label="Shop now"
           >
             <span>Shop now</span>

@@ -1,13 +1,12 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import Link, { LinkProps } from "next/link";
-import * as React from "react";
-import { FC } from "react";
+import { AnchorHTMLAttributes, ComponentProps, FC } from "react";
 
 import { cn } from "@/shared/lib/utils";
 
 type IAppLinkProps = LinkProps &
-  React.AnchorHTMLAttributes<HTMLAnchorElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement> &
   VariantProps<typeof buttonVariants>;
 
 const buttonVariants = cva(
@@ -51,7 +50,7 @@ function Button({
   size,
   asChild = false,
   ...props
-}: React.ComponentProps<"button"> &
+}: ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
   }) {
