@@ -27,7 +27,7 @@ const Hero = () => {
 
         <div className="laptop:flex-[474] laptop:aspect-[474/774] relative aspect-[390/636] sm:flex-[4]">
           <Image
-            src="/heroSection/hero.png"
+            src="/images/heroSection/hero.png"
             alt="Hero Image"
             className="object-cover"
             fill
