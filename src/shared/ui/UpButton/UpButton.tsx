@@ -83,14 +83,15 @@ const UpButton = () => {
       window.scrollTo({ top: 0, behavior: "instant" });
       setIsScrolling(false);
     }
+  }, [isScrolling, reducedMotion]);
 
-    // eslint-disable-next-line consistent-return
+  useEffect(() => {
     return () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [isScrolling, reducedMotion]);
+  }, []);
 
   return (
     <Button
