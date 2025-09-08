@@ -69,10 +69,11 @@ const AppLink: FC<IAppLinkProps & VariantProps<typeof buttonVariants>> = ({
   variant,
   children,
   href,
+  className,
   ...props
 }) => {
   return (
-    <Button variant={variant} asChild>
+    <Button className={className} variant={variant} asChild>
       <Link {...props} href={href}>
         {children}
       </Link>
