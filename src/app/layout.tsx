@@ -1,3 +1,4 @@
+import "@/app/globals.css";
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
 import "@/app/globals.css";
@@ -23,9 +24,6 @@ export default function RootLayout({
 
           {children}
           <section className="min-h-screen bg-amber-400">
-            <Bestsellers />
-
-            <CompletedSetsMobile />
           </section>
         </StoreProvider>
       </body>

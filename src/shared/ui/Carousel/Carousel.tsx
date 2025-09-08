@@ -10,7 +10,7 @@ import React, {
   useContext,
   useEffect,
   useState,
-  KeyboardEvent as ReactKeyboardEvent,
+  KeyboardEvent,
   FC,
 } from "react";
 
@@ -28,7 +28,7 @@ type CarouselProps = {
   opts?: CarouselOptions;
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
-  setApi?: (_: CarouselApi) => void;
+  setApi?: (_api: CarouselApi) => void;
 };
 
 type CarouselContextProps = {
@@ -74,17 +74,13 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     },
     plugins,
   );
-
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
-  const onSelect = useCallback((emblaApi: CarouselApi) => {
-    if (!emblaApi) {
-      return;
-    }
-
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
+  const onSelect = useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
   }, []);
 
   const scrollPrev = useCallback(() => {
@@ -96,14 +92,12 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   }, [api]);
 
   const handleKeyDown = useCallback(
-    (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-
         scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
-
         scrollNext();
       }
     },
@@ -111,26 +105,18 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   );
 
   useEffect(() => {
-    if (!api || !setApi) {
-      return;
-    }
-
+    if (!api || !setApi) return;
     setApi(api);
   }, [api, setApi]);
 
   useEffect(() => {
-    if (!api) {
-      return undefined;
-    }
-
+    if (!api) return;
     onSelect(api);
-
     api.on("reInit", onSelect);
     api.on("select", onSelect);
 
     return () => {
-      api.off("select", onSelect);
-      api.off("reInit", onSelect);
+      api?.off("select", onSelect);
     };
   }, [api, onSelect]);
 
@@ -138,7 +124,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     <CarouselContext.Provider
       value={{
         carouselRef,
-        api,
+        api: api,
         opts,
         orientation:
           orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
