@@ -21,6 +21,8 @@ const ROUTING = {
   shippingPolicy: "/shipping-policy",
   test: (testName: string) => `/test/${testName}`,
   blogPost: (id: string) => `/blog/${id}`,
+  catalog: (category: string, subCategory?: string) =>
+    subCategory ? `/catalog/${category}${subCategory}` : `/catalog/${category}`,
 };
 
 export { ROUTING };
