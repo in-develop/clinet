@@ -1,5 +1,5 @@
-import { fileURLToPath } from "url";
 import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 import { FlatCompat } from "@eslint/eslintrc";
 
@@ -28,7 +28,22 @@ const eslintConfig = [
       "arrow-parens": ["error", "always"],
       "no-duplicate-imports": "error",
       "consistent-return": "warn",
-      "import/order": ["error", { "newlines-between": "always" }],
+
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
+          alphabetize: { order: "asc", caseInsensitive: true },
+          "newlines-between": "always",
+        },
+      ],
     },
   }),
 ];

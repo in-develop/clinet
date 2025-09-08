@@ -1,12 +1,12 @@
-import { CosmeticType } from "../types";
+import { ICosmetic } from "../types";
 
-const scincareData: CosmeticType[] = [
+const skincareData: ICosmetic[] = [
   {
     id: 5,
     title: "Surgene Sculptor Serum",
     description: "Instant action contouring serum",
     price: "$41.00",
-    image: "/makeup/5.png",
+    image: "/images/makeup/5.png"
   },
 
   {
@@ -14,7 +14,7 @@ const scincareData: CosmeticType[] = [
     title: "Surgene Aqua Explosion serum",
     description: "Instant action moisturizing serum",
     price: "$41.00",
-    image: "/makeup/6.png",
+    image: "/images/makeup/6.png"
   },
 
   {
@@ -22,7 +22,7 @@ const scincareData: CosmeticType[] = [
     title: "Surgene Detox booster",
     description: "Protective anti-pollution serum",
     price: "$35.00",
-    image: "/makeup/7.png",
+    image: "/images/makeup/7.png"
   },
 
   {
@@ -30,8 +30,8 @@ const scincareData: CosmeticType[] = [
     title: "Surgene Detox mask",
     description: "Charcoal Detox Mask",
     price: "$48.00",
-    image: "/makeup/8.png",
+    image: "/images/makeup/8.png"
   },
 ];
 
-export { scincareData };
+export { skincareData };

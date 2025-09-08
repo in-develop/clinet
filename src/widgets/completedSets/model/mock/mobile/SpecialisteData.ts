@@ -1,12 +1,12 @@
-import { CosmeticType } from "../../types";
+import { ICosmetic } from "../../types";
 
-const specialisteData: CosmeticType[] = [
+const specialisteData: ICosmetic[] = [
   {
     id: 1,
     title: "Cleansing Gel Patchouli",
     description: "Men’s Toning Face Wash Gel with Patchouli",
     price: "$6.00",
-    image: "/completeSets/7.png",
+    image: "/images/completeSets/7.png",
   },
 
   {
@@ -14,7 +14,7 @@ const specialisteData: CosmeticType[] = [
     title: "Lucent Serum",
     description: "Men’s Skin Revitalizing Serum",
     price: "$20.00",
-    image: "/completeSets/8.png",
+    image: "/images/completeSets/8.png",
   },
 
   {
@@ -22,7 +22,7 @@ const specialisteData: CosmeticType[] = [
     title: "Anti-Age Сream",
     description: "Rejuvenating Cream for Men’s Skin – Tester",
     price: "$1.60",
-    image: "/completeSets/9.png",
+    image: "/images/completeSets/9.png",
   },
 
   {
@@ -30,7 +30,7 @@ const specialisteData: CosmeticType[] = [
     title: "Universe Cream",
     description: "Universal Men’s Face Cream",
     price: "$20.00",
-    image: "/completeSets/10.png",
+    image: "/images/completeSets/10.png",
   },
 ];
 

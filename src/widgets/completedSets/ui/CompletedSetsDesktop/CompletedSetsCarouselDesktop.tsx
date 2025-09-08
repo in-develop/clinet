@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import { CompleteSets } from "../../model";
-
-import { Button } from "@/shared/ui/Button/index";
 import { urbanist } from "@/shared/lib/fonts";
+import { Button } from "@/shared/ui/Button/index";
 import {
   Carousel,
   CarouselContent,
@@ -13,11 +11,15 @@ import {
   CarouselPrevious,
 } from "@/shared/ui/Carousel";
 
-type Props = {
-  items: CompleteSets[];
-};
+import { ICompleteSetsItem } from "../../model";
 
-const CompletedSetsCarouselDesktop: FC<Props> = (props) => {
+interface ICompletedSetsCarouselDesktopProps {
+  items: ICompleteSetsItem[];
+}
+
+const CompletedSetsCarouselDesktop: FC<ICompletedSetsCarouselDesktopProps> = (
+  props,
+) => {
   const { items } = props;
 
   return (

@@ -1,5 +1,8 @@
 "use client";
 
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import React, {
   ComponentProps,
   createContext,
@@ -10,14 +13,11 @@ import React, {
   KeyboardEvent as ReactKeyboardEvent,
   FC,
 } from "react";
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
+
+import { cn } from "@/shared/lib/utils";
 
 import { Button } from "../Button";
 import { ArrowScroll } from "../Icons";
-
-import { cn } from "@/shared/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -39,6 +39,10 @@ type CarouselContextProps = {
   canScrollPrev: boolean;
   canScrollNext: boolean;
 } & CarouselProps;
+
+type CarouselContentProps = {
+  progressBar?: boolean;
+};
 
 const CarouselContext = createContext<CarouselContextProps | null>(null);
 
@@ -158,8 +162,10 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   );
 };
 
-const CarouselContent: FC<ComponentProps<"div">> = (compProps) => {
-  const { className, ...props } = compProps;
+const CarouselContent: FC<ComponentProps<"div"> & CarouselContentProps> = (
+  compProps,
+) => {
+  const { progressBar, className, ...props } = compProps;
 
   const { carouselRef, orientation, api } = useCarousel();
 
@@ -207,12 +213,14 @@ const CarouselContent: FC<ComponentProps<"div">> = (compProps) => {
         {...props}
       />
 
-      <div className="embla__progress bg-silver mt-5 h-2 w-full sm:mt-3.5 sm:mb-5">
-        <div
-          className="embla__progress__bar bg-eerie-black h-1 transition-[width]"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
+      {progressBar && (
+        <div className="embla__progress bg-silver mt-5 h-2 w-full sm:mt-3.5 sm:mb-5">
+          <div
+            className="embla__progress__bar bg-eerie-black h-1 transition-[width]"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+      )}
     </div>
   );
 };

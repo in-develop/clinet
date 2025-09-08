@@ -1,4 +1,4 @@
-type CosmeticType = {
+interface ICosmetic  {
   id: number;
   title: string;
   description: string;
@@ -6,4 +6,4 @@ type CosmeticType = {
   image: string;
 };
 
-export type { CosmeticType };
+export type { ICosmetic };

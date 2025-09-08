@@ -1,2 +1,2 @@
 export * from "./PielCosmeticsLineData";
-export * from "./ScincareData";
+export * from "./SkincareData";

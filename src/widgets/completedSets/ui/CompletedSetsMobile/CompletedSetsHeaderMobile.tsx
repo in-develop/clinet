@@ -1,15 +1,17 @@
 import { Dispatch, FC, SetStateAction } from "react";
 
-import { CosmeticsType } from "../../model";
-
 import { Button } from "@/shared/ui/Button/index";
 
-type Props = {
-  cosmeticType: string;
-  setCosmeticType: Dispatch<SetStateAction<CosmeticsType>>;
-};
+import { TCosmeticCategory } from "../../model";
 
-const CompletedSetsHeaderMobile: FC<Props> = (props) => {
+interface ICompletedSetsHeaderMobileProps {
+  cosmeticType: string;
+  setCosmeticType: Dispatch<SetStateAction<TCosmeticCategory>>;
+}
+
+const CompletedSetsHeaderMobile: FC<ICompletedSetsHeaderMobileProps> = (
+  props,
+) => {
   const { cosmeticType, setCosmeticType } = props;
 
   return (

@@ -1,9 +1,9 @@
-import { CosmeticType } from "../CosmeticType";
+import { ICosmetic } from "../CosmeticType";
 
-type CompleteSets = {
+interface ICompleteSetsItem  {
   id: number;
   image: string;
-  items: CosmeticType[];
+  items: ICosmetic[];
 };
 
-export type { CompleteSets };
+export type { ICompleteSetsItem };

@@ -1,16 +1,16 @@
-import { CompleteSets } from "../../types";
+import { ICompleteSetsItem } from "../../types";
 
-const cosmeticData: CompleteSets[] = [
+const cosmeticData: ICompleteSetsItem[] = [
   {
     id: 1,
-    image: "/completeSets/1.png",
+    image: "/image/completeSets/1.png",
     items: [
       {
         id: 1,
         title: "C-Intense Serum mini",
         description: "Serum with 5% Vitamin C",
         price: "$23.00",
-        image: "/completeSets/2.png",
+        image: "/image/completeSets/2.png",
       },
 
       {
@@ -18,7 +18,7 @@ const cosmeticData: CompleteSets[] = [
         title: "Silver Aqua Tonic",
         description: "Toner for hydrating normal and combination facial skin",
         price: "$9.00",
-        image: "/completeSets/3.png",
+        image: "/image/completeSets/3.png",
       },
 
       {
@@ -26,7 +26,7 @@ const cosmeticData: CompleteSets[] = [
         title: "Cleansing Gel 3 in 1",
         description: "Makeup Remover Gel for Normal and Combination Skin",
         price: "$12.00",
-        image: "/completeSets/4.png",
+        image: "/image/completeSets/4.png",
       },
 
       {
@@ -34,7 +34,7 @@ const cosmeticData: CompleteSets[] = [
         title: "Mattifying facial fluid",
         description: "Greasy shine control fluid with a mattifying effect",
         price: "$14.00",
-        image: "/completeSets/5.png",
+        image: "/image/completeSets/5.png",
       },
     ],
   },

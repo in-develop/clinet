@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import { CosmeticType } from "../model";
-
-import { Button } from "@/shared/ui/Button/index";
 import { urbanist } from "@/shared/lib/fonts";
+import { Button } from "@/shared/ui/Button/index";
 import {
   Carousel,
   CarouselContent,
@@ -13,21 +11,26 @@ import {
   CarouselPrevious,
 } from "@/shared/ui/Carousel";
 
-type Props = {
-  items: CosmeticType[];
-};
+import { ICosmetic } from "../model";
 
-const BestsellersCarousel: FC<Props> = (props) => {
+interface IBestsellersCarouselProps {
+  items: ICosmetic[];
+}
+
+const BestsellersCarousel: FC<IBestsellersCarouselProps> = (props) => {
   const { items } = props;
 
   return (
     <div className="relative h-full">
       <Carousel>
-        <CarouselContent className="border-eerie-black first:border-l">
+        <CarouselContent
+          progressBar
+          className="border-eerie-black first:border-l"
+        >
           {items.map((item, index) => (
             <CarouselItem
               key={index}
-              className="border-eerie-black flex basis-[75%] flex-col border-y border-r bg-white p-0 pt-6 sm:pt-8 lg:basis-[33%]"
+              className="border-eerie-black flex basis-[75%] flex-col border-y border-r bg-white p-0 pt-6 sm:pt-8 sm:basis-[33%]"
             >
               <div className="flex-1">
                 <div className="flex w-full flex-row justify-between gap-10 px-3">

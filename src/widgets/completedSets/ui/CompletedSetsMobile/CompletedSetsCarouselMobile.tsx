@@ -1,23 +1,25 @@
 import Image from "next/image";
 import { FC } from "react";
 
-import { CosmeticType } from "../../model";
-
-import { Button } from "@/shared/ui/Button/index";
 import { urbanist } from "@/shared/lib/fonts";
+import { Button } from "@/shared/ui/Button/index";
 import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/Carousel";
 
-type Props = {
-  items: CosmeticType[];
-};
+import { ICosmetic } from "../../model";
 
-const CompletedSetsCarouselMobile: FC<Props> = (props) => {
+interface ICompletedSetsCarouselMobileProps {
+  items: ICosmetic[];
+}
+
+const CompletedSetsCarouselMobile: FC<ICompletedSetsCarouselMobileProps> = (
+  props,
+) => {
   const { items } = props;
 
   return (
-    <div className="-mx-5">
+    <div className="relative h-full">
       <Carousel>
-        <CarouselContent className="border-eerie-black ml-5 first:border-l">
+        <CarouselContent progressBar className="border-eerie-black ml-5 first:border-l">
           {items.map((item, index) => (
             <CarouselItem
               key={index}
