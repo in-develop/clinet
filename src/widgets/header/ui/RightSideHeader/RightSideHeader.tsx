@@ -1,7 +1,7 @@
 import { FC } from "react";
 
-import { AppLink } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
+import { AppLink } from "@/shared/ui/Button";
 
 interface IRightSideHeaderProps {
   isAuthenticated?: boolean;
