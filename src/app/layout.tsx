@@ -2,7 +2,7 @@ import "@/app/globals.css";
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
 import { UpButton } from "@/shared/ui/UpButton";
-import { Header } from "@/widgets";
+import { Footer, Header } from "@/widgets";
 
 export default function RootLayout({
   children,
@@ -18,6 +18,7 @@ export default function RootLayout({
           <Header isAuthenticated={Boolean(user)} />
           {children}
           <section className="min-h-screen bg-amber-400"></section>
+          <Footer />
           <UpButton />
         </StoreProvider>
       </body>
