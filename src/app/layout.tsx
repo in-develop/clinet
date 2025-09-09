@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
+import { UpButton } from "@/shared/ui/UpButton";
 import { Footer, Header } from "@/widgets";
 
 export default function RootLayout({
@@ -18,6 +19,7 @@ export default function RootLayout({
           {children}
           <section className="min-h-screen bg-amber-400"></section>
           <Footer />
+          <UpButton />
         </StoreProvider>
       </body>
     </html>
