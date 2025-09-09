@@ -7,8 +7,9 @@ import { SvgIcon } from "../SvgIcon";
 import { useReducedMotion } from "@/shared/hooks";
 import { cn } from "@/shared/lib/utils";
 
-const THRESHOLD = 600; //in px
+const THRESHOLD = 600; // in px
 const SCROLL_DURATION = 600; // in ms
+const INACTIVITY_DELAY = 1500; // in ms
 
 const UpButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,21 +17,66 @@ const UpButton = () => {
 
   const rafRef = useRef<number | null>(null);
 
+  const lastScrollTopRef = useRef(0);
+  const lastDirectionRef = useRef<"up" | "down">("down");
+
+  const inactivityTimeoutRef = useRef<number | null>(null);
+
   const reducedMotion = useReducedMotion();
 
   const handleScroll = useCallback(() => {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    setIsVisible(scrollTop > THRESHOLD);
+    const last = lastScrollTopRef.current;
+
+    const direction: "up" | "down" = scrollTop > last ? "down" : "up";
+
+    lastScrollTopRef.current = scrollTop;
+    lastDirectionRef.current = direction;
+
+    if (scrollTop <= THRESHOLD) {
+      if (inactivityTimeoutRef.current) {
+        clearTimeout(inactivityTimeoutRef.current);
+        inactivityTimeoutRef.current = null;
+      }
+      setIsVisible(false);
+      return;
+    }
+
+    if (direction === "up") {
+      if (inactivityTimeoutRef.current) {
+        clearTimeout(inactivityTimeoutRef.current);
+        inactivityTimeoutRef.current = null;
+      }
+      setIsVisible(true);
+      return;
+    }
+
+    setIsVisible(false);
+
+    if (inactivityTimeoutRef.current) {
+      clearTimeout(inactivityTimeoutRef.current);
+    }
+
+    inactivityTimeoutRef.current = window.setTimeout(() => {
+      const currentTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentTop > THRESHOLD && lastDirectionRef.current === "down") {
+        setIsVisible(true);
+      }
+
+      inactivityTimeoutRef.current = null;
+    }, INACTIVITY_DELAY);
   }, []);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
+    let throttleTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
     const throttledScrollHandler = () => {
-      if (timeoutId === null) {
-        timeoutId = setTimeout(() => {
+      if (throttleTimeoutId === null) {
+        throttleTimeoutId = setTimeout(() => {
           handleScroll();
-          timeoutId = null;
+          throttleTimeoutId = null;
         }, 16);
       }
     };
@@ -43,9 +89,11 @@ const UpButton = () => {
 
     return () => {
       window.removeEventListener("scroll", throttledScrollHandler);
-
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (throttleTimeoutId) {
+        clearTimeout(throttleTimeoutId);
+      }
+      if (inactivityTimeoutRef.current) {
+        clearTimeout(inactivityTimeoutRef.current);
       }
     };
   }, [handleScroll]);
@@ -89,6 +137,10 @@ const UpButton = () => {
     return () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
+      }
+
+      if (inactivityTimeoutRef.current) {
+        clearTimeout(inactivityTimeoutRef.current);
       }
     };
   }, []);
