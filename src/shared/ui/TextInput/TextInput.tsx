@@ -3,10 +3,10 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { ComponentProps, FC, useState } from "react";
 
-import { Button } from "../Button";
-import { ArrowIcon } from "../Icons";
-
 import { cn } from "@/shared/lib/utils";
+
+import { Button } from "../Button";
+import { SvgIcon } from "../SvgIcon";
 
 const textInputVariants = cva(
   "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary h-7",
@@ -46,15 +46,16 @@ const buttonVariants = cva(
   },
 );
 
-interface ITextInputProps extends ComponentProps<"input">,
-  VariantProps<typeof textInputVariants> {
-    value: string;
-    label?: string;
-    onSubmit?: () => void;
-    error?: string;
-    inputClassName?: string;
-    buttonClassName?: string;
-  };
+interface ITextInputProps
+  extends ComponentProps<"input">,
+    VariantProps<typeof textInputVariants> {
+  value: string;
+  label?: string;
+  onSubmit?: () => void;
+  error?: string;
+  inputClassName?: string;
+  buttonClassName?: string;
+}
 
 const TextInput: FC<ITextInputProps> = ({
   value,
@@ -140,7 +141,7 @@ const TextInput: FC<ITextInputProps> = ({
             )}
             onClick={onSubmit}
           >
-            <ArrowIcon />
+            <SvgIcon name="arrow" />
           </Button>
         )}
       </div>

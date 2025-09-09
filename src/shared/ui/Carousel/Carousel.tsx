@@ -17,7 +17,7 @@ import React, {
 import { cn } from "@/shared/lib/utils";
 
 import { Button } from "../Button";
-import { ArrowScroll } from "../Icons";
+import { SvgIcon } from "../SvgIcon";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -271,7 +271,12 @@ const CarouselPrevious: FC<ComponentProps<typeof Button>> = (compProps) => {
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowScroll direction="left" className="ml-1" />
+      <SvgIcon
+        name="arrow-scroll-left"
+        width={11}
+        height={14}
+        className="mr-1"
+      />
     </Button>
   );
 };
@@ -302,7 +307,12 @@ const CarouselNext: FC<ComponentProps<typeof Button>> = (compProps) => {
       onClick={scrollNext}
       {...props}
     >
-      <ArrowScroll direction="right" className="m-auto" />
+      <SvgIcon
+        name="arrow-scroll-right"
+        width={11}
+        height={14}
+        className="ml-1"
+      />
     </Button>
   );
 };
