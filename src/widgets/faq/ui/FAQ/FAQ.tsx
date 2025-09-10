@@ -1,7 +1,12 @@
 import { AppLink } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
 import { SvgIcon } from "@/shared/ui/SvgIcon";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, } from "@/shared/ui/Accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/shared/ui/Accordion";
 import { faqItems } from "@/widgets/faq/model";
 
 const FAQ = () => {
