@@ -40,26 +40,18 @@ const Form: FC<IGetConsultationModalProps> = (props) => {
         <TextInput
           value={name}
           label="Enter name"
-          buttonIcon={
-            <SvgIcon name="arrow-scroll-down" width={11} height={14} />
-          }
           className="w-full sm:w-[413px]"
           labelClassName="sm:text-base"
           inputClassName="w-full leading-[1.3] h-full"
-          buttonIconClassName="absolute right-[105px]  -translate-y-1/2 transition-transform duration-200"
           onChange={(e) => setName(e.target.value)}
         />
 
         <TextInput
           value={phone}
           label="Enter phone number"
-          buttonIcon={
-            <SvgIcon name="arrow-scroll-down" width={11} height={14} />
-          }
           className="w-full sm:w-[413px]"
           labelClassName="sm:text-base"
           inputClassName="w-full leading-[1.3]"
-          buttonIconClassName="absolute right-[105px]  -translate-y-1/2 transition-transform duration-200"
           onChange={(e) => setPhone(e.target.value)}
         />
 

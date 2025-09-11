@@ -30,7 +30,7 @@ const GetConsultationModal: FC<IGetConsultationModalProps> = (props) => {
       <SvgIcon
         name="cross-squared"
         fill="transparent"
-        className="flex self-end sm:mr-10"
+        className="flex cursor-pointer self-end sm:mr-10"
         onClick={onClose}
       />
 
