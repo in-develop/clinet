@@ -115,6 +115,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     api.on("reInit", onSelect);
     api.on("select", onSelect);
 
+    // eslint-disable-next-line consistent-return
     return () => {
       api?.off("select", onSelect);
     };

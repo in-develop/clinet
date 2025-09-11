@@ -3,8 +3,8 @@
 import clsx from "clsx";
 import { FC, useEffect } from "react";
 
-import { AppLink, Button } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
+import { AppLink, Button } from "@/shared/ui/Button";
 
 type TBurgerMenuProps = {
   isOpened: boolean;

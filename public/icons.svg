@@ -5,9 +5,44 @@
         <symbol id="arrow-scroll" viewBox="0 0 11 14">
             <path d="M0 14V0L11 7L0 14Z" fill="currentColor" />
         </symbol>
+
+        <symbol id="arrow-scroll-down" viewBox="0 0 15 11">
+            <path d="M0.5 0L14.5 0L7.5 11L0.5 0Z" fill="currentColor" />
+        </symbol>
+
         <symbol id="arrow" viewBox="0 0 16 16">
             <path d="M0 9L12.17 9L6.58 14.59L8 16L16 8L8 0L6.59 1.41L12.17 7L0 7L0 9Z"
                 fill="currentColor" />
+        </symbol>
+
+        <symbol id="cross-squared" viewBox="0 0 24 24">
+            <path d="M20.75 3.25V20.75H3.25V3.25H20.75Z" 
+                stroke="currentColor" 
+                stroke-width="0.5"
+            />
+            <path d="M17.6569 7.75541L13.4143 11.998L17.6569 16.2407L16.2427 17.6549L12.0001 13.4123L7.75744 17.6549L6.34323 16.2407L10.5859 11.998L6.34323 7.75541L7.75744 6.34119L12.0001 10.5838L16.2427 6.34119L17.6569 7.75541Z" 
+                fill="currentColor"/>
+        </symbol>
+
+        <symbol id="loader" viewBox="0 0 84 85">
+            <path d="M42 3.5C63.5367 3.5 81 20.9633 81 42.5" 
+                stroke="currentColor" 
+                stroke-width="6" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+            />
+            <path d="M42 3.5C63.5367 3.5 81 20.9633 81 42.5C81 64.0367 63.5367 81.5 42 81.5C20.4633 81.5 3 64.0367 3 42.5C3 20.9633 20.4633 3.5 42 3.5Z" 
+                stroke="black" 
+                stroke-opacity="0.3" 
+                stroke-width="6" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+            />
+        </symbol>
+
+        <symbol id="tick" viewBox="0 0 18 13">
+            <path d="M6.54961 13L0.849609 7.29998L2.27461 5.87498L6.54961 10.15L15.7246 0.974976L17.1496 2.39998L6.54961 13Z"
+                fill="currentColor"/>
         </symbol>
     </defs>
 </svg>
