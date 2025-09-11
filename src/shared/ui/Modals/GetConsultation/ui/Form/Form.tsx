@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
 
+import { useMediaQuery } from "@/shared/hooks";
+import { BREAKPOINTS } from "@/shared/lib/constants";
 import { urbanist } from "@/shared/lib/fonts";
 import { Button } from "@/shared/ui/Button";
 import {
@@ -24,24 +26,34 @@ const Form: FC<IGetConsultationModalProps> = (props) => {
 
   const [consultationType, setConsultationType] = useState("consultation");
 
+  const [isMobile] = useMediaQuery([BREAKPOINTS["max-2md"], BREAKPOINTS["md"]]);
+
   return (
     <>
-      <h1 className="font-bold sm:mt-11 sm:text-5xl sm:leading-[1.1]">
+      <h1 className="mt-1.5 text-center text-[32px] leading-[1] font-bold sm:mt-11 sm:text-5xl sm:leading-[1.1]">
         Get a free consultation
       </h1>
 
-      <p className={`${urbanist.className} text-center leading-[1.3] sm:mt-6`}>
-        Our cosmetologist will assess your skin, recommend the right home care,
-        and suggest suitable treatments. Leave a request, and we’ll call you to
-        confirm the time.
-      </p>
+      {isMobile ? (
+        <p className={`${urbanist.className} mt-5 text-center leading-[1.3]`}>
+          Personal skin consultation with product and treatment advice.
+        </p>
+      ) : (
+        <p
+          className={`${urbanist.className} mt-6 w-[630px] text-center leading-[1.3]`}
+        >
+          Our cosmetologist will assess your skin, recommend the right home
+          care, and suggest suitable treatments. Leave a request, and we’ll call
+          you to confirm the time.
+        </p>
+      )}
 
-      <form className="flex flex-col sm:mt-16 sm:gap-8 sm:pt-8">
+      <form className="mt-8 flex flex-col gap-6 sm:mt-16 sm:gap-8 sm:pt-8">
         <TextInput
           value={name}
           label="Enter name"
-          className="w-full sm:w-[413px]"
-          labelClassName="sm:text-base"
+          className="w-[310px] sm:w-[413px]"
+          labelClassName="text-base"
           inputClassName="w-full leading-[1.3] h-full"
           onChange={(e) => setName(e.target.value)}
         />
@@ -49,19 +61,21 @@ const Form: FC<IGetConsultationModalProps> = (props) => {
         <TextInput
           value={phone}
           label="Enter phone number"
-          className="w-full sm:w-[413px]"
-          labelClassName="sm:text-base"
+          className="w-[310px] sm:w-[413px]"
+          labelClassName="text-base"
           inputClassName="w-full leading-[1.3]"
           onChange={(e) => setPhone(e.target.value)}
         />
 
-        <div className="flex flex-col gap-3">
-          <label className="text-eerie-black sm:text-[12px]">
-            Select the type of consultation
-          </label>
+        <div className="flex flex-col sm:gap-3">
+          {!isMobile && (
+            <label className="text-eerie-black text-[12px]">
+              Select the type of consultation
+            </label>
+          )}
 
           <Select value={consultationType} onValueChange={setConsultationType}>
-            <SelectTrigger className="w-[180px] p-0">
+            <SelectTrigger className="p-0">
               <SelectValue placeholder="Consultation" />
             </SelectTrigger>
             <SelectContent>
@@ -73,7 +87,7 @@ const Form: FC<IGetConsultationModalProps> = (props) => {
 
         <Button
           variant="tabIcon"
-          className="self-center sm:mt-16"
+          className="mt-15 self-center sm:mt-38"
           onClick={onSubmit}
         >
           BOOK A CONSULTATION

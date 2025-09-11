@@ -88,7 +88,7 @@ const SelectTrigger: FC<SelectTriggerProps> = (compProps) => {
           width={11}
           hanging={14}
           className={cn(
-            "transition-transform duration-200 sm:mr-2.5",
+            "mr-2.5 transition-transform duration-200",
             open ? "rotate-180" : "",
           )}
         />
@@ -157,7 +157,7 @@ const SelectItem: FC<ComponentProps<typeof SelectPrimitive.Item>> = (
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "focus:bg-secondary-1 [&_svg:not([class*='text-'])]:text-eerie-black relative m-0 flex w-full flex-1 cursor-default items-center py-3 outline-hidden select-none focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 sm:pl-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
+        "focus:bg-secondary-1 [&_svg:not([class*='text-'])]:text-eerie-black relative m-0 flex w-full flex-1 cursor-default items-center py-3 pl-1.5 outline-hidden select-none focus:text-white data-[disabled]:pointer-events-none data-[disabled]:opacity-50 sm:pl-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2",
         className,
       )}
       {...props}

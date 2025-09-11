@@ -26,11 +26,11 @@ const GetConsultationModal: FC<IGetConsultationModalProps> = (props) => {
   };
 
   return (
-    <div className="bg-bg-block border-eerie-black flex h-[829px] flex-1 flex-col items-center overflow-visible border-[1px] sm:mx-10 sm:pt-10 sm:pb-27">
+    <div className="bg-bg-block border-eerie-black min-[h-557px] mx-5 flex h-[829px] min-w-[350px] flex-1 flex-col items-center overflow-visible border-[1px] pt-[22px] pb-10 sm:mx-10 sm:pt-10 sm:pb-27">
       <SvgIcon
         name="cross-squared"
         fill="transparent"
-        className="flex cursor-pointer self-end sm:mr-10"
+        className="mr-[22px] flex cursor-pointer self-end sm:mr-10"
         onClick={onClose}
       />
 
