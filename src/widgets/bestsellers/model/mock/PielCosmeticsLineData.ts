@@ -27,9 +27,9 @@ const pielCosmeticsLineData: ICosmetic[] = [
 
   {
     id: 4,
-    title: "",
-    description: "",
-    price: "",
+    title: "Salvation Serum mini",
+    description: "Serum for problem skin",
+    price: "$30.00",
     image: "/images/makeup/4.png",
   },
 ];
