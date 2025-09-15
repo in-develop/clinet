@@ -235,8 +235,10 @@
   --breakpoint-2md: 1100px;
 
   --breakpoint-laptop: 64rem;
-  
+
   --max-width-7xl: 1440px;
+
+  --text-md: 1.25rem; /* 20px */
 }
 
 html {
@@ -249,4 +251,19 @@ html {
 
 .linkDecoration {
   @apply relative transition-all duration-300 before:absolute before:bottom-0 before:h-0.5 before:w-full before:bg-black before:opacity-0 hover:before:opacity-100;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 15s linear infinite;
 }
