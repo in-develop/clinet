@@ -1,3 +1,7 @@
+import { FC } from "react";
+
+import { ShopDesktop } from "../Shop";
+
 import { ROUTING } from "@/shared/lib/rounting";
 import { AppLink, Button } from "@/shared/ui/Button";
 
@@ -8,18 +12,38 @@ const navigationLinks = [
   { href: ROUTING.contact, label: "Contact" },
 ];
 
-const DesktopNavigation = () => (
+interface IDesktopNavigationProps {
+  isOpenCategories: boolean;
+  setIsOpenCatigories: (_: boolean) => void;
+}
+
+const DesktopNavigation: FC<IDesktopNavigationProps> = ({
+  setIsOpenCatigories,
+  isOpenCategories,
+}) => (
   <nav className="2md:block hidden max-w-[478px] flex-none">
-    <ul className="2md:gap-10 flex items-center gap-2">
+    <ul className="flex items-center">
       {navigationLinks.map((link) =>
         link.label === "Shop" ? (
-          <li key={link.href}>
-            <Button variant="link" className="linkDecoration font-normal">
+          <li
+            className="group cursor-pointer px-5 py-5.5 first:pl-0 last:pr-0"
+            key={link.href}
+          >
+            <Button
+              onClick={() => setIsOpenCatigories(!isOpenCategories)}
+              variant="link"
+              className="linkDecoration font-normal before:bg-white"
+            >
               {link.label}
             </Button>
+
+            <ShopDesktop
+              isOpenCategories={isOpenCategories}
+              setIsOpenCategories={setIsOpenCatigories}
+            />
           </li>
         ) : (
-          <li key={link.href}>
+          <li className="cursor-pointer px-5 py-5.5" key={link.href}>
             <AppLink
               variant="link"
               className="linkDecoration font-normal"
@@ -31,7 +55,7 @@ const DesktopNavigation = () => (
         ),
       )}
       <li className="flex items-center">
-        <button type="button" className="cursor-pointer">
+        <button type="button" className="cursor-pointer py-5.5 pl-5">
           <svg
             width="24"
             height="24"

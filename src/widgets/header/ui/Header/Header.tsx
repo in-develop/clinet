@@ -26,10 +26,13 @@ const Header: FC<THeaderProps> = ({ isAuthenticated }) => {
 
   return (
     <>
-      <header className="fixed top-0 z-20 w-full bg-white shadow-sm">
+      <header className="fixed top-0 w-full bg-white shadow-sm">
         <HeaderTop />
-        <div className="container flex items-center justify-between py-4">
-          <DesktopNavigation />
+        <div className="2md:py-0 container flex items-center justify-between py-4">
+          <DesktopNavigation
+            isOpenCategories={isOpenCategories}
+            setIsOpenCatigories={setIsOpenCatigories}
+          />
           <BurgerIcon
             isOpenedCategories={isOpenedCategories}
             setIsOpenCatigories={setIsOpenCatigories}

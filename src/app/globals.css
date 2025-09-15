@@ -225,7 +225,7 @@
   --color-secondary-card-hover-bg: #e8d0ff;
   --color-bg-block: #fffbf3; /*! dublicate color */
 
-  --color-light-black: #202020;
+  --color-light-black: #202020; /*! dublicate color */
   --color-blue: #4265b8;
   --color-violet: #8e4ccc;
 
@@ -235,6 +235,7 @@
   --breakpoint-2md: 1100px;
 
   --max-width-7xl: 1440px;
+  --text-xsm: 0.75rem; /* 12px */
   --text-sm: 0.875rem; /* 14px */
   --text-md: 1.25rem; /* 20px */
 }

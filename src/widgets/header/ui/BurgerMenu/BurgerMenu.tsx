@@ -3,7 +3,8 @@
 import clsx from "clsx";
 import { FC, useEffect, useState } from "react";
 
-import { Shop } from "../Shop";
+import { getTranslateClass } from "../../lib/constants";
+import { ShopMobile } from "../Shop";
 
 import { AppLink, Button } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
@@ -45,10 +46,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({
     <section
       className={clsx(
         "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-10 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
-        {
-          "translate-y-0": isOpenedCategories,
-          "-translate-x-full": !isOpenedCategories,
-        },
+        getTranslateClass(isOpenedCategories),
       )}
     >
       <div className="h-[calc(100vh-192px)] overflow-y-scroll pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -121,7 +119,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({
           </li>
         </ul>
       </div>
-      <Shop
+      <ShopMobile
         isOpenSubCategories={isOpenedSubCategories}
         setIsOpenSubCategories={setIsOpenSubCategories}
         setIsOpenCategories={setIsOpenCatigories}
