@@ -1,7 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
-import App from "next/app";
 
 import { getTranslateClass } from "../../lib/constants";
 

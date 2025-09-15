@@ -234,7 +234,10 @@
   --breakpoint-lg: 90rem;
   --breakpoint-2md: 1100px;
 
+  --breakpoint-laptop: 64rem;
+
   --max-width-7xl: 1440px;
+
   --text-xsm: 0.75rem; /* 12px */
   --text-sm: 0.875rem; /* 14px */
   --text-md: 1.25rem; /* 20px */
