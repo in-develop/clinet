@@ -1,5 +1,138 @@
 const MENU_OPEN_DELAY_MS = 100;
 
+const CATEGORIES = [
+  {
+    title: "Le Pèlerin Perfume",
+    slug: "/le-pelerin-perfume",
+    subTitles: [
+      { subTitle: "Lorem Ipsum", slug: "/lorem-ipsum" },
+      { subTitle: "Dolor Sit", slug: "/dolor-sit" },
+      { subTitle: "Amet Perfume", slug: "/amet-perfume" },
+      { subTitle: "Eau Fraiche", slug: "/eau-fraiche" },
+      { subTitle: "Classic", slug: "/classic" },
+      { subTitle: "Limited Edition", slug: "/limited-edition" },
+      { subTitle: "Discovery Set", slug: "/discovery-set" },
+    ],
+  },
+  {
+    title: "Piel Cosmetics Line",
+    slug: "/piel-cosmetics-line",
+    subTitles: [
+      { subTitle: "Specialiste", slug: "/specialiste" },
+      { subTitle: "Youth defence", slug: "/youth-defence" },
+      { subTitle: "Safe care", slug: "/safe-care" },
+      { subTitle: "Sun & Cold", slug: "/sun-cold" },
+      { subTitle: "Sensitive", slug: "/sensitive" },
+      { subTitle: "Magnifique", slug: "/magnifique" },
+      { subTitle: "Rejuvenate", slug: "/rejuvenate" },
+      { subTitle: "Pure salvation", slug: "/pure-salvation" },
+      { subTitle: "Men", slug: "/men" },
+      { subTitle: "Hair & Lash", slug: "/hair-lash" },
+      { subTitle: "Body care", slug: "/body-care" },
+      { subTitle: "Professional", slug: "/professional" },
+    ],
+  },
+  {
+    title: "Surgene Line",
+    slug: "/surgene-line",
+    subTitles: [
+      { subTitle: "Lorem Sub", slug: "/lorem-sub" },
+      { subTitle: "Gene Therapy", slug: "/gene-therapy" },
+      { subTitle: "Cell Restore", slug: "/cell-restore" },
+      { subTitle: "Anti-Age", slug: "/anti-age" },
+      { subTitle: "Serum", slug: "/serum" },
+      { subTitle: "Night Care", slug: "/night-care" },
+    ],
+  },
+  {
+    title: "Skincare",
+    slug: "/skincare",
+    subTitles: [
+      { subTitle: "Ipsum Care", slug: "/ipsum-care" },
+      { subTitle: "Hydration", slug: "/hydration" },
+      { subTitle: "Cleansers", slug: "/cleansers" },
+      { subTitle: "Moisturizers", slug: "/moisturizers" },
+      { subTitle: "Masks", slug: "/masks" },
+      { subTitle: "Exfoliators", slug: "/exfoliators" },
+      { subTitle: "Serums", slug: "/serums" },
+      { subTitle: "Eye Care", slug: "/eye-care" },
+    ],
+  },
+  {
+    title: "By Skin Type",
+    slug: "/by-skin-type",
+    subTitles: [
+      { subTitle: "Dolor Type", slug: "/dolor-type" },
+      { subTitle: "Oily", slug: "/oily" },
+      { subTitle: "Dry", slug: "/dry" },
+      { subTitle: "Combination", slug: "/combination" },
+      { subTitle: "Sensitive", slug: "/sensitive-type" },
+      { subTitle: "Normal", slug: "/normal" },
+    ],
+  },
+  {
+    title: "Men's Cosmetics",
+    slug: "/mens-cosmetics",
+    subTitles: [
+      { subTitle: "Sit Amet", slug: "/sit-amet" },
+      { subTitle: "Shaving", slug: "/shaving" },
+      { subTitle: "After Shave", slug: "/after-shave" },
+      { subTitle: "Face Care", slug: "/face-care" },
+      { subTitle: "Body Care", slug: "/mens-body-care" },
+      { subTitle: "Hair Care", slug: "/mens-hair-care" },
+    ],
+  },
+  {
+    title: "Body Care",
+    slug: "/body-care",
+    subTitles: [
+      { subTitle: "Consectetur", slug: "/consectetur" },
+      { subTitle: "Lotions", slug: "/lotions" },
+      { subTitle: "Scrubs", slug: "/scrubs" },
+      { subTitle: "Oils", slug: "/oils" },
+      { subTitle: "Creams", slug: "/creams" },
+      { subTitle: "Hand Care", slug: "/hand-care" },
+      { subTitle: "Foot Care", slug: "/foot-care" },
+    ],
+  },
+  {
+    title: "Hair Care",
+    slug: "/hair-care",
+    subTitles: [
+      { subTitle: "Adipiscing", slug: "/adipiscing" },
+      { subTitle: "Shampoo", slug: "/shampoo" },
+      { subTitle: "Conditioner", slug: "/conditioner" },
+      { subTitle: "Masks", slug: "/hair-masks" },
+      { subTitle: "Serums", slug: "/hair-serums" },
+      { subTitle: "Styling", slug: "/styling" },
+    ],
+  },
+  {
+    title: "Professional Skincare",
+    slug: "/professional-skincare",
+    subTitles: [
+      { subTitle: "Elit Sub", slug: "/elit-sub" },
+      { subTitle: "Salon Use", slug: "/salon-use" },
+      { subTitle: "Peels", slug: "/peels" },
+      { subTitle: "Ampoules", slug: "/ampoules" },
+      { subTitle: "Masks", slug: "/pro-masks" },
+      { subTitle: "Cleansers", slug: "/pro-cleansers" },
+    ],
+  },
+  {
+    title: "Gifts and Packaging",
+    slug: "/gifts-packaging",
+    subTitles: [
+      { subTitle: "Lorem Gift", slug: "/lorem-gift" },
+      { subTitle: "Gift Sets", slug: "/gift-sets" },
+      { subTitle: "Gift Cards", slug: "/gift-cards" },
+      { subTitle: "Holiday Packaging", slug: "/holiday-packaging" },
+      { subTitle: "Custom Packaging", slug: "/custom-packaging" },
+      { subTitle: "Limited Edition Gifts", slug: "/limited-gifts" },
+    ],
+  },
+];
+
 const BREAKPOINTS = {
   lg: "(min-width: 1440px)",
   "max-lg": "(max-width: 1439.98px)",
@@ -13,4 +146,4 @@ const BREAKPOINTS = {
   "max-xs": "(max-width: 439.98px)",
 };
 
-export { BREAKPOINTS, MENU_OPEN_DELAY_MS };
+export { BREAKPOINTS, MENU_OPEN_DELAY_MS, CATEGORIES };

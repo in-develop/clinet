@@ -1,13 +1,17 @@
 "use client";
 
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
+
+import { getTranslateClass } from "../../lib/constants";
+import { ShopMobile } from "../Shop";
 
 import { AppLink, Button } from "@/shared/ui/Button";
 import { ROUTING } from "@/shared/lib/rounting";
 
 type TBurgerMenuProps = {
-  isOpened: boolean;
+  isOpenedCategories: boolean;
+  setIsOpenCatigories: (_: boolean) => void;
 };
 
 const navLinks = [
@@ -20,9 +24,14 @@ const navLinks = [
   { href: ROUTING.faq, label: "FAQ" },
 ];
 
-const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
+const BurgerMenu: FC<TBurgerMenuProps> = ({
+  isOpenedCategories,
+  setIsOpenCatigories,
+}) => {
+  const [isOpenedSubCategories, setIsOpenSubCategories] = useState(false);
+
   useEffect(() => {
-    if (isOpened) {
+    if (isOpenedCategories) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
@@ -31,16 +40,13 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpened]);
+  }, [isOpenedCategories]);
 
   return (
     <section
       className={clsx(
         "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-10 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
-        {
-          "translate-y-0": isOpened,
-          "-translate-x-full": !isOpened,
-        },
+        getTranslateClass(isOpenedCategories),
       )}
     >
       <div className="h-[calc(100vh-192px)] overflow-y-scroll pb-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -49,6 +55,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
             <li key={link.href}>
               {link.href === "/shop" ? (
                 <Button
+                  onClick={() => setIsOpenSubCategories(true)}
                   className="flex w-full justify-between py-3"
                   variant="iconLink"
                 >
@@ -67,6 +74,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
                 <AppLink
                   className="flex justify-between py-3"
                   variant="iconLink"
+                  onClick={() => setIsOpenCatigories(false)}
                   href={link.href}
                 >
                   {link.label}
@@ -111,6 +119,11 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
           </li>
         </ul>
       </div>
+      <ShopMobile
+        isOpenSubCategories={isOpenedSubCategories}
+        setIsOpenSubCategories={setIsOpenSubCategories}
+        setIsOpenCategories={setIsOpenCatigories}
+      />
     </section>
   );
 };

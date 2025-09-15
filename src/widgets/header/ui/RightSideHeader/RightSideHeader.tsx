@@ -12,7 +12,7 @@ const RightSideHeader: FC<IRightSideHeaderProps> = ({
   isAuthenticated,
   orderCount,
 }) => (
-  <div className="flex flex-none items-center gap-2 lg:gap-14">
+  <div className="2md:justify-end flex flex-none items-center gap-2 lg:gap-14">
     <button type="button" className="2md:hidden">
       <svg
         width="24"
@@ -41,7 +41,6 @@ const RightSideHeader: FC<IRightSideHeaderProps> = ({
     >
       Cart &#40;{orderCount}&#41;
     </AppLink>
-    <button className="linkDecoration cursor-pointer" type="button"></button>
   </div>
 );
 

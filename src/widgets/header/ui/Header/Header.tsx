@@ -17,17 +17,26 @@ type THeaderProps = {
 };
 
 const Header: FC<THeaderProps> = ({ isAuthenticated }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isOpened] = useDebounce(isOpen, MENU_OPEN_DELAY_MS);
+  const [isOpenCategories, setIsOpenCatigories] = useState(false);
+  const [isOpenedCategories] = useDebounce(
+    isOpenCategories,
+    MENU_OPEN_DELAY_MS,
+  );
   const orderCount = 0; // This should be replaced with actual order count logic
 
   return (
     <>
-      <header className="fixed top-0 z-20 w-full bg-white shadow-sm">
+      <header className="fixed top-0 w-full bg-white shadow-sm">
         <HeaderTop />
-        <div className="container flex items-center justify-between py-4">
-          <DesktopNavigation />
-          <BurgerIcon isOpened={isOpened} setIsOpen={setIsOpen} />
+        <div className="2md:py-0 container flex items-center justify-between py-4">
+          <DesktopNavigation
+            isOpenCategories={isOpenCategories}
+            setIsOpenCatigories={setIsOpenCatigories}
+          />
+          <BurgerIcon
+            isOpenedCategories={isOpenedCategories}
+            setIsOpenCatigories={setIsOpenCatigories}
+          />
           <Logo className="2md:ml-32 2md:min-w-0 2md:flex-1 ml-11 lg:ml-46" />
           <RightSideHeader
             orderCount={orderCount}
@@ -35,7 +44,10 @@ const Header: FC<THeaderProps> = ({ isAuthenticated }) => {
           />
         </div>
       </header>
-      <BurgerMenu isOpened={isOpened} />
+      <BurgerMenu
+        setIsOpenCatigories={setIsOpenCatigories}
+        isOpenedCategories={isOpenedCategories}
+      />
     </>
   );
 };
