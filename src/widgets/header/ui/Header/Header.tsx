@@ -3,14 +3,14 @@
 import { FC, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-import { BurgerMenu } from "../BurgerMenu";
-import { HeaderTop } from "../HeaderTop";
-import { DesktopNavigation } from "../DesktopNavigation";
-import { BurgerIcon } from "../BurgerIcon";
-import { RightSideHeader } from "../RightSideHeader";
-
-import { Logo } from "@/shared/ui/Logo";
 import { MENU_OPEN_DELAY_MS } from "@/shared/lib/constants";
+import { Logo } from "@/shared/ui/Logo";
+
+import { BurgerIcon } from "../BurgerIcon";
+import { BurgerMenu } from "../BurgerMenu";
+import { DesktopNavigation } from "../DesktopNavigation";
+import { HeaderTop } from "../HeaderTop";
+import { RightSideHeader } from "../RightSideHeader";
 
 type THeaderProps = {
   isAuthenticated: boolean;
