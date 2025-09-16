@@ -1,1 +1,1 @@
-export * from "./GetConsultation";
+export * from "./ui";
