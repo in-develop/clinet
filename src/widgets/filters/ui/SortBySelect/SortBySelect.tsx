@@ -12,27 +12,33 @@ import {
   SvgIcon,
 } from "@/shared/ui";
 import { urbanist } from "@/shared/lib/fonts";
-import { useFilters } from "@/widgets/filters/hooks";
-import { sortByOptions, SortByValue, SortOrder } from "@/widgets/filters/model";
+import { useSortingQueryState } from "@/widgets/filters/hooks";
+import {
+  SORT_BY_OPTIONS,
+  SortByValue,
+  SortOrder,
+} from "@/widgets/filters/model";
 
 export const SortBySelect = () => {
-  const [filters, setFilters] = useFilters();
+  const [sortingState, setSortingState] = useSortingQueryState();
 
   const selected = useMemo(() => {
-    return sortByOptions.find(
+    return SORT_BY_OPTIONS.find(
       (el) =>
-        el.value === filters.sortBy &&
-        (el.order ? el.order === (filters.sortOrder || SortOrder.ASC) : true),
+        el.value === sortingState.sortBy &&
+        (el.order
+          ? el.order === (sortingState.sortOrder || SortOrder.ASC)
+          : true),
     );
-  }, [filters.sortBy, filters.sortOrder]);
+  }, [sortingState]);
 
   const handleSelect = useCallback(
     (sortBy: SortByValue, sortOrder: SortOrder | null) =>
-      setFilters({
+      setSortingState({
         sortBy,
         sortOrder,
       }),
-    [setFilters],
+    [setSortingState],
   );
 
   return (
@@ -63,7 +69,7 @@ export const SortBySelect = () => {
           <DropdownMenuRadioGroup
             value={`${selected?.value}-${selected?.order}`}
           >
-            {sortByOptions.map((option) => (
+            {SORT_BY_OPTIONS.map((option) => (
               <DropdownMenuRadioItem
                 onSelect={() => handleSelect(option.value, option.order)}
                 key={option.label}

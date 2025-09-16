@@ -1,6 +1,11 @@
-import { ISortByOption, SortByValue, SortOrder } from "@/widgets/filters/model";
+import {
+  IFiltersData,
+  ISortByOption,
+  SortByValue,
+  SortOrder,
+} from "@/widgets/filters/model";
 
-export const sortByOptions = [
+export const SORT_BY_OPTIONS = [
   {
     label: "From low to high price",
     value: SortByValue.PRICE,
@@ -23,7 +28,7 @@ export const sortByOptions = [
   },
 ] satisfies ISortByOption[];
 
-export const productTypeOptions = {
+export const PRODUCT_TYPE_OPTIONS = {
   NEW_RELEASES: "New Releases",
   SERUMS: "Serums",
   TONERS_AND_ESSENCES: "Toners & Essences",
@@ -33,21 +38,21 @@ export const productTypeOptions = {
   SUNCARE: "Suncare",
 };
 
-export const formatOptions = {
+export const FORMAT_OPTIONS = {
   SERUM: "Serum",
   LIQUID: "Liquid",
   POWDER: "Powder",
   SUSPENSION: "Suspension",
 };
 
-export const activeIngredientsOptions = {
+export const ACTIVE_INGREDIENTS_OPTIONS = {
   ANTIOXADANTS: "Antioxidants",
   DIRECT_ACIDS: "Direct Acids",
   SALICYLIC_ACID: "Salicylic Acid",
   SPF: "SPF",
 };
 
-export const preferencesOptions = {
+export const PREFERENCES_OPTIONS = {
   NO_ALCOHOL: "Alcohol - Free",
   NO_CRUELTY: "Cruelty - Free",
   NO_CLUTEN: "Cluten - Free",
@@ -56,7 +61,7 @@ export const preferencesOptions = {
   VEGAN: "Vegan",
 };
 
-export const concernOptions = {
+export const CONCERN_OPTIONS = {
   SIGNS_OF_AGING: "Signs Of Aging",
   UNEVEN_SKIN_TONE: "Uneven Skin Tone",
   TEXTURAL_IRREGULARITIES: "Textural Irregularities",
@@ -70,12 +75,43 @@ export const concernOptions = {
   ADVANCED_SIGNS_OF_AGING: "Advanced Signs Of Aging",
 };
 
-export const regimenStepOptions = {
+export const REGIMENT_STEP_OPTIONS = {
   PREP: "Prep",
   TREAT: "Treat",
   SEAL: "Seal",
 };
 
-export const categoryOptions = {
+export const CATEGORY_OPTIONS = {
   GIFTS_AND_PACKAGING: "Gifts & Packaging",
+};
+
+export const FILTERS_DATA: IFiltersData = {
+  productType: {
+    label: "Product type",
+    options: PRODUCT_TYPE_OPTIONS,
+  },
+  format: {
+    label: "Format",
+    options: FORMAT_OPTIONS,
+  },
+  activeIngredients: {
+    label: "Active ingredients",
+    options: ACTIVE_INGREDIENTS_OPTIONS,
+  },
+  preferences: {
+    label: "Preferences",
+    options: PREFERENCES_OPTIONS,
+  },
+  concern: {
+    label: "Concern",
+    options: CONCERN_OPTIONS,
+  },
+  regimenStep: {
+    label: "Regimen step",
+    options: REGIMENT_STEP_OPTIONS,
+  },
+  category: {
+    label: "Category",
+    options: CATEGORY_OPTIONS,
+  },
 };

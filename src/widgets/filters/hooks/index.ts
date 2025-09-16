@@ -1,1 +1,2 @@
-export * from "./useFilters";
+export * from "./useFiltersQueryState";
+export * from "./useSortingQueryState";
