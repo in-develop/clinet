@@ -46,7 +46,7 @@ const Hero = () => {
             aria-label="Shop now"
           >
             <span>Shop now</span>
-            <SvgIcon name="arrow-scroll" />
+            <SvgIcon name="arrow-scroll-right" />
           </AppLink>
         </div>
       </div>
