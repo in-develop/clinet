@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/shared/ui/Button/index";
+import { SvgIcon } from "@/shared/ui/SvgIcon";
 
 const CompletedSetsHeaderDesktop: FC = () => {
   return (
@@ -12,7 +12,7 @@ const CompletedSetsHeaderDesktop: FC = () => {
       <div className="flex flex-row gap-3 text-base sm:gap-6">
         <Button variant="tab" className="" onClick={() => null}>
           Shop all
-          <ArrowRight />
+          <SvgIcon name="arrow" width={16} height={16} />
         </Button>
       </div>
     </div>
