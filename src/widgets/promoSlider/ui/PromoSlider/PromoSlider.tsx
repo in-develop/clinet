@@ -8,12 +8,10 @@ import { cosmeticsData } from "./model";
 const PromoSlider: FC = () => {
   return (
     <section className="mt-20 mr-[13px] ml-5 flex flex-wrap md:mx-10 md:mt-32">
-      {/* Left card */}
       <div className="flex w-full flex-col md:w-1/2">
         <PromoCard />
       </div>
 
-      {/* Right carousel */}
       <div className="mt-12 w-full md:mt-0 md:w-1/2">
         <PromoCarousel items={cosmeticsData} />
       </div>
