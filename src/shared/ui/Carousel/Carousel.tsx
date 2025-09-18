@@ -208,10 +208,10 @@ const CarouselContent: FC<ComponentProps<"div"> & CarouselContentProps> = (
       />
 
       {progressBar && (
-        <div className="embla__progress bg-silver mt-5 h-2 w-full sm:mt-3.5 sm:mb-5">
+        <div className="embla__progress bg-silver mt-5 h-0.5 w-full sm:mt-3.5 sm:mb-5">
           <div
-            className="embla__progress__bar bg-eerie-black h-1 transition-[width]"
-            style={{ width: `${scrollProgress}%` }}
+            className="embla__progress__bar bg-eerie-black h-1 origin-left transition-transform duration-75"
+            style={{ transform: `scaleX(${scrollProgress / 100})` }}
           />
         </div>
       )}
@@ -219,16 +219,13 @@ const CarouselContent: FC<ComponentProps<"div"> & CarouselContentProps> = (
   );
 };
 
-const CarouselItem: FC<ComponentProps<"div">> = (compProps) => {
-  const { className, ...props } = compProps;
-
+const CarouselItem: FC<ComponentProps<"div">> = ({ className, ...props }) => {
   const { orientation } = useCarousel();
 
   return (
     <div
       role="group"
       aria-roledescription="slide"
-      data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-0" : "pt-4",
