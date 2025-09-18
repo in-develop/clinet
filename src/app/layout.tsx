@@ -15,7 +15,6 @@ export default function RootLayout({
       <body className={syne.className}>
         <StoreProvider>
           <Header isAuthenticated={Boolean(user)} />
-
           {children}
           <section className="min-h-screen bg-amber-400"></section>
         </StoreProvider>

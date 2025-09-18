@@ -7,8 +7,8 @@ import { SvgIcon } from "@/shared/ui/SvgIcon";
 
 const PromoCard: FC = () => {
   return (
-    <div className="relative flex-1 basis-1/2">
-      <div className="2md:aspect-[680/383] border-eerie-black relative w-full border">
+    <div className="relative md:flex-[0_0_50%]">
+      <div className="border-eerie-black relative aspect-[357/197] w-full md:aspect-[680/383] md:border md:border-r-0">
         <Image
           src="/images/promoCard/2.png"
           alt="Promo card 1"
@@ -17,18 +17,18 @@ const PromoCard: FC = () => {
         />
       </div>
 
-      <p className="mt-9 text-xl leading-[1.1] font-bold">
+      <p className="mt-5 mb-3.5 text-xl leading-[1.1] font-bold md:mt-9 md:mb-4">
         Build your perfect skincare set.
       </p>
 
-      <span className={`${urbanist.className} mt-4 leading-[1.3]`}>
+      <span className={`${urbanist.className} leading-[1.3]`}>
         Pair 2 or more eligible facial care products and
       </span>
       <span className="leading-[1] font-bold"> enjoy 20% off.</span>
 
       <Button variant="tabIcon" className="mt-10">
         SELECT
-        <SvgIcon name="arrow-scroll" width={11} height={14} />
+        <SvgIcon name="arrow-scroll-right" width={11} height={14} />
       </Button>
     </div>
   );
