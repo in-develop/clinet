@@ -7,6 +7,7 @@ import { DEFAULT_FILTERS, FILTERS_DATA, TFiltersParamKey } from "../../model";
 
 import { urbanist } from "@/shared/lib/fonts";
 import { SvgIcon } from "@/shared/ui";
+import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/Carousel";
 
 interface IActiveFiltersProps {
   onClean?: () => void;
@@ -48,33 +49,51 @@ const ActiveFilters = memo(
       return null;
     }
     return (
-      <div className={"flex flex-wrap items-center gap-2 min-h-[34px]"}>
+      <div className={"flex min-h-[34px] flex-nowrap items-center gap-2"}>
         <p
-          className={`${urbanist.className} font-sm text-dim-gray mr-2 font-semibold`}
+          className={`${urbanist.className} font-sm text-dim-gray mr-2 shrink-0 font-semibold`}
         >
           ({resultsFound} Results)
         </p>
 
         {hasActiveFilters && (
           <>
-            {activeFilters.map((filter) =>
-              filter.value.map((el) => (
-                <div
-                  className={`border-silver relative flex items-center gap-1 rounded-full border py-[5px] pr-2.5 pl-[15px] ${urbanist.className} text-light-black text-sm font-semibold`}
-                  key={`${filter.key}-${el}`}
-                >
-                  <span>{FILTERS_DATA[filter.key].options[el]}</span>
-                  <button onClick={() => handleRemove(filter.key, el)}>
-                    <SvgIcon
-                      name={"x"}
-                      className={"text-light-black size-3.5"}
-                    />
-                  </button>
-                </div>
-              )),
-            )}
+            <div className="min-w-0 flex-1">
+              <Carousel
+                className="w-full"
+                opts={{
+                  dragFree: true,
+                  align: "start",
+                  containScroll: "trimSnaps",
+                }}
+              >
+                <CarouselContent className="items-center">
+                  {activeFilters.map((filter) =>
+                    filter.value.map((el) => (
+                      <CarouselItem
+                        key={`${filter.key}-${el}`}
+                        className="shrink-0 grow-0 basis-auto"
+                      >
+                        <div
+                          className={`border-silver relative flex items-center gap-1 rounded-full border py-[5px] pr-2.5 pl-[15px] ${urbanist.className} text-light-black text-sm font-semibold`}
+                        >
+                          <span>{FILTERS_DATA[filter.key].options[el]}</span>
+                          <button onClick={() => handleRemove(filter.key, el)}>
+                            <SvgIcon
+                              name={"x"}
+                              className={"text-light-black size-3.5"}
+                            />
+                          </button>
+                        </div>
+                      </CarouselItem>
+                    )),
+                  )}
+                </CarouselContent>
+              </Carousel>
+            </div>
+
             <button
-              className={`text-light-black px-[15px] py-[5px] text-sm font-semibold ${urbanist.className} underline`}
+              className={`text-light-black px-[15px] py-[5px] text-sm font-semibold ${urbanist.className} shrink-0 underline`}
               onClick={handleClean}
             >
               <span>Clean filters</span>
