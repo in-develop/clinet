@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { SortBySelect } from "../SortBySelect";
-
 import { urbanist } from "@/shared/lib/fonts";
 import {
   Button,
@@ -13,6 +11,8 @@ import {
 import { useSortingQueryState } from "@/widgets/filters/hooks";
 import { SortByValue, SortOrder } from "@/widgets/filters/model";
 import { FiltersContent } from "@/widgets/filters/ui/FiltersContent";
+
+import { SortBySelect } from "../SortBySelect";
 
 const FiltersMobile = () => {
   const [savedSorting] = useSortingQueryState();
@@ -30,7 +30,6 @@ const FiltersMobile = () => {
   ) => {
     setUnsavedSorting({ sortBy, sortOrder });
   };
-
 
   useEffect(() => {
     setUnsavedSorting({

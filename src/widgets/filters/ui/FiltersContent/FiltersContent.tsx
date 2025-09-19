@@ -2,8 +2,6 @@
 
 import { useCallback, useMemo, useState } from "react";
 
-import { ActiveFilters } from "../ActiveFilters";
-
 import {
   Accordion,
   AccordionContent,
@@ -25,6 +23,8 @@ import {
   TFiltersSearchParams,
 } from "@/widgets/filters/model";
 
+import { ActiveFilters } from "../ActiveFilters";
+
 interface IFiltersContentProps {
   isMobile?: boolean;
   unsavedSorting?: { sortBy: SortByValue; sortOrder: SortOrder | null };
@@ -33,7 +33,7 @@ interface IFiltersContentProps {
 const FiltersContent = ({
   isMobile = false,
   unsavedSorting,
-}: IFiltersContentProps ) => {
+}: IFiltersContentProps) => {
   const [savedFilters, setSavedFilters] = useFiltersQueryState();
   const [savedSorting, setSavedSorting] = useSortingQueryState();
 
