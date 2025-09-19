@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
-import { useFiltersQueryState } from "@/widgets/filters/hooks";
-import { FILTERS_DATA, TFiltersParamKey, TFiltersSearchParams, } from "@/widgets/filters/model";
+import { ActiveFilters } from "../ActiveFilters";
+
 import {
   Accordion,
   AccordionContent,
@@ -11,37 +11,68 @@ import {
   AccordionTrigger,
   Button,
   Checkbox,
-  DrawerTitle,
-  SheetClose,
-  SheetTitle,
-  SvgIcon,
 } from "@/shared/ui";
-import { urbanist } from "@/shared/lib/fonts";
+import {
+  useFiltersQueryState,
+  useSortingQueryState,
+} from "@/widgets/filters/hooks";
+import {
+  DEFAULT_FILTERS,
+  FILTERS_DATA,
+  SortByValue,
+  SortOrder,
+  TFiltersParamKey,
+  TFiltersSearchParams,
+} from "@/widgets/filters/model";
 
 interface IFiltersContentProps {
-  variant: "desktop" | "mobile";
+  isMobile?: boolean;
+  unsavedSorting?: { sortBy: SortByValue; sortOrder: SortOrder | null };
 }
 
-const defaultFilters: TFiltersSearchParams = {
-  activeIngredients: [],
-  category: [],
-  concern: [],
-  format: [],
-  preferences: [],
-  productType: [],
-  regimenStep: [],
-};
-
-const FiltersContent = ({ variant }: IFiltersContentProps) => {
-  // TODO: replace with real data
-  const resultsFound = 7;
+const FiltersContent = ({
+  isMobile = false,
+  unsavedSorting,
+}: IFiltersContentProps ) => {
   const [savedFilters, setSavedFilters] = useFiltersQueryState();
+  const [savedSorting, setSavedSorting] = useSortingQueryState();
 
   const [unsavedFilters, setUnsavedFilters] =
     useState<TFiltersSearchParams>(savedFilters);
 
+  const newFiltersCount = useMemo(() => {
+    let count = 0;
+    (Object.keys(FILTERS_DATA) as TFiltersParamKey[]).forEach((param) => {
+      const savedSet = new Set(savedFilters[param]);
+      const unsavedSet = new Set(unsavedFilters[param]);
+
+      savedSet.forEach((v) => {
+        if (!unsavedSet.has(v)) count += 1;
+      });
+
+      unsavedSet.forEach((v) => {
+        if (!savedSet.has(v)) count += 1;
+      });
+    });
+
+    if (isMobile && unsavedSorting) {
+      if (
+        unsavedSorting.sortBy !== savedSorting.sortBy ||
+        unsavedSorting.sortOrder !== savedSorting.sortOrder
+      ) {
+        count += 1;
+      }
+    }
+
+    return count;
+  }, [savedFilters, unsavedFilters, isMobile, unsavedSorting, savedSorting]);
+
   const handleApply = () => {
     setSavedFilters(unsavedFilters);
+
+    if (isMobile && unsavedSorting) {
+      setSavedSorting(unsavedSorting);
+    }
   };
 
   const handleChange = (
@@ -57,81 +88,22 @@ const FiltersContent = ({ variant }: IFiltersContentProps) => {
     }));
   };
 
-  const handleRemove = (param: TFiltersParamKey, value: string) => {
+  const handleRemove = useCallback((param: TFiltersParamKey, value: string) => {
     setUnsavedFilters((prev) => ({
       ...prev,
       [param]: prev[param].filter((v) => v !== value),
     }));
-    setSavedFilters((prev) => ({
-      ...prev,
-      [param]: prev[param].filter((v) => v !== value),
-    }));
-  };
+  }, []);
 
-  const handleClean = () => {
-    setUnsavedFilters(defaultFilters);
-    setSavedFilters(defaultFilters);
-  };
-
-  const activeFilters: { key: TFiltersParamKey; value: string[] }[] = (
-    Object.entries(savedFilters) as [TFiltersParamKey, string[]][]
-  )
-    .filter(([, value]) => value.length > 0)
-    .map(([key, value]) => ({ key, value }));
-
-  const hasActiveFilters = activeFilters.length > 0;
+  const handleClean = useCallback(() => {
+    setUnsavedFilters(DEFAULT_FILTERS);
+  }, []);
 
   return (
-    <div className={"relative flex h-full flex-col px-10"}>
-      <div className={"flex items-center justify-between py-[30px]"}>
-        {variant === "desktop" ? (
-          <SheetTitle>Filters</SheetTitle>
-        ) : (
-          <DrawerTitle>Filters</DrawerTitle>
-        )}
-        {variant === "desktop" && (
-          <SheetClose
-            className={
-              "border-light-black flex size-[18px] cursor-pointer items-center justify-center border"
-            }
-          >
-            <SvgIcon name={"x"} className={"text-light-black size-3.5"} />
-            <span className="sr-only">Close</span>
-          </SheetClose>
-        )}
-      </div>
+    <>
       <div className={"no-scrollbar h-full overflow-y-auto"}>
-        {hasActiveFilters && (
-          <div className={"flex flex-wrap items-center gap-2"}>
-            <p
-              className={`${urbanist.className} font-sm text-dim-gray mr-2 font-semibold`}
-            >
-              ({resultsFound} Results)
-            </p>
-            {activeFilters.map((filter) =>
-              filter.value.map((el) => (
-                <div
-                  className={`border-silver relative flex items-center gap-1 rounded-full border py-[5px] pr-2.5 pl-[15px] ${urbanist.className} text-light-black text-sm font-semibold`}
-                  key={`${filter.key}-${el}`}
-                >
-                  <span>{FILTERS_DATA[filter.key].options[el]}</span>
-                  <button onClick={() => handleRemove(filter.key, el)}>
-                    <SvgIcon
-                      name={"x"}
-                      className={"text-light-black size-3.5"}
-                    />
-                  </button>
-                </div>
-              )),
-            )}
-            <button
-              className={`text-light-black px-[15px] py-[5px] text-sm font-semibold ${urbanist.className} underline`}
-              onClick={handleClean}
-            >
-              <span>Clean filters</span>
-            </button>
-          </div>
-        )}
+        <ActiveFilters onClean={handleClean} onRemove={handleRemove} />
+
         <div className={"mt-6 pb-32"}>
           <Accordion type={"multiple"} className={"border-none"}>
             {(Object.keys(FILTERS_DATA) as TFiltersParamKey[]).map((param) => {
@@ -186,10 +158,10 @@ const FiltersContent = ({ variant }: IFiltersContentProps) => {
           }
           onClick={handleApply}
         >
-          Apply
+          Apply {newFiltersCount > 0 && `(${newFiltersCount})`}
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 

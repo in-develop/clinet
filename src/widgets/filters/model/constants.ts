@@ -3,6 +3,7 @@ import {
   ISortByOption,
   SortByValue,
   SortOrder,
+  TFiltersSearchParams,
 } from "@/widgets/filters/model";
 
 export const SORT_BY_OPTIONS = [
@@ -115,3 +116,14 @@ export const FILTERS_DATA: IFiltersData = {
     options: CATEGORY_OPTIONS,
   },
 };
+
+
+export const DEFAULT_FILTERS: TFiltersSearchParams = {
+  activeIngredients: [],
+  category: [],
+  concern: [],
+  format: [],
+  preferences: [],
+  productType: [],
+  regimenStep: [],
+} as const;
