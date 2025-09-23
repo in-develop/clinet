@@ -3,14 +3,14 @@
 import { FC, useState } from "react";
 import { useDebounce } from "use-debounce";
 
-import { BurgerMenu } from "../BurgerMenu";
-import { HeaderTop } from "../HeaderTop";
-import { DesktopNavigation } from "../DesctopNavigation";
-import { BurgerIcon } from "../BurgerIcon";
-import { RightSideHeader } from "../RightSideHeader";
-
-import { Logo } from "@/shared/ui/Logo";
 import { MENU_OPEN_DELAY_MS } from "@/shared/lib/constants";
+import { Logo } from "@/shared/ui/Logo";
+
+import { BurgerIcon } from "../BurgerIcon";
+import { BurgerMenu } from "../BurgerMenu";
+import { DesktopNavigation } from "../DesktopNavigation";
+import { HeaderTop } from "../HeaderTop";
+import { RightSideHeader } from "../RightSideHeader";
 
 type THeaderProps = {
   isAuthenticated: boolean;
@@ -23,7 +23,7 @@ const Header: FC<THeaderProps> = ({ isAuthenticated }) => {
 
   return (
     <>
-      <header className="fixed top-0 z-20 w-full bg-white shadow-sm">
+      <header className="fixed top-0 z-1000 w-full bg-white shadow-sm">
         <HeaderTop />
         <div className="container flex items-center justify-between py-4">
           <DesktopNavigation />

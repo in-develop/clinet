@@ -1,6 +1,6 @@
+import "@/app/globals.css";
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
-import "@/app/globals.css";
 import { Header } from "@/widgets";
 
 export default function RootLayout({
