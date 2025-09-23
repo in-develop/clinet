@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
-import { Footer, Header } from "@/widgets";
+import { Header } from "@/widgets";
 
 export default function RootLayout({
   children,
@@ -17,7 +17,6 @@ export default function RootLayout({
           <Header isAuthenticated={Boolean(user)} />
           {children}
           <section className="min-h-screen bg-amber-400"></section>
-          <Footer />
         </StoreProvider>
       </body>
     </html>
