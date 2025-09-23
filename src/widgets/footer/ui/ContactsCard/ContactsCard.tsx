@@ -28,7 +28,7 @@ const ContactsCard = ({
         variant={"secondary"}
       >
         <span>{linkText}</span>
-        <SvgIcon name="arrow-scroll-right" />
+        <SvgIcon width={16} height={16} name="arrow-scroll-right" />
       </AppLink>
     </div>
   );
