@@ -1,5 +1,6 @@
 import { Filters, SortBySelect } from "@/widgets/filters";
 import { ActiveFilters } from "@/widgets/filters/ui/ActiveFilters";
+import { ProductsList } from "@/widgets/products-list";
 
 const ShopPage = () => {
   return (
@@ -17,7 +18,9 @@ const ShopPage = () => {
       <div className="container">
         <ActiveFilters isInner={false} />
       </div>
-      <div className={"h-screen"}></div>
+      <div>
+        <ProductsList />
+      </div>
       <div className="sticky bottom-0 z-10 bg-transparent px-5 pb-6 sm:hidden">
         <Filters />
       </div>

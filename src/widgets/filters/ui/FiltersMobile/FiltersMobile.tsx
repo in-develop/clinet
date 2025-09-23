@@ -43,7 +43,7 @@ const FiltersMobile = () => {
       <DrawerTrigger asChild>
         <Button
           className={
-            "bg-light-black hover:text-light-black w-full py-[18px] font-bold text-white normal-case hover:bg-transparent sm:hidden"
+            "bg-light-black hover:text-light-black w-full py-[18px] font-bold text-white normal-case hover:bg-white sm:hidden"
           }
           variant={"card"}
         >
