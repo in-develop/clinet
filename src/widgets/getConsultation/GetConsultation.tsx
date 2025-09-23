@@ -2,7 +2,6 @@ import Image from "next/image";
 import { FC } from "react";
 
 import { urbanist } from "@/shared/lib/fonts";
-import { ROUTING } from "@/shared/lib/rounting";
 import { AppLink, Button } from "@/shared/ui/Button";
 import { SvgIcon } from "@/shared/ui/SvgIcon";
 

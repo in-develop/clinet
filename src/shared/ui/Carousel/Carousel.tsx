@@ -110,7 +110,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   }, [api, setApi]);
 
   useEffect(() => {
-    if (!api) return;
+    if (!api) return undefined;
     onSelect(api);
     api.on("reInit", onSelect);
     api.on("select", onSelect);

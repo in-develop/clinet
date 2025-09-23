@@ -1,18 +1,18 @@
 "use client";
 
+import { FC } from "react";
+
+import { BestsellersCarousel } from "@/widgets/bestsellers/ui/BestsellersCarousel";
+
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "../../../../shared/ui/Tabs";
-import { FC, useState } from "react";
-
-import { BestsellersCarousel } from "@/widgets/bestsellers/ui/BestsellersCarousel";
-
 import { pureSalvationeData, specialisteData } from "../../model";
 
-import { CompletedSetsHeaderMobile, CompletedSetsCarouselMobile } from ".";
+import { CompletedSetsCarouselMobile } from ".";
 
 const CompletedSetsMobile: FC = () => {
   const getItemsByKey = (key: string) => {
@@ -46,13 +46,6 @@ const CompletedSetsMobile: FC = () => {
           <CompletedSetsCarouselMobile items={getItemsByKey("specialiste")} />
         </TabsContent>
       </Tabs>
-
-      {/* <CompletedSetsHeaderMobile
-        cosmeticType={cosmeticType}
-        setCosmeticType={setCosmeticType}
-      />
-
-      <CompletedSetsCarouselMobile items={getItems()} /> */}
     </div>
   );
 };

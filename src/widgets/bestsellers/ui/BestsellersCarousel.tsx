@@ -27,10 +27,10 @@ const BestsellersCarousel: FC<IBestsellersCarouselProps> = (props) => {
           progressBar
           className="border-eerie-black first:border-l"
         >
-          {items.map((item, index) => (
+          {items.map((item) => (
             <CarouselItem
-              key={index}
-              className="border-eerie-black flex basis-[75%] flex-col border-y border-r bg-white p-0 pt-6 sm:pt-8 sm:basis-[33%]"
+              key={item.id}
+              className="border-eerie-black flex h-[397px] basis-[75%] flex-col border-y border-r bg-white p-0 pt-6 sm:h-[562px] sm:basis-[33%] sm:pt-8"
             >
               <div className="flex-1">
                 <div className="flex w-full flex-row justify-between gap-10 px-3">
@@ -42,12 +42,12 @@ const BestsellersCarousel: FC<IBestsellersCarouselProps> = (props) => {
                   </p>
                 </div>
                 <p
-                  className={`${urbanist.className} px-3 pt-1 text-xs leading-[1] font-bold sm:pt-3 sm:text-base sm:leading-[1.2] sm:font-normal`}
+                  className={`${urbanist.className} px-3 pt-1 text-xs leading-[1] font-bold sm:pt-3 sm:text-base sm:leading-[1.3] sm:font-normal`}
                 >
                   {item.description}
                 </p>
 
-                <div className="relative mx-auto h-[182px] w-[134px] pt-15 sm:h-[326px] sm:w-[250px] sm:pt-8">
+                <div className="relative mx-auto mt-15 h-[182px] w-auto sm:mt-8 sm:h-[326px]">
                   <Image
                     src={item.image}
                     alt={`Makeup ${item.id}`}
