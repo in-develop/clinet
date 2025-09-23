@@ -37,7 +37,7 @@ const ProductsList = () => {
         ))}
       </ul>
       {restSlice.length === SLICE_AMOUNT && (
-        <div className="mt-12 flex justify-center">
+        <div className="mt-12 flex justify-center" data-role="show-more">
           <Button
             variant={"secondary"}
             onClick={handleFetchMore}
@@ -53,6 +53,7 @@ const ProductsList = () => {
           </Button>
         </div>
       )}
+      <div id="products-end-sentinel" className="h-1 w-full" aria-hidden />
     </div>
   );
 };

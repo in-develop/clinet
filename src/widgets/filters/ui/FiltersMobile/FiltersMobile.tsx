@@ -14,8 +14,11 @@ import { FiltersContent } from "@/widgets/filters/ui/FiltersContent";
 
 import { SortBySelect } from "../SortBySelect";
 
+const OBSERVE_ROOT_MARGIN = "0px 0px -80px 0px";
+
 const FiltersMobile = () => {
   const [savedSorting] = useSortingQueryState();
+  const [hidden, setHidden] = useState(false);
   const [unsavedSorting, setUnsavedSorting] = useState<{
     sortBy: SortByValue;
     sortOrder: SortOrder | null;
@@ -38,18 +41,48 @@ const FiltersMobile = () => {
     });
   }, [savedSorting]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const endEl = document.getElementById("products-end-sentinel");
+    const showMoreEl = document.querySelector("[data-role='show-more']");
+    if (!endEl && !showMoreEl) return;
+
+    const callback: IntersectionObserverCallback = (entries) => {
+      const anyVisible = entries.some((e) => e.isIntersecting);
+      setHidden(anyVisible);
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      root: null,
+      rootMargin: OBSERVE_ROOT_MARGIN,
+      threshold: 0,
+    });
+
+    if (endEl) observer.observe(endEl);
+    if (showMoreEl) observer.observe(showMoreEl as Element);
+
+    // eslint-disable-next-line
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <Drawer>
-      <DrawerTrigger asChild>
-        <Button
-          className={
-            "bg-light-black hover:text-light-black w-full py-[18px] font-bold text-white normal-case hover:bg-white sm:hidden"
-          }
-          variant={"card"}
-        >
-          FILTERS and SORT
-        </Button>
-      </DrawerTrigger>
+      <div
+        className={`sticky bottom-0 z-10 bg-transparent px-5 pb-6 transition-[transform,opacity] duration-200 sm:hidden ${hidden ? "pointer-events-none -translate-y-2 opacity-0" : "opacity-100"}`}
+      >
+        <DrawerTrigger asChild>
+          <Button
+            className={
+              "bg-light-black hover:text-light-black w-full py-[18px] font-bold text-white normal-case hover:bg-white"
+            }
+            variant={"card"}
+          >
+            FILTERS and SORT
+          </Button>
+        </DrawerTrigger>
+      </div>
       <DrawerContent className="!max-h-[calc(100dvh-120px)]">
         <div
           className={
