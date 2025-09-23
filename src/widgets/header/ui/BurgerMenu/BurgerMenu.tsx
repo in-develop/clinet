@@ -36,7 +36,7 @@ const BurgerMenu: FC<TBurgerMenuProps> = ({ isOpened }) => {
   return (
     <section
       className={clsx(
-        "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-10 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
+        "2md:hidden absolute top-[95.8px] right-0 bottom-0 left-0 z-1000 container min-h-[calc(100vh-95.8px)] bg-white transition-transform",
         {
           "translate-y-0": isOpened,
           "-translate-x-full": !isOpened,
