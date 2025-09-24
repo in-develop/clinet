@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { NavigationGroup } from "../NavigationGroup";
-
 import {
   CONTACT_EMAIL,
   infoLinks,
@@ -9,6 +7,8 @@ import {
   shopLinks,
   socialLinks,
 } from "@/widgets/footer";
+
+import { NavigationGroup } from "../NavigationGroup";
 
 const Navigation = () => (
   <nav aria-label="Navigation" className="container" role="navigation">
@@ -20,7 +20,7 @@ const Navigation = () => (
         <NavigationGroup links={socialLinks} title="Social media" />
         <div className="laptop:mt-6">
           <Link
-            className="leading-5 font-normal hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            className="focus-visible:ring-offset-background leading-5 font-normal hover:underline focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-offset-2 focus-visible:outline-none"
             href={`mailto:${CONTACT_EMAIL}`}
             aria-label={`Email us at ${CONTACT_EMAIL}`}
           >

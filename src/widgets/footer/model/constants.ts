@@ -1,6 +1,6 @@
-import { IFooterLink } from "./types";
-
 import { ROUTING } from "@/shared/lib/rounting";
+
+import { IFooterLink } from "./types";
 
 export const shopLinks: IFooterLink[] = [
   { label: "Le Pelerin Perfume", href: "#" },
