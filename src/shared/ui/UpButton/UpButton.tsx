@@ -1,11 +1,11 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Button } from "../Button";
-import { SvgIcon } from "../SvgIcon";
-
 import { useReducedMotion } from "@/shared/hooks";
 import { cn } from "@/shared/lib/utils";
+
+import { Button } from "../Button";
+import { SvgIcon } from "../SvgIcon";
 
 const THRESHOLD = 600; // in px
 const SCROLL_DURATION = 600; // in ms
