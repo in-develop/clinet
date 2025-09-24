@@ -10,7 +10,7 @@ import React, {
   useContext,
   useEffect,
   useState,
-  KeyboardEvent as ReactKeyboardEvent,
+  KeyboardEvent,
   FC,
 } from "react";
 
@@ -78,13 +78,10 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
-  const onSelect = useCallback((emblaApi: CarouselApi) => {
-    if (!emblaApi) {
-      return;
-    }
-
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
+  const onSelect = useCallback((api: CarouselApi) => {
+    if (!api) return;
+    setCanScrollPrev(api.canScrollPrev());
+    setCanScrollNext(api.canScrollNext());
   }, []);
 
   const scrollPrev = useCallback(() => {
@@ -96,10 +93,9 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   }, [api]);
 
   const handleKeyDown = useCallback(
-    (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    (event: KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-
         scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
@@ -111,20 +107,13 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   );
 
   useEffect(() => {
-    if (!api || !setApi) {
-      return;
-    }
-
+    if (!api || !setApi) return;
     setApi(api);
   }, [api, setApi]);
 
   useEffect(() => {
-    if (!api) {
-      return undefined;
-    }
-
+    if (!api) return undefined;
     onSelect(api);
-
     api.on("reInit", onSelect);
     api.on("select", onSelect);
 
@@ -214,7 +203,7 @@ const CarouselContent: FC<ComponentProps<"div"> & CarouselContentProps> = (
       />
 
       {progressBar && (
-        <div className="embla__progress bg-silver mt-5 h-2 w-full sm:mt-3.5 sm:mb-5">
+        <div className="embla__progress bg-silver mt-5 h-0.5 w-full sm:mt-3.5 sm:mb-5">
           <div
             className="embla__progress__bar bg-eerie-black h-1 transition-[width]"
             style={{ width: `${scrollProgress}%` }}
