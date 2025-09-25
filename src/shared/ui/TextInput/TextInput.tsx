@@ -1,6 +1,7 @@
 "use client";
 
 import { cva, VariantProps } from "class-variance-authority";
+<<<<<<< HEAD
 import { ComponentProps, FC, ReactNode, useState } from "react";
 
 import { urbanist } from "@/shared/lib/fonts";
@@ -11,6 +12,17 @@ import { ArrowIcon } from "../Icons";
 
 const textInputStateVariants = cva(
   "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary min-h-7",
+=======
+import { ComponentProps, FC, useState } from "react";
+
+import { cn } from "@/shared/lib/utils";
+
+import { Button } from "../Button";
+import { SvgIcon } from "../SvgIcon";
+
+const textInputVariants = cva(
+  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary h-7",
+>>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f
   {
     variants: {
       variant: {
@@ -49,11 +61,16 @@ const buttonStateVariants = cva(
 
 interface ITextInputProps
   extends ComponentProps<"input">,
+<<<<<<< HEAD
     VariantProps<typeof textInputStateVariants> {
+=======
+    VariantProps<typeof textInputVariants> {
+>>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f
   value: string;
   label?: string;
   onSubmit?: () => void;
   error?: string;
+<<<<<<< HEAD
   buttonVariant?: VariantProps<typeof buttonVariants>["variant"];
   buttonSize?: VariantProps<typeof buttonVariants>["size"];
   buttonIcon?: ReactNode;
@@ -81,6 +98,11 @@ const TextInput: FC<ITextInputProps> = (props) => {
     buttonIconClassName,
     ...rest
   } = props;
+=======
+  inputClassName?: string;
+  buttonClassName?: string;
+}
+>>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -164,7 +186,11 @@ const TextInput: FC<ITextInputProps> = (props) => {
             )}
             onClick={onSubmit}
           >
+<<<<<<< HEAD
             <ArrowIcon className="size-4" />
+=======
+            <SvgIcon name="arrow" />
+>>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f
           </Button>
         )}
       </div>

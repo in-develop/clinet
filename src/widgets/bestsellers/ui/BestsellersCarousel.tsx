@@ -30,7 +30,7 @@ const BestsellersCarousel: FC<IBestsellersCarouselProps> = (props) => {
           {items.map((item, index) => (
             <CarouselItem
               key={index}
-              className="border-eerie-black flex basis-[75%] flex-col border-y border-r bg-white p-0 pt-6 sm:pt-8 sm:basis-[33%]"
+              className="border-eerie-black flex basis-[75%] flex-col border-y border-r bg-white p-0 pt-6 sm:basis-[33%] sm:pt-8"
             >
               <div className="flex-1">
                 <div className="flex w-full flex-row justify-between gap-10 px-3">
@@ -47,7 +47,7 @@ const BestsellersCarousel: FC<IBestsellersCarouselProps> = (props) => {
                   {item.description}
                 </p>
 
-                <div className="relative mx-auto h-[182px] w-[134px] pt-15 sm:h-[326px] sm:w-[250px] sm:pt-8">
+                <div className="relative mx-auto h-[22.6vw] max-h-[326px] w-[12.9vw] max-w-[186px] pt-15 sm:pt-8">
                   <Image
                     src={item.image}
                     alt={`Makeup ${item.id}`}
@@ -65,8 +65,8 @@ const BestsellersCarousel: FC<IBestsellersCarouselProps> = (props) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className="hidden sm:block" />
-        <CarouselNext className="hidden sm:block" />
+        <CarouselPrevious className="hidden sm:flex" />
+        <CarouselNext className="hidden sm:flex" />
       </Carousel>
     </div>
   );
