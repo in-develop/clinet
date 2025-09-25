@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { ArrowRight } from "lucide-react";
-=======
->>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f
 import { FC } from "react";
 
 import { Button } from "@/shared/ui/Button/index";
