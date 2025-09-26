@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { useState } from "react";
 
-import { mockBlogPosts } from "../../model";
-import { BlogCard } from "../BlogCard";
-import { ReadMoreLink } from "../ReadMoreLink";
-
 import { useMediaQuery } from "@/shared/hooks";
 import { BREAKPOINTS } from "@/shared/lib/constants";
 import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/Carousel";
+
+import { mockBlogPosts } from "../../model";
+import { BlogCard } from "../BlogCard";
+import { ReadMoreLink } from "../ReadMoreLink";
 
 const ScincareGuide = () => {
   const [isMobile, isNotMobile] = useMediaQuery([

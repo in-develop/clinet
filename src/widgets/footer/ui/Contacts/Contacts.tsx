@@ -1,6 +1,6 @@
-import { ContactsCard } from "../ContactsCard";
-
 import { ROUTING } from "@/shared/lib/rounting";
+
+import { ContactsCard } from "../ContactsCard";
 
 const Contacts = () => {
   return (
