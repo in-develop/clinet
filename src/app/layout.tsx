@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { ReactNode } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next";
 
 import StoreProvider from "@/app/providers/StoreProvider";
@@ -8,7 +9,7 @@ import { Footer, Header } from "@/widgets";
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   const user = null; // Replace with actual user authentication logic
 
