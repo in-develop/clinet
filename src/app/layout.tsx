@@ -1,9 +1,10 @@
 import "@/app/globals.css";
-import { ReactNode } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next";
+import { ReactNode } from "react";
 
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
+import { UpButton } from "@/shared/ui/UpButton";
 import { Footer, Header } from "@/widgets";
 
 export default function RootLayout({
@@ -22,6 +23,7 @@ export default function RootLayout({
             {children}
             <section className="min-h-screen bg-amber-400"></section>
             <Footer />
+            <UpButton />
           </NuqsAdapter>
         </StoreProvider>
       </body>
