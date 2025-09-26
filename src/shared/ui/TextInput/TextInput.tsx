@@ -1,11 +1,12 @@
 "use client";
 
 import { cva, VariantProps } from "class-variance-authority";
-import { ComponentProps, FC, useState } from "react";
+import { ComponentProps, FC, ReactNode, useState } from "react";
 
+import { urbanist } from "@/shared/lib/fonts";
 import { cn } from "@/shared/lib/utils";
 
-import { Button } from "../Button";
+import { Button, buttonVariants } from "../Button";
 import { SvgIcon } from "../SvgIcon";
 
 const textInputVariants = cva(
@@ -26,7 +27,7 @@ const textInputVariants = cva(
   },
 );
 
-const buttonVariants = cva(
+const buttonStateVariants = cva(
   "hover:border-primary hover:[&_svg>path]:fill-primary hover:bg-transparent transition-colors",
   {
     variants: {
@@ -53,25 +54,37 @@ interface ITextInputProps
   label?: string;
   onSubmit?: () => void;
   error?: string;
+  buttonVariant?: VariantProps<typeof buttonVariants>["variant"];
+  buttonSize?: VariantProps<typeof buttonVariants>["size"];
+  buttonIcon?: ReactNode;
+  labelClassName?: string;
   inputClassName?: string;
   buttonClassName?: string;
+  buttonIconClassName?: string;
 }
 
-const TextInput: FC<ITextInputProps> = ({
-  value,
-  label,
-  onChange,
-  onSubmit,
-  disabled,
-  error,
-  className,
-  inputClassName,
-  buttonClassName,
-  ...rest
-}) => {
+const TextInput: FC<ITextInputProps> = (props) => {
+  const {
+    value,
+    label,
+    onChange,
+    onSubmit,
+    disabled,
+    error,
+    className,
+    buttonVariant = "borderIcon",
+    buttonSize = "icon",
+    buttonIcon,
+    labelClassName,
+    inputClassName,
+    buttonClassName,
+    buttonIconClassName,
+    ...rest
+  } = props;
+
   const [isFocused, setIsFocused] = useState(false);
 
-  const getTextInputVariant = () => {
+  const getTextInputStateVariant = () => {
     if (disabled) {
       return "disabled";
     }
@@ -87,7 +100,7 @@ const TextInput: FC<ITextInputProps> = ({
     return "default";
   };
 
-  const getButtonVariant = () => {
+  const getButtonStateVariant = () => {
     if (disabled || error) {
       return "disabled";
     }
@@ -104,19 +117,26 @@ const TextInput: FC<ITextInputProps> = ({
   };
 
   return (
-    <div className={cn("relative flex flex-col gap-1", className)}>
+    <div
+      className={cn(
+        "relative flex h-[58px] flex-col justify-end gap-1",
+        className,
+      )}
+    >
       {label && (
         <label
           className={cn(
-            "text-gray absolute top-0 text-xs font-normal transition-all",
-            !isFocused && !value && "top-2/3",
+            urbanist.className,
+            "text-eerie-black absolute top-0 text-xs font-normal transition-all",
+            !isFocused && !value && "top-2/3 -translate-y-1/2 text-base",
+            labelClassName,
           )}
         >
           {label}
         </label>
       )}
 
-      <div className="group flex items-end gap-2">
+      <div className="group relative flex items-end">
         <input
           value={value}
           disabled={disabled}
@@ -124,19 +144,22 @@ const TextInput: FC<ITextInputProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           className={cn(
-            textInputVariants({ variant: getTextInputVariant() }),
+            urbanist.className,
+            "peer transition-all",
+            textInputVariants({ variant: getTextInputStateVariant() }),
             inputClassName,
           )}
           {...rest}
         />
+        {buttonIcon && <div className={buttonIconClassName}>{buttonIcon}</div>}
 
         {onSubmit && (
           <Button
             disabled={disabled || Boolean(error)}
-            variant="borderIcon"
-            size="icon"
+            variant={buttonVariant}
+            size={buttonSize}
             className={cn(
-              buttonVariants({ variant: getButtonVariant() }),
+              buttonStateVariants({ variant: getButtonStateVariant() }),
               buttonClassName,
             )}
             onClick={onSubmit}
