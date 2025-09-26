@@ -1,4 +1,6 @@
-export interface SvgIconProps {
+import { SVGProps } from "react";
+
+export interface SvgIconProps extends SVGProps<SVGSVGElement> {
   name: string;
   width?: number;
   height?: number;
@@ -31,7 +33,7 @@ export const SvgIcon = ({
       {...props}
     >
       {titleId && <title id={titleId}>{title}</title>}
-      <use xlinkHref={`/icons.svg#${name}`} />
+      <use xlinkHref={`/icons/icons.svg#${name}`} />
     </svg>
   );
 };
