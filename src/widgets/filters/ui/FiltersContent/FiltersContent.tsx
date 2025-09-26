@@ -2,8 +2,6 @@
 
 import { useCallback, useMemo, useState } from "react";
 
-import { ActiveFilters } from "../ActiveFilters";
-
 import {
   Accordion,
   AccordionContent,
@@ -25,6 +23,8 @@ import {
   TFiltersSearchParams,
 } from "@/widgets/filters/model";
 
+import { ActiveFilters } from "../ActiveFilters";
+
 interface IFiltersContentProps {
   isMobile?: boolean;
   unsavedSorting?: { sortBy: SortByValue; sortOrder: SortOrder | null };
@@ -33,7 +33,7 @@ interface IFiltersContentProps {
 const FiltersContent = ({
   isMobile = false,
   unsavedSorting,
-}: IFiltersContentProps ) => {
+}: IFiltersContentProps) => {
   const [savedFilters, setSavedFilters] = useFiltersQueryState();
   const [savedSorting, setSavedSorting] = useSortingQueryState();
 
@@ -104,7 +104,7 @@ const FiltersContent = ({
       <div className={"no-scrollbar h-full overflow-y-auto"}>
         <ActiveFilters onClean={handleClean} onRemove={handleRemove} />
 
-        <div className={"mt-6 pb-32"}>
+        <div className={"mt-6 pb-36"}>
           <Accordion type={"multiple"} className={"border-none"}>
             {(Object.keys(FILTERS_DATA) as TFiltersParamKey[]).map((param) => {
               const { label, options } = FILTERS_DATA[param];
@@ -154,7 +154,7 @@ const FiltersContent = ({
         <Button
           variant={"card"}
           className={
-            "bg-light-black hover:text-light-black w-full py-[18px] font-extrabold text-white hover:bg-transparent"
+            "bg-light-black hover:text-light-black w-full py-[15px] font-extrabold text-white hover:bg-transparent"
           }
           onClick={handleApply}
         >

@@ -2,12 +2,12 @@
 
 import { memo } from "react";
 
-import { useFiltersQueryState } from "../../hooks";
-import { DEFAULT_FILTERS, FILTERS_DATA, TFiltersParamKey } from "../../model";
-
 import { urbanist } from "@/shared/lib/fonts";
 import { SvgIcon } from "@/shared/ui";
 import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/Carousel";
+
+import { useFiltersQueryState } from "../../hooks";
+import { DEFAULT_FILTERS, FILTERS_DATA, TFiltersParamKey } from "../../model";
 
 interface IActiveFiltersProps {
   onClean?: () => void;

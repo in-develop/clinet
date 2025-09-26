@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { SortBySelect } from "../SortBySelect";
-
 import { urbanist } from "@/shared/lib/fonts";
 import {
   Button,
@@ -13,6 +11,8 @@ import {
 import { useSortingQueryState } from "@/widgets/filters/hooks";
 import { SortByValue, SortOrder } from "@/widgets/filters/model";
 import { FiltersContent } from "@/widgets/filters/ui/FiltersContent";
+
+import { SortBySelect } from "../SortBySelect";
 
 const FiltersMobile = () => {
   const [savedSorting] = useSortingQueryState();
@@ -31,7 +31,6 @@ const FiltersMobile = () => {
     setUnsavedSorting({ sortBy, sortOrder });
   };
 
-
   useEffect(() => {
     setUnsavedSorting({
       sortBy: savedSorting.sortBy || SortByValue.FEATURED,
@@ -44,7 +43,7 @@ const FiltersMobile = () => {
       <DrawerTrigger asChild>
         <Button
           className={
-            "bg-light-black hover:text-light-black w-full py-[18px] font-bold text-white normal-case hover:bg-transparent sm:hidden"
+            "bg-light-black hover:text-light-black w-full py-[15px] font-bold text-white normal-case hover:bg-transparent sm:hidden"
           }
           variant={"card"}
         >
