@@ -32,7 +32,7 @@ const FiltersDesktop = () => {
       <SheetContent
         closeButton={false}
         side={"left"}
-        className={"!max-w-[663px] p-0"}
+        className={"z-[10000] !max-w-[663px] p-0"}
       >
         <div className={"relative flex h-full flex-col overflow-hidden px-10"}>
           <div className={"flex items-center justify-between py-[30px]"}>
@@ -43,7 +43,12 @@ const FiltersDesktop = () => {
                 "border-light-black flex size-[18px] cursor-pointer items-center justify-center border"
               }
             >
-              <SvgIcon name={"x"} className={"text-light-black size-3.5"} />
+              <SvgIcon
+                name={"x"}
+                className={"text-light-black"}
+                width={14}
+                height={14}
+              />
               <span className="sr-only">Close</span>
             </SheetClose>
           </div>

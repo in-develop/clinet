@@ -1,5 +1,4 @@
-import { Bestsellers, CompletedSets } from "@/widgets";
-import { Hero } from "@/widgets/hero";
+import { Bestsellers, CompletedSets, Hero } from "@/widgets";
 
 export default function Home() {
   return (

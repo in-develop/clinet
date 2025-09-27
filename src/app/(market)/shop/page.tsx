@@ -1,9 +1,13 @@
+"use client";
+import { Suspense } from "react";
+
 import { Filters, SortBySelect } from "@/widgets/filters";
 import { ActiveFilters } from "@/widgets/filters/ui/ActiveFilters";
 import { ProductsList } from "@/widgets/products-list";
 
 const ShopPage = () => {
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div className={"relative mt-96 flex min-h-screen flex-col gap-2.5"}>
       <div
         className={"container flex w-full items-center justify-between gap-2"}
@@ -25,6 +29,7 @@ const ShopPage = () => {
         <Filters />
       </div>
     </div>
+    </Suspense>
   );
 };
 

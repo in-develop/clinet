@@ -1,9 +1,9 @@
-import { INSTAGRAM_LINK, instaImages } from "../../model";
-
 import { AppLink } from "@/shared/ui/Button";
 import { RunningLine } from "@/shared/ui/RunningLine";
 import { SvgIcon } from "@/shared/ui/SvgIcon";
 import { InstaCard } from "@/widgets/instagram-zone/ui/InstaCard";
+
+import { INSTAGRAM_LINK, instaImages } from "../../model";
 
 const InstagramZone = () => {
   return (

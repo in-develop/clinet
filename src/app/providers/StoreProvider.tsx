@@ -1,11 +1,11 @@
 "use client";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 import { Provider } from "react-redux";
 
 import { makeStore } from "@/shared/store";
 
 interface IStoreProvider {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export default function StoreProvider({ children }: IStoreProvider) {

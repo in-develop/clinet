@@ -22,6 +22,8 @@ const ROUTING = {
   test: (testName: string) => `/test/${testName}`,
   blogPost: (id: string) => `/blog/${id}`,
   product: (id: number) => `/products/${id}`,
+  catalog: (category: string, subCategory?: string) =>
+    subCategory ? `/catalog/${category}/${subCategory}` : `/catalog/${category}`,
 };
 
 export { ROUTING };

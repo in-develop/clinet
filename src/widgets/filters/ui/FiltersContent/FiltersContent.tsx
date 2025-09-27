@@ -104,7 +104,7 @@ const FiltersContent = ({
       <div className={"no-scrollbar h-full overflow-y-auto"}>
         <ActiveFilters onClean={handleClean} onRemove={handleRemove} />
 
-        <div className={"mt-6 pb-32"}>
+        <div className={"mt-6 pb-36"}>
           <Accordion type={"multiple"} className={"border-none"}>
             {(Object.keys(FILTERS_DATA) as TFiltersParamKey[]).map((param) => {
               const { label, options } = FILTERS_DATA[param];
@@ -154,7 +154,7 @@ const FiltersContent = ({
         <Button
           variant={"card"}
           className={
-            "bg-light-black hover:text-light-black w-full py-[18px] font-extrabold text-white hover:bg-transparent"
+            "bg-light-black hover:text-light-black w-full py-[15px] font-extrabold text-white hover:bg-transparent"
           }
           onClick={handleApply}
         >

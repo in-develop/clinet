@@ -1,14 +1,16 @@
 import "@/app/globals.css";
 import { NuqsAdapter } from "nuqs/adapters/next";
+import { ReactNode } from "react";
 
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
+import { UpButton } from "@/shared/ui/UpButton";
 import { Footer, Header } from "@/widgets";
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   const user = null; // Replace with actual user authentication logic
 
@@ -21,6 +23,7 @@ export default function RootLayout({
             {children}
             <section className="min-h-screen bg-amber-400"></section>
             <Footer />
+            <UpButton />
           </NuqsAdapter>
         </StoreProvider>
       </body>
