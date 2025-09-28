@@ -1,4 +1,4 @@
-import { ICartItemLocalStorage } from "../types";
+import { ICartItemLocalStorage } from "../lib/types";
 
 import { useLocalStorage } from "./useLocalStorage";
 

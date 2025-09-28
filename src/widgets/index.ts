@@ -6,3 +6,4 @@ export * from "./hero";
 export * from "./scincare-guide";
 export * from "./hero";
 export * from "./faq";
+export * from "./product-info";

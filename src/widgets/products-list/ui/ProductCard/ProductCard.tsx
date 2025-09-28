@@ -8,7 +8,7 @@ import { useCartLocalStorage } from "@/shared/hooks";
 import { formatCurrency } from "@/shared/lib/currency";
 import { urbanist } from "@/shared/lib/fonts";
 import { ROUTING } from "@/shared/lib/rounting";
-import { IProduct } from "@/shared/types";
+import { IProduct } from "@/shared/lib/types";
 import { Button, Rating } from "@/shared/ui";
 
 interface IProductCardProps {
@@ -70,9 +70,7 @@ const ProductCard = ({ data }: IProductCardProps) => {
             {data.description}
           </p>
         </div>
-        <div
-          className="text-light-black flex flex-col gap-1"
-        >
+        <div className="text-light-black flex flex-col gap-1">
           {hasDiscount ? (
             <>
               <span className={"text-promotion text-sm font-bold md:text-base"}>
