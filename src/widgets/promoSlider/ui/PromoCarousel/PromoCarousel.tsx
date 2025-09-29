@@ -24,7 +24,7 @@ interface IPromoCarouselProps {
 const PromoCarousel: FC<IPromoCarouselProps> = (props) => {
   const { items } = props;
 
-  const [isMobile] = useMediaQuery([BREAKPOINTS["max-2md"], BREAKPOINTS["md"]]);
+  const [isMobile] = useMediaQuery(BREAKPOINTS["max-2md"]);
 
   return (
     <div className="flex-[0_0_50%]">
