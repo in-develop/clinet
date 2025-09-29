@@ -74,6 +74,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     },
     plugins,
   );
+
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
@@ -98,6 +99,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
         scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
+
         scrollNext();
       }
     },

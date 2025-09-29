@@ -10,7 +10,7 @@ const CompletedSetsHeaderDesktop: FC = () => {
         Completed sets
       </p>
       <div className="flex flex-row gap-3 text-base sm:gap-6">
-        <Button variant="tab" className="" onClick={() => null}>
+        <Button variant="tab" onClick={() => null}>
           Shop all
           <SvgIcon name="arrow" width={16} height={16} />
         </Button>

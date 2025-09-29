@@ -23,11 +23,11 @@ const Header: FC<THeaderProps> = ({ isAuthenticated }) => {
 
   return (
     <>
-      <header className="fixed top-0 z-20 w-full bg-white shadow-sm">
+      <header className="fixed top-0 z-1000 w-full bg-white shadow-sm">
         <HeaderTop />
         <div className="container flex items-center justify-between py-4">
           <DesktopNavigation />
-          <BurgerIcon isOpened={isOpened} setIsOpen={setIsOpen} />
+          <BurgerIcon setIsOpen={setIsOpen} />
           <Logo className="2md:ml-32 2md:min-w-0 2md:flex-1 ml-11 lg:ml-46" />
           <RightSideHeader
             orderCount={orderCount}
@@ -35,7 +35,7 @@ const Header: FC<THeaderProps> = ({ isAuthenticated }) => {
           />
         </div>
       </header>
-      <BurgerMenu isOpened={isOpened} />
+      <BurgerMenu isOpened={isOpened} setIsOpen={setIsOpen} />
     </>
   );
 };
