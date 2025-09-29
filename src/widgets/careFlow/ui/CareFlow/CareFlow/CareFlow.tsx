@@ -9,7 +9,7 @@ import { CareFlowDesktop } from "../CareFlowDesktop";
 import { CareFlowMobile } from "../CareFlowMobile";
 
 const CareFlow: FC = () => {
-  const [isMobile] = useMediaQuery([BREAKPOINTS["max-2md"], BREAKPOINTS["md"]]);
+  const [isMobile] = useMediaQuery(BREAKPOINTS["max-2md"]);
 
   return <>{isMobile ? <CareFlowMobile /> : <CareFlowDesktop />}</>;
 };
