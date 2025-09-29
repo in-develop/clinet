@@ -1,8 +1,18 @@
-import { FC, useState } from "react";
+import { FC } from "react";
+import { Controller, useForm } from "react-hook-form";
 
 import { useMediaQuery } from "@/shared/hooks";
 import { BREAKPOINTS } from "@/shared/lib/constants";
 import { urbanist } from "@/shared/lib/fonts";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/shared/ui/AlertDialog";
 import { Button } from "@/shared/ui/Button";
 import {
   Select,
@@ -14,88 +24,157 @@ import {
 import { SvgIcon } from "@/shared/ui/SvgIcon";
 import { TextInput } from "@/shared/ui/TextInput";
 
-interface IGetConsultationModalProps {
-  onSubmit: () => void;
+export interface IFormValues {
+  name: string;
+  phone: string;
+  consultationType: string;
 }
 
-const Form: FC<IGetConsultationModalProps> = (props) => {
-  const { onSubmit } = props;
+interface IGetConsultationModalProps {
+  open?: boolean;
+  onOpenChange?: (_: boolean) => void;
+  onSubmit: (_: IFormValues) => void;
+  onClose: () => void;
+}
 
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
+const GetConsultationDialog: FC<IGetConsultationModalProps> = (props) => {
+  const { open, onOpenChange, onSubmit, onClose } = props;
 
-  const [consultationType, setConsultationType] = useState("consultation");
+  const [isMobile] = useMediaQuery(BREAKPOINTS["max-2md"]);
 
-  const [isMobile] = useMediaQuery([BREAKPOINTS["max-2md"], BREAKPOINTS["md"]]);
+  const { handleSubmit, control } = useForm<IFormValues>({
+    defaultValues: {
+      name: "",
+      phone: "",
+      consultationType: "consultation",
+    },
+  });
+
+  const submitHandler = (data: IFormValues) => {
+    onSubmit(data);
+  };
 
   return (
-    <>
-      <h1 className="mt-1.5 text-center text-[32px] leading-[1] font-bold sm:mt-11 sm:text-5xl sm:leading-[1.1]">
-        Get a free consultation
-      </h1>
+    <AlertDialog open={open} onOpenChange={onOpenChange}>
+      <AlertDialogContent className="bg-bg-block border-eerie-black mx-5 flex h-[557px] min-w-[350px] flex-1 flex-col items-center overflow-visible border-[1px] pt-[22px] pb-10 md:mx-10 md:h-[829px] md:pt-10 md:pb-27">
+        <AlertDialogCancel asChild>
+          <Button
+            variant="iconLink"
+            className="mr-[22px] flex self-end md:mr-10"
+            onClick={onClose}
+          >
+            {isMobile ? (
+              <SvgIcon name="cross" className="h-[14px] w-[14px]" />
+            ) : (
+              <SvgIcon name="cross-squared" fill="transparent" />
+            )}
+          </Button>
+        </AlertDialogCancel>
 
-      {isMobile ? (
-        <p className={`${urbanist.className} mt-5 text-center leading-[1.3]`}>
-          Personal skin consultation with product and treatment advice.
-        </p>
-      ) : (
-        <p
-          className={`${urbanist.className} mt-6 w-[630px] text-center leading-[1.3]`}
+        <AlertDialogHeader>
+          <AlertDialogTitle className="mx-5 mt-1.5 text-center text-[32px] leading-[1] font-bold text-pretty md:mt-11 md:text-5xl md:leading-[1.1]">
+            Get a free consultation
+          </AlertDialogTitle>
+
+          <AlertDialogDescription asChild>
+            {isMobile ? (
+              <p
+                className={`${urbanist.className} mx-5 mt-5 text-center leading-[1.3] text-pretty`}
+              >
+                Personal skin consultation with product and treatment advice.
+              </p>
+            ) : (
+              <p
+                className={`${urbanist.className} mt-6 w-full max-w-[630px] text-center leading-[1.3] text-pretty`}
+              >
+                Our cosmetologist will assess your skin, recommend the right
+                home care, and suggest suitable treatments. Leave a request, and
+                we’ll call you to confirm the time.
+              </p>
+            )}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+
+        <form
+          onSubmit={handleSubmit(submitHandler)}
+          className="mt-8 flex flex-1 flex-col justify-between md:mt-16 md:pt-8"
         >
-          Our cosmetologist will assess your skin, recommend the right home
-          care, and suggest suitable treatments. Leave a request, and we’ll call
-          you to confirm the time.
-        </p>
-      )}
+          <div className="flex flex-col gap-6 md:gap-8">
+            <Controller
+              name="name"
+              control={control}
+              rules={{ required: "Name is required" }}
+              render={({ field, fieldState }) => (
+                <TextInput
+                  {...field}
+                  value={field.value ?? ""}
+                  label="Enter name"
+                  className="w-[310px] md:w-[413px]"
+                  labelClassName="text-base"
+                  inputClassName="w-full leading-[1.3] h-full"
+                  error={fieldState.error?.message}
+                />
+              )}
+            />
 
-      <form className="mt-8 flex flex-col gap-6 sm:mt-16 sm:gap-8 sm:pt-8">
-        <TextInput
-          value={name}
-          label="Enter name"
-          className="w-[310px] sm:w-[413px]"
-          labelClassName="text-base"
-          inputClassName="w-full leading-[1.3] h-full"
-          onChange={(e) => setName(e.target.value)}
-        />
+            <Controller
+              name="phone"
+              control={control}
+              rules={{
+                required: "Phone number is required",
+                pattern: {
+                  value: /^[0-9+\-\s()]{7,}$/,
+                  message: "Invalid phone number",
+                },
+              }}
+              render={({ field, fieldState }) => (
+                <TextInput
+                  {...field}
+                  value={field.value ?? ""}
+                  label="Enter phone number"
+                  className="w-[310px] md:w-[413px]"
+                  labelClassName="text-base"
+                  inputClassName="w-full leading-[1.3] h-full"
+                  error={fieldState.error?.message}
+                />
+              )}
+            />
 
-        <TextInput
-          value={phone}
-          label="Enter phone number"
-          className="w-[310px] sm:w-[413px]"
-          labelClassName="text-base"
-          inputClassName="w-full leading-[1.3]"
-          onChange={(e) => setPhone(e.target.value)}
-        />
+            <div className="flex flex-col md:gap-3">
+              {!isMobile && (
+                <label className="text-eerie-black text-[12px]">
+                  Select the type of consultation
+                </label>
+              )}
 
-        <div className="flex flex-col sm:gap-3">
-          {!isMobile && (
-            <label className="text-eerie-black text-[12px]">
-              Select the type of consultation
-            </label>
-          )}
+              <Controller
+                name="consultationType"
+                control={control}
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger className="p-0">
+                      <SelectValue placeholder="Consultation" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="consultation">Consultation</SelectItem>
+                      <SelectItem value="light">Procedure</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+            </div>
+          </div>
 
-          <Select value={consultationType} onValueChange={setConsultationType}>
-            <SelectTrigger className="p-0">
-              <SelectValue placeholder="Consultation" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="consultation">Consultation</SelectItem>
-              <SelectItem value="light">Procedure</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <Button
-          variant="tabIcon"
-          className="mt-15 self-center sm:mt-38"
-          onClick={onSubmit}
-        >
-          BOOK A CONSULTATION
-          <SvgIcon name="arrow-scroll" width={11} height={14} />
-        </Button>
-      </form>
-    </>
+          <AlertDialogFooter className="self-center md:mt-38">
+            <Button variant="tabIcon" type="submit">
+              BOOK A CONSULTATION
+              <SvgIcon name="arrow-scroll" width={11} height={14} />
+            </Button>
+          </AlertDialogFooter>
+        </form>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 };
 
-export { Form };
+export { GetConsultationDialog };

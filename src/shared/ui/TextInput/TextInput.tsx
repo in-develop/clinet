@@ -10,13 +10,13 @@ import { Button, buttonVariants } from "../Button";
 import { SvgIcon } from "../SvgIcon";
 
 const textInputVariants = cva(
-  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary h-7",
+  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary h-7 bg-transparent",
   {
     variants: {
       variant: {
         default: "border-eerie-black",
         typing: "border-primary",
-        error: "border-error text-error text-xs font-normal placeholder-error",
+        error: "border-error text-error font-normal placeholder-error h-[73px]",
         disabled:
           "border-gray cursor-not-allowed text-gray group-hover:border-gray group-hover:placeholder-gray",
       },
@@ -89,12 +89,12 @@ const TextInput: FC<ITextInputProps> = (props) => {
       return "disabled";
     }
 
-    if (isFocused || value) {
-      return "typing";
-    }
-
     if (error) {
       return "error";
+    }
+
+    if (isFocused || value) {
+      return "typing";
     }
 
     return "default";
@@ -120,6 +120,7 @@ const TextInput: FC<ITextInputProps> = (props) => {
     <div
       className={cn(
         "relative flex h-[58px] flex-col justify-end gap-1",
+        error && "h-[73px]",
         className,
       )}
     >
@@ -127,8 +128,11 @@ const TextInput: FC<ITextInputProps> = (props) => {
         <label
           className={cn(
             urbanist.className,
-            "text-eerie-black absolute top-0 text-xs font-normal transition-all",
-            !isFocused && !value && "top-2/3 -translate-y-1/2 text-base",
+            "text-gray absolute top-0 text-xs font-normal transition-all",
+            !isFocused &&
+              !value &&
+              !error &&
+              "top-2/3 -translate-y-1/2 text-base",
             labelClassName,
           )}
         >

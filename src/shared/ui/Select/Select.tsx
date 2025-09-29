@@ -84,12 +84,12 @@ const SelectTrigger: FC<SelectTriggerProps> = (compProps) => {
 
       <SelectPrimitive.Icon asChild>
         <SvgIcon
-          name="arrow-scroll-down"
+          name="arrow-scroll"
           width={11}
           hanging={14}
           className={cn(
-            "mr-2.5 transition-transform duration-200",
-            open ? "rotate-180" : "",
+            "mr-2.5 rotate-90 transition-transform duration-200",
+            open ? "-rotate-90" : "",
           )}
         />
       </SelectPrimitive.Icon>
