@@ -11,7 +11,9 @@ interface IBaseInfoProps {
 
 const BaseInfo = ({ data }: IBaseInfoProps) => {
   return (
-    <div className={"text-light-black border-light-black border px-5 py-6"}>
+    <div
+      className={"text-light-black md:border-light-black px-5 py-6 md:border"}
+    >
       <h1 className={"mb-5 text-[32px] font-bold"}>{data.name}</h1>
       <Rating
         rating={data.rating}
@@ -28,11 +30,7 @@ const BaseInfo = ({ data }: IBaseInfoProps) => {
       <ProductTags data={data.tags} className={"mb-8"} />
 
       <NeedHelp className={"mb-10"} />
-      <ProductCapacity
-        variant={"radio"}
-        data={data.capacityOptions}
-        onSelect={() => {}}
-      />
+      <ProductCapacity variant={"radio"} data={data.capacityOptions} />
     </div>
   );
 };

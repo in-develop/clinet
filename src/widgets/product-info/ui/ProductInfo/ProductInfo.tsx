@@ -2,11 +2,11 @@
 import { useParams } from "next/navigation";
 
 import { IFullProduct } from "@/widgets/product-info/model";
+import { ProductCapacityProvider } from "@/widgets/product-info/providers";
 import { AddToCartButton } from "@/widgets/product-info/ui/AddToCartButton";
 import { BaseInfo } from "@/widgets/product-info/ui/BaseInfo";
-import { ImagesCarousel } from "@/widgets/product-info/ui/ImagesCarousel";
-import { ProductCapacityProvider } from "@/widgets/product-info/providers";
 import { DetailsAccordion } from "@/widgets/product-info/ui/DetailsAccordion/DetailsAccordion";
+import { ImagesCarousel } from "@/widgets/product-info/ui/ImagesCarousel";
 
 // TODO: remove after adding backend integration
 const mockProduct: IFullProduct = {
@@ -81,7 +81,7 @@ const ProductInfo = () => {
       <section className="container my-32 max-md:px-0! md:grid md:grid-cols-2">
         <ImagesCarousel images={data.images} productName={data.name} />
 
-        <div className={"flex flex-col gap-10"}>
+        <div className={"flex flex-col gap-10 px-5 md:px-0"}>
           <BaseInfo data={data} />
           <AddToCartButton
             productId={productId}

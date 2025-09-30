@@ -1,3 +1,5 @@
+import { useMediaQuery } from "@/shared/hooks";
+import { BREAKPOINTS } from "@/shared/lib/constants";
 import { urbanist } from "@/shared/lib/fonts";
 import {
   Accordion,
@@ -18,8 +20,14 @@ const DetailsAccordion = ({
   activeIngredients,
   usageInstructions,
 }: IDetailsAccordionProps) => {
+  const isDesktop = useMediaQuery(BREAKPOINTS["md"]);
+
+  if (!isDesktop) {
+    return null;
+  }
+
   return (
-    <Accordion type={"multiple"}>
+    <Accordion className={"hidden md:flex"} type={"multiple"}>
       {!!benefits.length && (
         <AccordionItem value={"benefits"}>
           <AccordionTrigger indicator={"chevron"}>Benefits</AccordionTrigger>

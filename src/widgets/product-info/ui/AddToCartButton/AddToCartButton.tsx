@@ -100,14 +100,14 @@ const AddToCartButton = ({
     <div className={"border-light-black flex border"}>
       <Button
         variant={"card"}
-        className={"relative border-none px-5 py-[30px]"}
+        className={"relative border-none px-3.5 py-[30px] md:px-5"}
         onClick={handlePlus}
       >
         <SvgIcon name={"plus"} width={14} height={14} />
       </Button>
       <div
         className={
-          "border-light-black flex w-[84px] items-center justify-center border-x"
+          "border-light-black flex w-[50px] items-center justify-center border-x md:w-[84px]"
         }
       >
         <input
@@ -124,14 +124,14 @@ const AddToCartButton = ({
       </div>
       <Button
         variant={"card"}
-        className={"border-none px-5 py-[30px]"}
+        className={"border-none px-3.5 py-[30px] md:px-5"}
         onClick={handleMinus}
       >
         <SvgIcon name={"minus"} width={14} height={14} />
       </Button>
       <Button
         className={
-          "border-light-black flex-1 border-l font-extrabold uppercase"
+          "border-light-black flex-1 border-l text-base font-extrabold uppercase md:text-xl"
         }
         onClick={handleAddToCart}
       >
