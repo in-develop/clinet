@@ -6,6 +6,7 @@ import { AddToCartButton } from "@/widgets/product-info/ui/AddToCartButton";
 import { BaseInfo } from "@/widgets/product-info/ui/BaseInfo";
 import { ImagesCarousel } from "@/widgets/product-info/ui/ImagesCarousel";
 import { ProductCapacityProvider } from "@/widgets/product-info/providers";
+import { DetailsAccordion } from "@/widgets/product-info/ui/DetailsAccordion/DetailsAccordion";
 
 // TODO: remove after adding backend integration
 const mockProduct: IFullProduct = {
@@ -85,6 +86,11 @@ const ProductInfo = () => {
           <AddToCartButton
             productId={productId}
             stockQuantity={data.stockQuantity}
+          />
+          <DetailsAccordion
+            benefits={data.benefits}
+            activeIngredients={data.activeIngredients}
+            usageInstructions={data.usageInstructions}
           />
         </div>
       </section>
