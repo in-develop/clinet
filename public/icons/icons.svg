@@ -6,13 +6,10 @@
             <path d="M0 14V0L11 7L0 14Z" fill="currentColor" />
         </symbol>
 
-<<<<<<< HEAD:public/icons.svg
         <symbol id="arrow-scroll-down" viewBox="0 0 15 11">
             <path d="M0.5 0L14.5 0L7.5 11L0.5 0Z" fill="currentColor" />
-=======
         <symbol id="arrow-scroll-left" viewBox="0 0 11 14">
             <path d="M11 0L11 14L0 7L11 0Z" fill="currentColor" />
->>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f:public/icons/icons.svg
         </symbol>
 
         <symbol id="arrow" viewBox="0 0 16 16">
