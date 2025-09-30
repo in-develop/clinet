@@ -6,7 +6,7 @@ import { CompletedSetsCarouselDesktop, CompletedSetsHeaderDesktop } from ".";
 
 const CompletedSetsDesktop: FC = () => {
   return (
-    <div className="mx-auto w-full">
+    <div className="container mx-auto w-full">
       <CompletedSetsHeaderDesktop />
 
       <CompletedSetsCarouselDesktop items={cosmeticData} />

@@ -20,7 +20,13 @@ const Hero = () => {
               aria-label="Discover the collection"
             >
               <span>Discover the Collection</span>
-              <SvgIcon name="arrow" className="shrink-0" decorative />
+              <SvgIcon
+                name="arrow"
+                width={16}
+                height={16}
+                className="shrink-0"
+                decorative
+              />
             </AppLink>
           </div>
         </div>
@@ -46,7 +52,7 @@ const Hero = () => {
             aria-label="Shop now"
           >
             <span>Shop now</span>
-            <SvgIcon name="arrow-scroll" />
+            <SvgIcon width={16} height={16} name="arrow-scroll-right" />
           </AppLink>
         </div>
       </div>

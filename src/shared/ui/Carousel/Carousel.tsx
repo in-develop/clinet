@@ -17,7 +17,7 @@ import React, {
 import { cn } from "@/shared/lib/utils";
 
 import { Button } from "../Button";
-import { ArrowScroll } from "../Icons";
+import { SvgIcon } from "../SvgIcon";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -74,6 +74,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     },
     plugins,
   );
+
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
@@ -98,6 +99,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
         scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
+
         scrollNext();
       }
     },
@@ -105,19 +107,27 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
   );
 
   useEffect(() => {
-    if (!api || !setApi) return;
+    if (!api || !setApi) {
+      return;
+    }
+
     setApi(api);
   }, [api, setApi]);
 
   useEffect(() => {
-    if (!api) return;
+    if (!api) {
+      return undefined;
+    }
+
     onSelect(api);
+
     api.on("reInit", onSelect);
     api.on("select", onSelect);
 
     // eslint-disable-next-line consistent-return
     return () => {
-      api?.off("select", onSelect);
+      api.off("select", onSelect);
+      api.off("reInit", onSelect);
     };
   }, [api, onSelect]);
 
@@ -125,7 +135,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     <CarouselContext.Provider
       value={{
         carouselRef,
-        api: api,
+        api,
         opts,
         orientation:
           orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
@@ -201,7 +211,7 @@ const CarouselContent: FC<ComponentProps<"div"> & CarouselContentProps> = (
       />
 
       {progressBar && (
-        <div className="embla__progress bg-silver mt-5 h-2 w-full sm:mt-3.5 sm:mb-5">
+        <div className="embla__progress bg-silver mt-5 h-0.5 w-full sm:mt-3.5 sm:mb-5">
           <div
             className="embla__progress__bar bg-eerie-black h-1 transition-[width]"
             style={{ width: `${scrollProgress}%` }}
@@ -258,7 +268,12 @@ const CarouselPrevious: FC<ComponentProps<typeof Button>> = (compProps) => {
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowScroll direction="left" className="ml-1" />
+      <SvgIcon
+        name="arrow-scroll-left"
+        width={11}
+        height={14}
+        className="mr-1"
+      />
     </Button>
   );
 };
@@ -289,7 +304,12 @@ const CarouselNext: FC<ComponentProps<typeof Button>> = (compProps) => {
       onClick={scrollNext}
       {...props}
     >
-      <ArrowScroll direction="right" className="m-auto" />
+      <SvgIcon
+        name="arrow-scroll-right"
+        width={11}
+        height={14}
+        className="ml-1"
+      />
     </Button>
   );
 };
