@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import { NuqsAdapter } from "nuqs/adapters/next";
 import { ReactNode } from "react";
+import { Toaster } from "sonner";
 
 import StoreProvider from "@/app/providers/StoreProvider";
 import { syne } from "@/shared/lib/fonts";
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={syne.className}>
+        <Toaster />
         <StoreProvider>
           <NuqsAdapter>
             <Header isAuthenticated={Boolean(user)} />

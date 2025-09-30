@@ -1,26 +1,27 @@
-import { Button } from "@/shared/ui";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 import { cn } from "@/shared/lib/utils";
+import { Button } from "@/shared/ui";
+import { useProductCapacityContext } from "@/widgets/product-info/providers";
 
 interface IProductCapacityProps {
   variant: "select" | "radio";
   data: number[];
-
-  onSelect: (capacity: number) => void;
 }
 
-const ProductCapacity = ({
-  data,
-  variant,
-  onSelect,
-}: IProductCapacityProps) => {
+const ProductCapacity = ({ data, variant }: IProductCapacityProps) => {
   const [selected, setSelected] = useState(data[data.length - 1]);
 
-  const handleSelect = (capacity: number) => {
-    onSelect(capacity);
+  const { setCapacity } = useProductCapacityContext();
 
+  const handleSelect = (capacity: number) => {
     setSelected(capacity);
+    setCapacity(capacity);
   };
+
+  useEffect(() => {
+    setCapacity(data[data.length - 1]);
+  }, [data]);
 
   if (variant === "select") {
     //   TODO: implement
@@ -39,7 +40,7 @@ const ProductCapacity = ({
               "border-none p-3 normal-case",
               selected === capacity && "bg-secondary-1 text-white",
             )}
-            onClick={() => setSelected(capacity)}
+            onClick={() => handleSelect(capacity)}
           >
             {capacity} ml
           </Button>

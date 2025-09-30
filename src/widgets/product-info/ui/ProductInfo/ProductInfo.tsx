@@ -2,8 +2,10 @@
 import { useParams } from "next/navigation";
 
 import { IFullProduct } from "@/widgets/product-info/model";
+import { AddToCartButton } from "@/widgets/product-info/ui/AddToCartButton";
 import { BaseInfo } from "@/widgets/product-info/ui/BaseInfo";
 import { ImagesCarousel } from "@/widgets/product-info/ui/ImagesCarousel";
+import { ProductCapacityProvider } from "@/widgets/product-info/providers";
 
 // TODO: remove after adding backend integration
 const mockProduct: IFullProduct = {
@@ -56,7 +58,7 @@ const mockProduct: IFullProduct = {
   ],
   categoryId: 1,
   productBundleId: 1,
-  stockQuantity: 100,
+  stockQuantity: 25,
   images: [
     "/images/hover/5.png",
     "/images/completeSets/6.png",
@@ -67,18 +69,26 @@ const mockProduct: IFullProduct = {
 const ProductInfo = () => {
   const params = useParams<{ productId: string }>();
 
+  const productId = parseInt(params.productId);
+
   // TODO: fetch product info with productId
 
   const data = mockProduct;
 
   return (
-    <section className="container my-32 max-md:px-0! md:grid md:grid-cols-2">
-      <ImagesCarousel images={data.images} productName={data.name} />
+    <ProductCapacityProvider>
+      <section className="container my-32 max-md:px-0! md:grid md:grid-cols-2">
+        <ImagesCarousel images={data.images} productName={data.name} />
 
-      <div className={"flex flex-col gap-10"}>
-        <BaseInfo data={data} />
-      </div>
-    </section>
+        <div className={"flex flex-col gap-10"}>
+          <BaseInfo data={data} />
+          <AddToCartButton
+            productId={productId}
+            stockQuantity={data.stockQuantity}
+          />
+        </div>
+      </section>
+    </ProductCapacityProvider>
   );
 };
 
