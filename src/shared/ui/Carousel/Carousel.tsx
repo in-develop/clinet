@@ -74,6 +74,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
     },
     plugins,
   );
+
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
@@ -98,6 +99,7 @@ const Carousel: FC<ComponentProps<"div"> & CarouselProps> = (compProps) => {
         scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
+
         scrollNext();
       }
     },
@@ -208,7 +210,7 @@ const CarouselContent: FC<ComponentProps<"div"> & CarouselContentProps> = (
       />
 
       {progressBar && (
-        <div className="embla__progress bg-silver mt-5 h-2 w-full sm:mt-3.5 sm:mb-5">
+        <div className="embla__progress bg-silver mt-5 h-0.5 w-full sm:mt-3.5 sm:mb-5">
           <div
             className="embla__progress__bar bg-eerie-black h-1 transition-[width]"
             style={{ width: `${scrollProgress}%` }}
