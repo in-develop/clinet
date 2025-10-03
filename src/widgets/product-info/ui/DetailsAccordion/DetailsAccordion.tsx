@@ -20,23 +20,23 @@ const DetailsAccordion = ({
   activeIngredients,
   usageInstructions,
 }: IDetailsAccordionProps) => {
-  const isDesktop = useMediaQuery(BREAKPOINTS["md"]);
+  const [isDesktop] = useMediaQuery(BREAKPOINTS["md"]);
 
   if (!isDesktop) {
     return null;
   }
 
   return (
-    <Accordion className={"hidden md:flex"} type={"multiple"}>
+    <Accordion type={"multiple"}>
       {!!benefits.length && (
         <AccordionItem value={"benefits"}>
           <AccordionTrigger indicator={"chevron"}>Benefits</AccordionTrigger>
           <AccordionContent>
             <ul className={"space-y-3.5"}>
-              {benefits.map((benefit) => (
+              {benefits.map((benefit, index) => (
                 <li
                   className={`before:bg-silver relative pl-[18px] before:absolute before:top-[5.4px] before:left-0 before:size-2.5 before:rounded-full ${urbanist.className} leading-[130%]`}
-                  key={benefit}
+                  key={index}
                 >
                   {benefit}
                 </li>
@@ -52,11 +52,11 @@ const DetailsAccordion = ({
           </AccordionTrigger>
           <AccordionContent>
             <div className={"max-w-[555px]"}>
-              {activeIngredients.map((ingredient) => {
+              {activeIngredients.map((ingredient, index) => {
                 const [first, ...rest] = ingredient.split(/\s+/);
                 return (
                   <p
-                    key={ingredient}
+                    key={index}
                     className={"text-light-black leading-[130%]"}
                   >
                     <span className="font-bold">{first}</span>
@@ -76,7 +76,7 @@ const DetailsAccordion = ({
               {usageInstructions.map((step, index) => {
                 const num = String(index + 1).padStart(2, "0");
                 return (
-                  <li key={step.instruction}>
+                  <li key={index}>
                     <p className="text-light-black leading-[130%]">
                       <span className="mr-3 font-bold tabular-nums">{num}</span>
                       <span className="font-bold">{step.instruction}</span>

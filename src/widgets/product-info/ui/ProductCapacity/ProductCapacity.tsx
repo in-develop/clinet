@@ -1,7 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/ui/Select";
 import { useProductCapacityContext } from "@/widgets/product-info/providers";
 
 interface IProductCapacityProps {
@@ -10,22 +17,35 @@ interface IProductCapacityProps {
 }
 
 const ProductCapacity = ({ data, variant }: IProductCapacityProps) => {
-  const [selected, setSelected] = useState(data[data.length - 1]);
-
-  const { setCapacity } = useProductCapacityContext();
+  const { setCapacity, capacity: selected } = useProductCapacityContext();
 
   const handleSelect = (capacity: number) => {
-    setSelected(capacity);
     setCapacity(capacity);
   };
 
   useEffect(() => {
     setCapacity(data[data.length - 1]);
-  }, [data]);
+  }, [data, setCapacity]);
 
   if (variant === "select") {
-    //   TODO: implement
-    return null;
+    return (
+      <Select
+        defaultValue={selected?.toString() || data[data.length - 1].toString()}
+        value={selected?.toString()}
+        onValueChange={(value) => handleSelect(parseInt(value))}
+      >
+        <SelectTrigger className="border-light-black w-min! min-w-[120px] justify-between gap-1 border bg-white py-2.5! pr-4 pl-5! font-bold text-nowrap">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent sideOffset={8} className="border-light-black border">
+          {data.map((capacity) => (
+            <SelectItem key={capacity} value={capacity.toString()}>
+              {capacity} ml
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    );
   }
 
   return (

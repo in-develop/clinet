@@ -14,6 +14,7 @@ const INACTIVITY_DELAY = 1500; // in ms
 const UpButton = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [productBarVisible, setProductBarVisible] = useState(false);
 
   const rafRef = useRef<number | null>(null);
 
@@ -98,6 +99,22 @@ const UpButton = () => {
     };
   }, [handleScroll]);
 
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const custom = e as CustomEvent<{ visible: boolean }>;
+      setProductBarVisible(!custom.detail.visible);
+    };
+    
+    window.addEventListener("productbar:visibility", handler as EventListener);
+  
+    return () =>
+      window.removeEventListener(
+        "productbar:visibility",
+        handler as EventListener,
+      );
+  }, []);
+
   const scrollToTop = useCallback(() => {
     if (isScrolling) return;
 
@@ -151,7 +168,8 @@ const UpButton = () => {
       onClick={scrollToTop}
       disabled={isScrolling}
       className={cn(
-        "text-light-black fixed right-10 bottom-10 z-50 flex size-16 flex-col items-center gap-1 rounded-full border-none font-extrabold",
+        "text-light-black fixed right-10 z-50 flex size-16 flex-col items-center gap-1 rounded-full border-none font-extrabold",
+        productBarVisible ? "bottom-32" : "bottom-10",
         reducedMotion ? "transition-none" : "transition-all",
         isVisible
           ? "translate-y-0 opacity-100"

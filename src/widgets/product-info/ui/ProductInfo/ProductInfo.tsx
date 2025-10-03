@@ -1,5 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 import { IFullProduct } from "@/widgets/product-info/model";
 import { ProductCapacityProvider } from "@/widgets/product-info/providers";
@@ -7,6 +8,8 @@ import { AddToCartButton } from "@/widgets/product-info/ui/AddToCartButton";
 import { BaseInfo } from "@/widgets/product-info/ui/BaseInfo";
 import { DetailsAccordion } from "@/widgets/product-info/ui/DetailsAccordion/DetailsAccordion";
 import { ImagesCarousel } from "@/widgets/product-info/ui/ImagesCarousel";
+
+import { ProductBar } from "../ProductBar";
 
 // TODO: remove after adding backend integration
 const mockProduct: IFullProduct = {
@@ -69,16 +72,47 @@ const mockProduct: IFullProduct = {
 
 const ProductInfo = () => {
   const params = useParams<{ productId: string }>();
-
   const productId = parseInt(params.productId);
 
   // TODO: fetch product info with productId
-
   const data = mockProduct;
+
+  const containerRef = useRef<HTMLElement | null>(null);
+  const [sectionVisible, setSectionVisible] = useState(true);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const visible = entry.isIntersecting;
+        setSectionVisible(visible);
+        window.dispatchEvent(
+          new CustomEvent("productbar:visibility", { detail: { visible } }),
+        );
+      },
+      { threshold: 0.1 },
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.unobserve(el);
+      observer.disconnect();
+      
+      window.dispatchEvent(
+        new CustomEvent("productbar:visibility", { detail: { visible: true } }),
+      );
+    };
+  }, []);
 
   return (
     <ProductCapacityProvider>
-      <section className="container my-32 max-md:px-0! md:grid md:grid-cols-2">
+      <section
+        ref={containerRef}
+        className="container my-32 max-md:px-0! md:grid md:grid-cols-2"
+      >
         <ImagesCarousel images={data.images} productName={data.name} />
 
         <div className={"flex flex-col gap-10 px-5 md:px-0"}>
@@ -94,6 +128,7 @@ const ProductInfo = () => {
           />
         </div>
       </section>
+      <ProductBar product={data} hidden={sectionVisible} />
     </ProductCapacityProvider>
   );
 };

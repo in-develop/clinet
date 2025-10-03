@@ -2,17 +2,22 @@ import { ChangeEventHandler, useState } from "react";
 import { toast } from "sonner";
 
 import { useCartLocalStorage } from "@/shared/hooks";
+import { cn } from "@/shared/lib/utils";
 import { Button, SvgIcon } from "@/shared/ui";
 import { useProductCapacityContext } from "@/widgets/product-info/providers";
 
 interface IAddToCartButtonProps {
   productId: number;
   stockQuantity: number;
+  withControls?: boolean;
+  className?: string;
 }
 
 const AddToCartButton = ({
   productId,
   stockQuantity,
+  className,
+  withControls = true,
 }: IAddToCartButtonProps) => {
   const { addItem, cartItems } = useCartLocalStorage();
   const { capacity } = useProductCapacityContext();
@@ -97,42 +102,47 @@ const AddToCartButton = ({
   };
 
   return (
-    <div className={"border-light-black flex border"}>
+    <div className={cn("border-light-black flex border", className)}>
+      {withControls && (
+        <>
+          <Button
+            variant={"card"}
+            className={"relative border-none bg-white px-3.5 py-[30px] md:px-5"}
+            onClick={handlePlus}
+          >
+            <SvgIcon name={"plus"} width={14} height={14} />
+          </Button>
+          <div
+            className={
+              "border-light-black flex w-[50px]  items-center justify-center border-x bg-white md:w-[84px]"
+            }
+          >
+            <input
+              aria-label="Quantity"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              className={
+                "w-full appearance-none border-none bg-transparent p-0 text-center text-xl font-bold outline-none"
+              }
+              value={inputValue}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </div>
+          <Button
+            variant={"card"}
+            className={"border-none px-3.5 py-[30px] md:px-5 bg-white"}
+            onClick={handleMinus}
+          >
+            <SvgIcon name={"minus"} width={14} height={14} />
+          </Button>
+        </>
+      )}
       <Button
-        variant={"card"}
-        className={"relative border-none px-3.5 py-[30px] md:px-5"}
-        onClick={handlePlus}
-      >
-        <SvgIcon name={"plus"} width={14} height={14} />
-      </Button>
-      <div
-        className={
-          "border-light-black flex w-[50px] items-center justify-center border-x md:w-[84px]"
-        }
-      >
-        <input
-          aria-label="Quantity"
-          inputMode="numeric"
-          pattern="[0-9]*"
-          className={
-            "w-full appearance-none border-none bg-transparent p-0 text-center text-xl font-bold outline-none"
-          }
-          value={inputValue}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-      </div>
-      <Button
-        variant={"card"}
-        className={"border-none px-3.5 py-[30px] md:px-5"}
-        onClick={handleMinus}
-      >
-        <SvgIcon name={"minus"} width={14} height={14} />
-      </Button>
-      <Button
-        className={
-          "border-light-black flex-1 border-l text-base font-extrabold uppercase md:text-xl"
-        }
+        className={cn(
+          "flex-1 text-base font-extrabold uppercase md:text-xl",
+          withControls && "border-light-black border-l",
+        )}
         onClick={handleAddToCart}
       >
         Add to bag
