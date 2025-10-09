@@ -1,53 +1,66 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;"
-    version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+     version="1.1" xmlns="http://www.w3.org/2000/svg">
     <defs>
 
         <symbol id="arrow-scroll-right" viewBox="0 0 11 14">
             <path d="M0 14V0L11 7L0 14Z" fill="currentColor" />
         </symbol>
 
-<<<<<<< HEAD:public/icons.svg
+
         <symbol id="arrow-scroll-down" viewBox="0 0 15 11">
             <path d="M0.5 0L14.5 0L7.5 11L0.5 0Z" fill="currentColor" />
-=======
+        </symbol>
+
         <symbol id="arrow-scroll-left" viewBox="0 0 11 14">
             <path d="M11 0L11 14L0 7L11 0Z" fill="currentColor" />
->>>>>>> 0838ac598d803293784a6cdd14fe4242bdc5e80f:public/icons/icons.svg
         </symbol>
 
         <symbol id="arrow" viewBox="0 0 16 16">
             <path d="M0 9L12.17 9L6.58 14.59L8 16L16 8L8 0L6.59 1.41L12.17 7L0 7L0 9Z"
-                fill="currentColor" />
+                  fill="currentColor" />
         </symbol>
 
         <symbol id="cross-squared" viewBox="0 0 24 24">
-            <path d="M20.75 3.25V20.75H3.25V3.25H20.75Z" 
-                stroke="currentColor" 
-                stroke-width="0.5"
+            <path d="M20.75 3.25V20.75H3.25V3.25H20.75Z"
+                  stroke="currentColor"
+                  stroke-width="0.5"
             />
-            <path d="M17.6569 7.75541L13.4143 11.998L17.6569 16.2407L16.2427 17.6549L12.0001 13.4123L7.75744 17.6549L6.34323 16.2407L10.5859 11.998L6.34323 7.75541L7.75744 6.34119L12.0001 10.5838L16.2427 6.34119L17.6569 7.75541Z" 
-                fill="currentColor"/>
+            <path d="M17.6569 7.75541L13.4143 11.998L17.6569 16.2407L16.2427 17.6549L12.0001 13.4123L7.75744 17.6549L6.34323 16.2407L10.5859 11.998L6.34323 7.75541L7.75744 6.34119L12.0001 10.5838L16.2427 6.34119L17.6569 7.75541Z"
+                  fill="currentColor"/>
         </symbol>
 
         <symbol id="loader" viewBox="0 0 84 85">
-            <path d="M42 3.5C63.5367 3.5 81 20.9633 81 42.5" 
-                stroke="currentColor" 
-                stroke-width="6" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"
+            <path d="M42 3.5C63.5367 3.5 81 20.9633 81 42.5"
+                  stroke="currentColor"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
             />
-            <path d="M42 3.5C63.5367 3.5 81 20.9633 81 42.5C81 64.0367 63.5367 81.5 42 81.5C20.4633 81.5 3 64.0367 3 42.5C3 20.9633 20.4633 3.5 42 3.5Z" 
-                stroke="black" 
-                stroke-opacity="0.3" 
-                stroke-width="6" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"
+            <path d="M42 3.5C63.5367 3.5 81 20.9633 81 42.5C81 64.0367 63.5367 81.5 42 81.5C20.4633 81.5 3 64.0367 3 42.5C3 20.9633 20.4633 3.5 42 3.5Z"
+                  stroke="black"
+                  stroke-opacity="0.3"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
             />
         </symbol>
 
         <symbol id="tick" viewBox="0 0 18 13">
             <path d="M6.54961 13L0.849609 7.29998L2.27461 5.87498L6.54961 10.15L15.7246 0.974976L17.1496 2.39998L6.54961 13Z"
-                fill="currentColor"/>
+                  fill="currentColor"/>
+        </symbol>
+
+        <symbol id="link" viewBox="0 0 18 18" fill="none">
+            <path d="M8 1H1V17H17V10M6 12L17 1M17 1H12M17 1V6" stroke="currentColor"
+                  stroke-width="2" stroke-miterlimit="16" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="done" viewBox="0 0 12 9">
+            <path d="M4.36668 9.00006L0.566681 5.20007L1.51668 4.25007L4.36668 7.10006L10.4833 0.983398L11.4333 1.9334L4.36668 9.00006Z"
+                  fill="currentColor"/>
+        </symbol>
+        <symbol id="x" viewBox="0 0 12 12">
+            <path d="M11.6569 1.75541L7.41429 5.99805L11.6569 10.2407L10.2427 11.6549L6.00008 7.41226L1.75744 11.6549L0.343227 10.2407L4.58587 5.99805L0.343227 1.75541L1.75744 0.341193L6.00008 4.58383L10.2427 0.341193L11.6569 1.75541Z"
+                  fill="currentColor"/>
         </symbol>
     </defs>
 </svg>
