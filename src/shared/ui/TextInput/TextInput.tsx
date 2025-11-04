@@ -1,15 +1,16 @@
 "use client";
 
-import { ComponentProps, FC, useState } from "react";
 import { cva, VariantProps } from "class-variance-authority";
+import { ComponentProps, FC, ReactNode, useState } from "react";
 
-import { Button } from "../Button";
-import { ArrowIcon } from "../Icons";
-
+import { urbanist } from "@/shared/lib/fonts";
 import { cn } from "@/shared/lib/utils";
 
+import { Button, buttonVariants } from "../Button";
+import { SvgIcon } from "../SvgIcon";
+
 const textInputVariants = cva(
-  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary",
+  "border-b placeholder-gray text-eerie-black font-normal text-base leading-[1.2] focus:outline-none transition-colors group-hover:border-primary group-hover:placeholder-primary h-7",
   {
     variants: {
       variant: {
@@ -26,7 +27,7 @@ const textInputVariants = cva(
   },
 );
 
-const buttonVariants = cva(
+const buttonStateVariants = cva(
   "hover:border-primary hover:[&_svg>path]:fill-primary hover:bg-transparent transition-colors",
   {
     variants: {
@@ -46,17 +47,23 @@ const buttonVariants = cva(
   },
 );
 
-type Props = Omit<ComponentProps<"input">, "disabled"> &
-  VariantProps<typeof textInputVariants> & {
-    value: string;
-    label?: string;
-    onSubmit?: () => void;
-    disabled?: boolean;
-    error?: string;
-    className?: string;
-  };
+interface ITextInputProps
+  extends ComponentProps<"input">,
+    VariantProps<typeof textInputVariants> {
+  value: string;
+  label?: string;
+  onSubmit?: () => void;
+  error?: string;
+  buttonVariant?: VariantProps<typeof buttonVariants>["variant"];
+  buttonSize?: VariantProps<typeof buttonVariants>["size"];
+  buttonIcon?: ReactNode;
+  labelClassName?: string;
+  inputClassName?: string;
+  buttonClassName?: string;
+  buttonIconClassName?: string;
+}
 
-const TextInput: FC<Props> = (props) => {
+const TextInput: FC<ITextInputProps> = (props) => {
   const {
     value,
     label,
@@ -65,12 +72,19 @@ const TextInput: FC<Props> = (props) => {
     disabled,
     error,
     className,
+    buttonVariant = "borderIcon",
+    buttonSize = "icon",
+    buttonIcon,
+    labelClassName,
+    inputClassName,
+    buttonClassName,
+    buttonIconClassName,
     ...rest
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
 
-  const getTextInputVariant = () => {
+  const getTextInputStateVariant = () => {
     if (disabled) {
       return "disabled";
     }
@@ -86,7 +100,7 @@ const TextInput: FC<Props> = (props) => {
     return "default";
   };
 
-  const getButtonVariant = () => {
+  const getButtonStateVariant = () => {
     if (disabled || error) {
       return "disabled";
     }
@@ -103,12 +117,26 @@ const TextInput: FC<Props> = (props) => {
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div
+      className={cn(
+        "relative flex h-[58px] flex-col justify-end gap-1",
+        className,
+      )}
+    >
       {label && (
-        <label className="text-gray text-xs font-normal">{label}</label>
+        <label
+          className={cn(
+            urbanist.className,
+            "text-eerie-black absolute top-0 text-xs font-normal transition-all",
+            !isFocused && !value && "top-2/3 -translate-y-1/2 text-base",
+            labelClassName,
+          )}
+        >
+          {label}
+        </label>
       )}
 
-      <div className="group flex gap-2">
+      <div className="group relative flex items-end">
         <input
           value={value}
           disabled={disabled}
@@ -116,24 +144,27 @@ const TextInput: FC<Props> = (props) => {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           className={cn(
-            textInputVariants({ variant: getTextInputVariant() }),
-            className,
+            urbanist.className,
+            "peer transition-all",
+            textInputVariants({ variant: getTextInputStateVariant() }),
+            inputClassName,
           )}
           {...rest}
         />
+        {buttonIcon && <div className={buttonIconClassName}>{buttonIcon}</div>}
 
         {onSubmit && (
           <Button
             disabled={disabled || Boolean(error)}
-            variant="borderIcon"
-            size="icon"
+            variant={buttonVariant}
+            size={buttonSize}
             className={cn(
-              buttonVariants({ variant: getButtonVariant() }),
-              className,
+              buttonStateVariants({ variant: getButtonStateVariant() }),
+              buttonClassName,
             )}
             onClick={onSubmit}
           >
-            <ArrowIcon />
+            <SvgIcon name="arrow" />
           </Button>
         )}
       </div>
